@@ -11,7 +11,7 @@ const BirthdateInputScreen = () => {
     const [showPicker, setShowPicker] = useState(false);
     const navigation = useNavigation();
 
-    const handleDateChange = (event, selectedDate) => {
+    const handleDateChange = (_event: any, selectedDate: Date | null) => {
         setShowPicker(false);
         if (selectedDate) {
             setBirthdate(selectedDate);
