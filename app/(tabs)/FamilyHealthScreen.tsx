@@ -5,14 +5,16 @@ import { Ionicons } from '@expo/vector-icons';
 
 const { width, height } = Dimensions.get('window');
 
-const PhysicalActivityScreen = () => {
+const FamilyHealthScreen = () => {
     const [selectedOption, setSelectedOption] = useState(null);
     const navigation = useNavigation();
 
     const options = [
-        'Getting tired fast',
-        'Strong & Active',
-        'Like it slow & easy'
+        'Thyroid',
+        'Diabetes',
+        'HyperTension',
+        'HypoTension',
+        'None of the above'
     ];
 
     const handleSelect = (option) => {
@@ -21,7 +23,7 @@ const PhysicalActivityScreen = () => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>How do you react to physical activity?</Text>
+            <Text style={styles.title}>Do you have any health issues now?</Text>
             <View style={styles.optionsContainer}>
                 {options.map((option, index) => (
                     <TouchableOpacity
@@ -41,9 +43,7 @@ const PhysicalActivityScreen = () => {
                     </TouchableOpacity>
                 ))}
             </View>
-            <Image source={require('../../assets/images/Exercise.png')} style={styles.exerciseImage} />
-            
-            {/* Buttons above the logo */}
+            <Image source={require('../../assets/images/Heart.png')} style={styles.exerciseImage} />
             <View style={styles.buttonContainer}>
                 <TouchableOpacity
                     style={styles.backButton}
@@ -58,9 +58,7 @@ const PhysicalActivityScreen = () => {
                     <Text style={styles.buttonText}>Next</Text>
                 </TouchableOpacity>
             </View>
-
-            {/* Arogya Logo */}
-            <Image source={require('../../assets/images/ArogyaLogo.png')} style={styles.logo} />
+            <Text style={styles.logo}>AROGYA</Text>
         </View>
     );
 };
@@ -79,9 +77,10 @@ const styles = StyleSheet.create({
         color: '#3E5025',
         alignSelf: 'flex-start',
         marginBottom: 10,
+        marginLeft: '10%',
     },
     optionsContainer: {
-        width: '100%',
+        width: '80%',
     },
     option: {
         flexDirection: 'row',
@@ -100,11 +99,10 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         fontSize: 16,
         color: 'black',
-        textAlign: 'left',
     },
     exerciseImage: {
-        width: width * 0.4,
-        height: height * 0.15,
+        width: width * 0.5,
+        height: height * 0.2,
         resizeMode: 'contain',
         opacity: 0.2,
         marginTop: 10,
@@ -112,10 +110,8 @@ const styles = StyleSheet.create({
     buttonContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        width: '100%',
-        paddingHorizontal: '10%',
+        width: '80%',
         marginTop: 20,
-        marginBottom: 200,  // Space between buttons and logo
     },
     backButton: {
         backgroundColor: 'white',
@@ -143,10 +139,11 @@ const styles = StyleSheet.create({
         color: 'black',
     },
     logo: {
-        width: 100,
-        height: 50,
-        resizeMode: 'contain',
+        marginTop: 20,
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: '#3E5025',
     },
 });
 
-export default PhysicalActivityScreen;
+export default FamilyHealthScreen;
