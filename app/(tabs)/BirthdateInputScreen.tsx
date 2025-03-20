@@ -10,11 +10,11 @@ const BirthdateInputScreen = () => {
     const [birthdate, setBirthdate] = useState(new Date());
     const [showPicker, setShowPicker] = useState(false);
     const navigation = useNavigation();
+    const [date, setDate] = useState(new Date());
 
-    const handleDateChange = (_event: any, selectedDate: Date | null) => {
-        setShowPicker(false);
+    const handleDateChange = (_event: DateTimePicker, selectedDate?: Date) => {
         if (selectedDate) {
-            setBirthdate(selectedDate);
+            setDate(selectedDate); // Ensure selectedDate is not undefined before setting state
         }
     };
 
@@ -49,7 +49,10 @@ const BirthdateInputScreen = () => {
             </Text>
             <Image source={require('../../assets/images/Yoga.png')} style={styles.yogaImage} />
             <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.backButton}>
+                <TouchableOpacity 
+                    style={styles.backButton}
+                    onPress={() => navigation.navigate('NameInputScreen')}
+                >
                     <Text style={styles.buttonText}>Back</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
