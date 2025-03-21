@@ -1,13 +1,26 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { Ionicons, Feather } from '@expo/vector-icons';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { useNavigation } from '@react-navigation/native';
+import { RootStackParamList } from '../types';
+
+type SettingsScreenNavigationProp = StackNavigationProp<RootStackParamList, 'SettingsScreen'>;
 
 const SettingsScreen = () => {
+  const navigation = useNavigation<SettingsScreenNavigationProp>();
+  const MenuItem: React.FC<{ icon: any; title: string; onPress?: () => void }> = ({ icon, title, onPress }) => (
+    <TouchableOpacity style={styles.menuItem} onPress={onPress}>
+      <Feather name={icon} size={20} color="black" />
+      <Text style={styles.menuText}>{title}</Text>
+    </TouchableOpacity>
+  );
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Ionicons name="chevron-back" size={24} color="black" />
-        <Text style={styles.headerTitle}>Settings and activity</Text>
+        <Text style={styles.headerTitle}>Home</Text>
       </View>
       
       <View style={styles.profileSection}>
@@ -16,7 +29,9 @@ const SettingsScreen = () => {
           style={styles.profileImage}
         />
         <View>
-          <Text style={styles.userName}>User’s Name</Text>
+          <TouchableOpacity onPress={() => navigation.navigate('SettingsAndActivity')}>
+            <Text style={styles.userName}>Username</Text>
+          </TouchableOpacity>
           <Text style={styles.userPhone}>+91 1234567890</Text>
         </View>
         <Feather name="edit-3" size={20} color="black" style={styles.editIcon} />
@@ -24,7 +39,7 @@ const SettingsScreen = () => {
       
       <View style={styles.menuSection}>
         <MenuItem icon="lock" title="Account Privacy" />
-        <MenuItem icon="bell" title="Notifications" />
+        <MenuItem icon="bell" title="Notifications" onPress={() => navigation.navigate('Notification')} />
         <MenuItem icon="info" title="About" />
         <MenuItem icon="help-circle" title="Help" />
         <MenuItem icon="shield" title="Privacy Policy" />
@@ -49,9 +64,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F8E5BF',
-    padding: 20,
+    padding: 30,
   },
   header: {
+    padding:20,
     flexDirection: 'row',
     alignItems: 'center',
   },
