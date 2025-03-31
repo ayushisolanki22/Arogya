@@ -14,6 +14,10 @@ const PhoneLoginScreen = () => {
         Linking.openURL(url);
     };
 
+    const handleEmailPress = () => {
+        navigation.navigate('EmailLoginScreen');
+    };
+
     return (
         <ScrollView contentContainerStyle={styles.container}>
             <Text style={styles.newUser} onPress={handleNewUserPress}>New User?</Text>
@@ -35,6 +39,11 @@ const PhoneLoginScreen = () => {
             </View>
 
             <Text style={styles.orContinueText}>or continue with</Text>
+
+            <TouchableOpacity style={styles.emailContainer} onPress={handleEmailPress}>
+                <FontAwesome name="envelope" size={20} color="black" style={styles.emailIcon} />
+                <Text style={styles.emailText}>Email</Text>
+            </TouchableOpacity>
 
             <View style={styles.socialIconsContainer}>
                 <TouchableOpacity onPress={() => openLink('https://www.facebook.com')}>
@@ -113,6 +122,23 @@ const styles = StyleSheet.create({
         fontSize: 14,
         color: 'black',
         marginVertical: 20,
+    },
+    emailContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#FFF176',
+        padding: 10,
+        borderRadius: 5,
+        marginBottom: 10,
+        width: '100%',
+    },
+    emailIcon: {
+        marginRight: 8,
+    },
+    emailText: {
+        fontSize: 16,
+        color: 'black',
     },
     socialIconsContainer: {
         flexDirection: 'row',

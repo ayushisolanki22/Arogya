@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'; 
 import { View, Text, TextInput, TouchableOpacity, Image, Linking, StyleSheet, ScrollView } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
@@ -11,6 +11,10 @@ const EmailLoginScreen = () => {
 
     const handleNewUserPress = () => {
         navigation.navigate('EmailRegistrationScreen');
+    };
+
+    const handlePhoneLoginPress = () => {
+        navigation.navigate('PhoneLoginScreen');
     };
 
     const openLink = (url) => {
@@ -55,7 +59,7 @@ const EmailLoginScreen = () => {
 
             <Text style={styles.orContinueText}>or continue with</Text>
 
-            <TouchableOpacity style={styles.phoneButton}>
+            <TouchableOpacity style={styles.phoneButton} onPress={handlePhoneLoginPress}>
                 <FontAwesome name="phone" size={20} color="black" />
                 <Text style={styles.phoneText}> Phone Number</Text>
             </TouchableOpacity>
