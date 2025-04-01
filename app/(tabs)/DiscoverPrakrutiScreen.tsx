@@ -1,9 +1,12 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const { width, height } = Dimensions.get('window');
 
 const DiscoverPrakrutiScreen = () => {
+    const navigation = useNavigation();
+
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Discover Your Prakruti! 🌱</Text>
@@ -18,6 +21,12 @@ const DiscoverPrakrutiScreen = () => {
             </Text>
             <Image source={require('../../assets/images/Ayurveda.png')} style={styles.image} />
             <Text style={styles.highlight}>Balance your Prakruti, balance your life.</Text>
+
+            {/* Next Button */}
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('WeatherFeelingScreen')}>
+                <Text style={styles.buttonText}>Next</Text>
+            </TouchableOpacity>
+
             <Image source={require('../../assets/images/ArogyaLogo.png')} style={styles.logo} />
         </View>
     );
@@ -49,6 +58,7 @@ const styles = StyleSheet.create({
         color: '#3E5025',
         textAlign: 'center',
         marginTop: 10,
+        marginBottom: 20, // Added margin to separate it from the button
     },
     image: {
         width: width * 0.4,
@@ -62,6 +72,18 @@ const styles = StyleSheet.create({
         height: 50,
         resizeMode: 'contain',
         marginTop: 30,
+    },
+    button: {
+        backgroundColor: '#A4C639',
+        padding: 12,
+        borderRadius: 10,
+        width: 120,
+        alignItems: 'center',
+    },
+    buttonText: {
+        color: '#FFFFFF',
+        fontSize: 16,
+        fontWeight: 'bold',
     },
 });
 
