@@ -35,7 +35,7 @@ const PhysicalActivityScreen = () => {
                         <Ionicons
                             name={selectedOption === option ? 'radio-button-on' : 'radio-button-off'}
                             size={20}
-                            color={selectedOption === option ? 'black' : 'black'}
+                            color="black"
                         />
                         <Text style={styles.optionText}>{option}</Text>
                     </TouchableOpacity>
@@ -53,7 +53,7 @@ const PhysicalActivityScreen = () => {
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.nextButton}
-                    onPress={() => navigation.navigate('NextScreen')}
+                    onPress={() => navigation.navigate('HealthIssueScreen')}
                 >
                     <Text style={styles.buttonText}>Next</Text>
                 </TouchableOpacity>

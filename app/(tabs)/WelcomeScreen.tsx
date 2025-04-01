@@ -1,9 +1,12 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const { width, height } = Dimensions.get('window');
 
 const WelcomeScreen = () => {
+    const navigation = useNavigation();
+
     return (
         <View style={styles.container}>
             <Text style={styles.title}>LET’S GET TO KNOW YOU!</Text>
@@ -15,6 +18,10 @@ const WelcomeScreen = () => {
             </Text>
             
             <Image source={require('../../assets/images/Yoga.png')} style={styles.yogaImage} />
+            
+            <TouchableOpacity style={styles.nextButton} onPress={() => navigation.navigate('GenderSelection')}>
+                <Text style={styles.buttonText}>Next</Text>
+            </TouchableOpacity>
             
             <Image source={require('../../assets/images/ArogyaLogo.png')} style={styles.logo} />
         </View>
@@ -49,6 +56,24 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
         opacity: 0.2,
         marginBottom: 50, // Moves the yoga image down
+    },
+    nextButton: {
+        position: 'absolute',
+        right: 20,
+        bottom: 100, // Positioned above ArogyaLogo
+        backgroundColor: '#A4C27E',
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        borderRadius: 10,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 2,
+    },
+    buttonText: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: 'black',
     },
     logo: {
         width: 100,

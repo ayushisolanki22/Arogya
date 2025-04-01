@@ -1,12 +1,13 @@
-// InsightsScreen.js
-
 import React, { useRef } from 'react';
-import { View, Text, TouchableOpacity, Image, FlatList, StyleSheet, PanResponder, Animated } from 'react-native';
+import { 
+  View, Text, TouchableOpacity, Image, FlatList, 
+  StyleSheet, PanResponder, Animated 
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 // Sample Data
 const insightsData = [
-  { title: 'Sleep', goal: '8hr', icon: require('../../assets/images/Moon.png') },
+  { title: 'Sleep', goal: '8hr', icon: require('../../assets/images/Moon.png'), screen: 'SleepTrack' },
   { title: 'Water', goal: '8 Glasses', icon: require('../../assets/images/Glass.png') },
   { title: 'Stress Level', goal: 'Low', icon: require('../../assets/images/Brain.png') },
   { title: 'Food', goal: '2000 Cal', icon: require('../../assets/images/Food.png') },
@@ -59,7 +60,15 @@ const InsightsScreen = () => {
                 <Text style={styles.cardTitle}>{item.title}</Text>
                 <Text style={styles.cardGoal}>Goal: {item.goal}</Text>
               </View>
-              <TouchableOpacity style={styles.addButton}>
+              {/* Navigate to SleepTrack only if the title is 'Sleep' */}
+              <TouchableOpacity 
+                style={styles.addButton} 
+                onPress={() => {
+                  if (item.title === 'Sleep') {
+                    navigation.navigate('SleepTrack');
+                  }
+                }}
+              >
                 <Text style={styles.addButtonText}>+</Text>
               </TouchableOpacity>
             </View>
