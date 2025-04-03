@@ -37,7 +37,7 @@ const WeatherFeelingScreen = () => {
         <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate('DiscoverPrakrutiScreen')}>
           <Text style={styles.buttonText}>Back</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.nextButton}onPress={() => navigation.navigate('FollowUpQuestionsScreen')}>>
+        <TouchableOpacity style={styles.nextButton}onPress={() => navigation.navigate('FollowUpQuestionsScreen1')}>
           <Text style={styles.buttonText}>Next</Text>
         </TouchableOpacity>
       </View>
@@ -56,9 +56,9 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',
-    marginBottom: 10,
+    marginBottom: 40,
     color: '#6D3B1E',
-    marginTop: -40,
+    marginTop: -150,
   },
   optionsContainer: {
     marginTop: -20,

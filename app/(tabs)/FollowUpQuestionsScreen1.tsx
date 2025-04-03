@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 
-const FollowUpQuestionsScreen = () => {
+const FollowUpQuestionsScreen1 = () => {
   const navigation = useNavigation();
   const [answers, setAnswers] = useState({
     vata: null,
@@ -20,7 +20,7 @@ const FollowUpQuestionsScreen = () => {
       <Text style={styles.title}>Follow Up Questions :</Text>
       
       <View style={styles.questionContainer}>
-        <Text style={styles.question}>Do you need extra layers even when others feel okay? (Vata)</Text>
+        <Text style={styles.question}>Do you need extra layers even when others feel okay? </Text>
         <View style={styles.optionRow}>
           <TouchableOpacity
             style={styles.optionButton}
@@ -48,7 +48,7 @@ const FollowUpQuestionsScreen = () => {
       </View>
       
       <View style={styles.questionContainer}>
-        <Text style={styles.question}>Do you sweat a lot even when it’s not very hot? (Pitta)</Text>
+        <Text style={styles.question}>Do you sweat a lot even when it’s not very hot? </Text>
         <View style={styles.optionRow}>
           <TouchableOpacity
             style={styles.optionButton}
@@ -76,7 +76,7 @@ const FollowUpQuestionsScreen = () => {
       </View>
       
       <View style={styles.questionContainer}>
-        <Text style={styles.question}>Do you feel slow and heavy in humid climates? (Kapha)</Text>
+        <Text style={styles.question}>Do you feel slow and heavy in humid climates? </Text>
         <View style={styles.optionRow}>
           <TouchableOpacity
             style={styles.optionButton}
@@ -107,7 +107,7 @@ const FollowUpQuestionsScreen = () => {
         <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate('WeatherFeelingScreen')}>
           <Text style={styles.backButtonText}>Back</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.nextButton}>
+        <TouchableOpacity style={styles.nextButton} onPress={() => navigation.navigate('AppetiteScreen')}>
           <Text style={styles.buttonText}>Next</Text>
         </TouchableOpacity>
       </View>
@@ -184,4 +184,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FollowUpQuestionsScreen;
+export default FollowUpQuestionsScreen1;
