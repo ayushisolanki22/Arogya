@@ -46,9 +46,18 @@ const SleepTrack = () => {
       {/* Sleep Tracking Input */}
       <Text style={styles.trackText}>Please track your sleep timings here</Text>
       <View style={styles.sleepInputContainer}>
+        <TouchableOpacity 
+          onPress={() => setSleepHours(Math.max(0, sleepHours - 1))}
+        >
+          <Ionicons name="remove-circle-outline" size={30} color="black" />
+        </TouchableOpacity>
+
         <Text style={styles.sleepText}>{sleepHours}h of {maxSleep}h</Text>
-        <TouchableOpacity onPress={() => setSleepHours(sleepHours < maxSleep ? sleepHours + 1 : maxSleep)}>
-          <Ionicons name="pencil" size={20} color="black" />
+
+        <TouchableOpacity 
+          onPress={() => setSleepHours(Math.min(maxSleep, sleepHours + 1))}
+        >
+          <Ionicons name="add-circle-outline" size={30} color="black" />
         </TouchableOpacity>
       </View>
 
@@ -66,8 +75,7 @@ const SleepTrack = () => {
       <Text style={styles.tipsTitle}>😴 Tips For You To Sleep Better</Text>
       <Text style={styles.tipsText}>
         Create a calming bedtime routine by disconnecting from screens, practicing deep breathing, and sipping warm herbal tea. 
-        Maintain a consistent sleep schedule and ensure your space is dark, quiet, and comfortable. Let go of stress with meditation or gentle stretches. 
-        Embrace restful sleep for a healthier, more balanced you!
+        Maintain a consistent sleep schedule and ensure your space is dark, quiet, and comfortable.
       </Text>
 
       {/* Logo */}
@@ -110,17 +118,18 @@ const styles = StyleSheet.create({
   },
   trackText: {
     fontSize: 16,
-    marginTop: 10,
+    marginTop: 5,
     fontWeight: 'bold',
   },
   sleepInputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
     marginVertical: 10,
   },
   sleepText: {
     fontSize: 18,
-    marginRight: 5,
+    marginHorizontal: 15,
   },
   progressBar: {
     height: 8,
@@ -128,7 +137,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   sectionTitle: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'bold',
     marginBottom: 15,
   },
@@ -137,18 +146,22 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   noRecordsText: {
-    fontSize: 16,
+    fontSize: 14,
     color: 'black',
   },
   tipsTitle: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: 'bold',
     marginBottom: 15,
+    textAlign: 'center',
+
   },
   tipsText: {
     fontSize: 14,
     color: 'black',
     lineHeight: 20,
+    textAlign: 'center',
+
   },
   logo: {
     width: 130,

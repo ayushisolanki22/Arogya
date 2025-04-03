@@ -1,8 +1,23 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 
-const HomeScreen = ({ navigation }) => {
+// Define Navigation Type
+type RootStackParamList = {
+  Home: undefined;
+  Prakruti: undefined;
+  LifestyleDiet: undefined;
+  ChatBox: undefined;
+  InsightsScreen: undefined;
+};
+
+type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
+
+const HomeScreen: React.FC = () => {
+  const navigation = useNavigation<HomeScreenNavigationProp>();
+
   return (
     <View style={styles.container}>
       {/* Header */}
@@ -34,19 +49,19 @@ const HomeScreen = ({ navigation }) => {
             <Ionicons name="home" size={32} color="black" />
           </TouchableOpacity>
 
-          {/* Logo Icon (Separate) */}
+          {/* Logo Icon */}
           <TouchableOpacity style={styles.logoButton} onPress={() => navigation.navigate('Prakruti')}>
             <Image source={require('../../assets/images/Logo.png')} style={styles.logoIcon} />
           </TouchableOpacity>
 
-          {/* ChatBox Icon (Separate) */}
+          {/* ChatBox Icon */}
           <TouchableOpacity style={styles.chatBoxButton} onPress={() => navigation.navigate('ChatBox')}>
             <Image source={require('../../assets/images/ChatBox.png')} style={styles.chatBoxIcon} />
           </TouchableOpacity>
 
-          {/* Bar Chart Icon — Navigates to InsightsScreen */}
+          {/* Insights Button */}
           <TouchableOpacity style={styles.navButton} onPress={() => navigation.navigate('InsightsScreen')}>
-            <Ionicons name="bar-chart" size={32} color="black" />
+            <Image source={require('../../assets/images/Insight.png')} style={styles.insightIcon} />
           </TouchableOpacity>
         </View>
       </View>
@@ -79,13 +94,13 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 50,
-    paddingVertical: 50,
+    paddingHorizontal: 5,
+    paddingVertical: 15,
   },
   card: {
     backgroundColor: 'white',
-    width: '90%', // Keeps the increased horizontal size
-    height: 150, // Increased height to make it vertically larger
+    width: '90%',
+    height: 210,
     marginVertical: 15,
     padding: 40,
     borderRadius: 20,
@@ -151,6 +166,10 @@ const styles = StyleSheet.create({
     height: 31,
   },
   chatBoxIcon: {
+    width: 32,
+    height: 32,
+  },
+  insightIcon: {
     width: 32,
     height: 32,
   },

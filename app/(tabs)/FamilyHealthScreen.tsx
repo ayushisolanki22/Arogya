@@ -10,11 +10,11 @@ const FamilyHealthScreen = () => {
     const navigation = useNavigation();
 
     const options = [
-        'Thyroid',
+        'Heart Problem',
         'Diabetes',
-        'Hypertension',
-        'Hypotension',
-        'None of the above'
+        'Hypertension (high BP)',
+        'None of the above',
+        'Other'
     ];
 
     const handleSelect = (option) => {

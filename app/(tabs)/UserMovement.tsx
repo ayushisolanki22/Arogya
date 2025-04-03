@@ -49,7 +49,7 @@ const UserMovement = () => {
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.nextButton}
-                    onPress={() => navigation.navigate('PhysicalActivityScreen')}
+                    onPress={() => navigation.navigate('HealthIssuesScreen')}
                 >
                     <Text style={styles.buttonText}>Next</Text>
                 </TouchableOpacity>
