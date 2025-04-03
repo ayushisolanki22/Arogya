@@ -7,7 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 
 // Sample Data
 const insightsData = [
-  { title: 'Sleep', goal: '8hr', icon: require('../../assets/images/Moon.png'), screen: 'SleepTrack' },
+  { title: 'Sleep', goal: '8hr', icon: require('../../assets/images/Moon.png') },
   { title: 'Water', goal: '8 Glasses', icon: require('../../assets/images/Glass.png') },
   { title: 'Stress Level', goal: 'Low', icon: require('../../assets/images/Brain.png') },
   { title: 'Food', goal: '2000 Cal', icon: require('../../assets/images/Food.png') },
@@ -60,12 +60,14 @@ const InsightsScreen = () => {
                 <Text style={styles.cardTitle}>{item.title}</Text>
                 <Text style={styles.cardGoal}>Goal: {item.goal}</Text>
               </View>
-              {/* Navigate to SleepTrack only if the title is 'Sleep' */}
+              {/* Navigate to respective screens */}
               <TouchableOpacity 
                 style={styles.addButton} 
                 onPress={() => {
                   if (item.title === 'Sleep') {
                     navigation.navigate('SleepTrack');
+                  } else if (item.title === 'Water') {
+                    navigation.navigate('WaterInsights');
                   }
                 }}
               >

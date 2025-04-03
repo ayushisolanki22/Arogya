@@ -10,11 +10,12 @@ const HealthIssueScreen = () => {
     const navigation = useNavigation();
 
     const options = [
+        'No health issues',
         'Thyroid',
         'Diabetes',
-        'Hypertension',
-        'Hypotension',
-        'None of the above'
+        'Cancer',
+        'Hypertension (high BP)',
+        'Other'
     ];
 
     const handleSelect = (option) => {

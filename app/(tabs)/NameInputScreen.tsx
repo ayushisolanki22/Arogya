@@ -34,7 +34,7 @@ const NameInputScreen = () => {
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.nextButton}
-                    onPress={() => navigation.navigate('BirthdateInputScreen')}
+                    onPress={() => navigation.navigate('GenderSelection')}
                 >
                     <Text style={styles.buttonText}>Next</Text>
                 </TouchableOpacity>

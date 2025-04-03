@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import React, { useState, useRef } from 'react';
+import { 
+  View, Text, TouchableOpacity, StyleSheet, Image, ImageBackground, 
+  PanResponder 
+} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { ProgressBar } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
@@ -9,11 +12,24 @@ const WaterInsights = () => {
   const [glasses, setGlasses] = useState(0);
   const maxGlasses = 8;
 
+  // Gesture Handling for Swipe Right
+  const panResponder = useRef(
+    PanResponder.create({
+      onStartShouldSetPanResponder: () => true,
+      onMoveShouldSetPanResponder: () => true,
+      onPanResponderRelease: (evt, gestureState) => {
+        if (gestureState.dx > 100) { // Detect right swipe
+          navigation.navigate('InsightsScreen'); 
+        }
+      },
+    })
+  ).current;
+
   return (
-    <View style={styles.container}>
+    <View style={styles.container} {...panResponder.panHandlers}>
       {/* Header */}
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
+        <TouchableOpacity onPress={() => navigation.navigate('InsightsScreen')}>
           <Ionicons name="arrow-back" size={24} color="black" />
         </TouchableOpacity>
         <Text style={styles.date}>Today, 11 Feb</Text>
@@ -26,12 +42,24 @@ const WaterInsights = () => {
       <Text style={styles.progressText}>{glasses} of {maxGlasses} Glasses</Text>
       <ProgressBar progress={glasses / maxGlasses} color="black" style={styles.progressBar} />
 
-      {/* Water Glass Icon */}
+      {/* Water Glass with Animation */}
       <View style={styles.glassContainer}>
         <TouchableOpacity onPress={() => setGlasses(Math.max(0, glasses - 1))}>
           <Ionicons name="remove-circle-outline" size={35} color="black" />
         </TouchableOpacity>
-        <Image source={require('../../assets/images/Glass.png')} style={styles.glassImage} />
+
+        {/* Glass with Wave GIF as Background */}
+        <View style={styles.glassWrapper}>
+          {glasses > 0 && (
+            <ImageBackground
+              source={require('../../assets/images/Wave.gif')}
+              style={styles.waveGif}
+              resizeMode="cover"
+            />
+          )}
+          <Image source={require('../../assets/images/Glass.png')} style={styles.glassImage} />
+        </View>
+
         <TouchableOpacity onPress={() => setGlasses(Math.min(maxGlasses, glasses + 1))}>
           <Ionicons name="add-circle-outline" size={35} color="black" />
         </TouchableOpacity>
@@ -98,8 +126,20 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     marginVertical: 30,
   },
+  glassWrapper: {
+    width: 95,
+    height: 95,
+    position: 'relative',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  waveGif: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+  },
   glassImage: {
-    width: 80,
+    width: 90,
     height: 80,
   },
   glassText: {

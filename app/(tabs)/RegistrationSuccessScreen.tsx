@@ -29,7 +29,7 @@ const RegistrationSuccessScreen = () => {
                 <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
                     <Text style={styles.buttonText}>Back</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.nextButton} onPress={() => navigation.navigate('UserMovement')}>
+                <TouchableOpacity style={styles.nextButton} onPress={() => navigation.navigate('WelcomeScreen')}>
                     <Text style={styles.buttonText}>Next</Text>
                 </TouchableOpacity>
             </View>

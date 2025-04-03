@@ -19,7 +19,7 @@ const WelcomeScreen = () => {
             
             <Image source={require('../../assets/images/Yoga.png')} style={styles.yogaImage} />
             
-            <TouchableOpacity style={styles.nextButton} onPress={() => navigation.navigate('GenderSelection')}>
+            <TouchableOpacity style={styles.nextButton} onPress={() => navigation.navigate('UserExercise')}>
                 <Text style={styles.buttonText}>Next</Text>
             </TouchableOpacity>
             
