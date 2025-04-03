@@ -17,6 +17,10 @@ const EmailLoginScreen = () => {
         navigation.navigate('PhoneLoginScreen');
     };
 
+    const handleSignIn = () => {
+        navigation.navigate('HomeScreen');
+    };
+
     const openLink = (url) => {
         Linking.openURL(url);
     };
@@ -52,7 +56,7 @@ const EmailLoginScreen = () => {
                         <FontAwesome name={secureTextEntry ? "eye" : "eye-slash"} size={20} color="black" />
                     </TouchableOpacity>
                 </View>
-                <TouchableOpacity style={styles.signInButton}>
+                <TouchableOpacity style={styles.signInButton} onPress={handleSignIn}>
                     <Text style={styles.signInText}>Sign In</Text>
                 </TouchableOpacity>
             </View>
@@ -82,6 +86,7 @@ const EmailLoginScreen = () => {
 };
 
 const styles = StyleSheet.create({
+    // Styles remain unchanged
     container: {
         flexGrow: 1,
         alignItems: 'center',

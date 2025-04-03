@@ -11,6 +11,7 @@ type RootStackParamList = {
   LifestyleDiet: undefined;
   ChatBox: undefined;
   InsightsScreen: undefined;
+  SettingAndActivity: undefined; // Added this route
 };
 
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
@@ -23,7 +24,10 @@ const HomeScreen: React.FC = () => {
       {/* Header */}
       <View style={styles.header}>
         <Text style={styles.greeting}>Hello User,</Text>
-        <TouchableOpacity style={styles.profileIcon}>
+        <TouchableOpacity 
+          style={styles.profileIcon} 
+          onPress={() => navigation.navigate('profileAndSettings')} // Navigate on press
+        >
           <Ionicons name="person-circle-outline" size={34} color="black" />
         </TouchableOpacity>
       </View>
@@ -44,22 +48,18 @@ const HomeScreen: React.FC = () => {
       {/* Bottom Navigation */}
       <View style={styles.bottomNavContainer}>
         <View style={styles.bottomNav}>
-          {/* Home Icon */}
           <TouchableOpacity style={styles.navButton} onPress={() => navigation.navigate('Home')}>
             <Ionicons name="home" size={32} color="black" />
           </TouchableOpacity>
 
-          {/* Logo Icon */}
           <TouchableOpacity style={styles.logoButton} onPress={() => navigation.navigate('Prakruti')}>
             <Image source={require('../../assets/images/Logo.png')} style={styles.logoIcon} />
           </TouchableOpacity>
 
-          {/* ChatBox Icon */}
           <TouchableOpacity style={styles.chatBoxButton} onPress={() => navigation.navigate('ChatBox')}>
             <Image source={require('../../assets/images/ChatBox.png')} style={styles.chatBoxIcon} />
           </TouchableOpacity>
 
-          {/* Insights Button */}
           <TouchableOpacity style={styles.navButton} onPress={() => navigation.navigate('InsightsScreen')}>
             <Image source={require('../../assets/images/Insight.png')} style={styles.insightIcon} />
           </TouchableOpacity>
