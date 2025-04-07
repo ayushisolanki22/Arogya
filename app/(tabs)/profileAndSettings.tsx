@@ -19,7 +19,7 @@ const SettingsScreen = () => {
 
   return (
     <View style={styles.container}>
-      {/* Header */}
+      {/* Header Section */}
       <View style={styles.header}>
         <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
           <Ionicons name="chevron-back" size={24} color="black" />
@@ -31,17 +31,17 @@ const SettingsScreen = () => {
 
       {/* Profile Section */}
       <View style={styles.profileSection}>
-        <Image
-          source={require('../../assets/images/UserIcon.png')} // Updated to use UserIcon.png
-          style={styles.profileImage}
-        />
+        <Image source={require('../../assets/images/UserIcon.png')} style={styles.userIcon} />
         <View>
           <TouchableOpacity onPress={() => navigation.navigate('SettingsAndActivity')}>
             <Text style={styles.userName}>Username</Text>
           </TouchableOpacity>
           <Text style={styles.userPhone}>+91 1234567890</Text>
         </View>
-        <Feather name="edit-3" size={20} color="black" style={styles.editIcon} />
+        {/* Pencil Icon moved to the marked position */}
+        <TouchableOpacity onPress={() => navigation.navigate('SettingsAndActivity')} style={styles.editIconContainer}>
+          <Feather name="edit-3" size={20} color="black" />
+        </TouchableOpacity>
       </View>
 
       {/* Menu Section */}
@@ -69,9 +69,9 @@ const styles = StyleSheet.create({
     padding: 30,
   },
   header: {
-    padding: 20,
     flexDirection: 'row',
     alignItems: 'center',
+    padding: 20,
   },
   headerTitle: {
     fontSize: 18,
@@ -85,11 +85,12 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 10,
     marginVertical: 15,
+    position: 'relative',
   },
-  profileImage: {
-    width: 40,  // Reduced from 50 to 40
-    height: 40, // Reduced from 50 to 40
-    borderRadius: 20, // Adjusted to match new size
+  userIcon: {
+    width: 40, // Slightly reduced size
+    height: 40,
+    borderRadius: 20,
     marginRight: 10,
   },
   userName: {
@@ -100,8 +101,10 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: 'gray',
   },
-  editIcon: {
-    marginLeft: 'auto',
+  editIconContainer: {
+    position: 'absolute',
+    right: 15,  // Keep it aligned to the right
+    top: 24,     // Adjusted from 15 to 20 to move it downward
   },
   menuSection: {
     backgroundColor: '#fff',

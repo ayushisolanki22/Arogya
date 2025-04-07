@@ -50,7 +50,7 @@ const HealthIssueScreen = () => {
             <View style={styles.buttonContainer}>
                 <TouchableOpacity
                     style={styles.backButton}
-                    onPress={() => navigation.goBack()}
+                    onPress={() => navigation.navigate('UserMovement')} // Navigates to UserMovement
                 >
                     <Text style={styles.buttonText}>Back</Text>
                 </TouchableOpacity>

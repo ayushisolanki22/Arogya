@@ -7,11 +7,11 @@ import { StackNavigationProp } from '@react-navigation/stack';
 // Define Navigation Type
 type RootStackParamList = {
   Home: undefined;
-  Prakruti: undefined;
+  DiscoverPrakrutiScreen: undefined;
   LifestyleDiet: undefined;
   ChatBox: undefined;
   InsightsScreen: undefined;
-  SettingAndActivity: undefined; // Added this route
+  SettingAndActivity: undefined;
 };
 
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
@@ -23,10 +23,12 @@ const HomeScreen: React.FC = () => {
     <View style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
-        <Text style={styles.greeting}>Hello User,</Text>
+        <View style={styles.greetingContainer}>
+          <Text style={styles.greeting}>Hello User,</Text>
+        </View>
         <TouchableOpacity 
           style={styles.profileIcon} 
-          onPress={() => navigation.navigate('profileAndSettings')} // Navigate on press
+          onPress={() => navigation.navigate('SettingAndActivity')} // Navigate on press
         >
           <Ionicons name="person-circle-outline" size={34} color="black" />
         </TouchableOpacity>
@@ -34,7 +36,7 @@ const HomeScreen: React.FC = () => {
 
       {/* Cards */}
       <View style={styles.cardContainer}>
-        <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('Prakruti')}>
+        <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('DiscoverPrakrutiScreen')}>
           <Text style={styles.cardTitle}>PRAKRUTI</Text>
           <Text style={styles.cardDescription}>Tap to know your prakruti here.</Text>
         </TouchableOpacity>
@@ -52,7 +54,7 @@ const HomeScreen: React.FC = () => {
             <Ionicons name="home" size={32} color="black" />
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.logoButton} onPress={() => navigation.navigate('Prakruti')}>
+          <TouchableOpacity style={styles.logoButton} onPress={() => navigation.navigate('DiscoverPrakrutiScreen')}>
             <Image source={require('../../assets/images/Logo.png')} style={styles.logoIcon} />
           </TouchableOpacity>
 
@@ -83,9 +85,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+  greetingContainer: {
+    flex: 1,
+    alignItems: 'flex-start', // Align "Hello User," to the left
+  },
   greeting: {
     fontSize: 20,
     color: 'black',
+    marginTop: 50, // Moves "Hello User" directly above Prakruti
   },
   profileIcon: {
     marginRight: 15,

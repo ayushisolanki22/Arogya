@@ -26,7 +26,7 @@ const RegistrationSuccessScreen = () => {
             </View>
             <Text style={styles.journeyText}>✨ Start your wellness journey towards a balanced and healthy lifestyle with Ayurveda! ✨{"\n"}👉 Let’s Begin! 🚀</Text>
             <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+                <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate('BirthdateInputScreen')}>
                     <Text style={styles.buttonText}>Back</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.nextButton} onPress={() => navigation.navigate('WelcomeScreen')}>
