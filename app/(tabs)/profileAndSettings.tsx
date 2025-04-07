@@ -9,6 +9,7 @@ type SettingsScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Set
 
 const SettingsScreen = () => {
   const navigation = useNavigation<SettingsScreenNavigationProp>();
+
   const MenuItem: React.FC<{ icon: any; title: string; onPress?: () => void }> = ({ icon, title, onPress }) => (
     <TouchableOpacity style={styles.menuItem} onPress={onPress}>
       <Feather name={icon} size={20} color="black" />
@@ -18,14 +19,20 @@ const SettingsScreen = () => {
 
   return (
     <View style={styles.container}>
+      {/* Header */}
       <View style={styles.header}>
-        <Ionicons name="chevron-back" size={24} color="black" />
-        <Text style={styles.headerTitle}>Home</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
+          <Ionicons name="chevron-back" size={24} color="black" />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
+          <Text style={styles.headerTitle}>Home</Text>
+        </TouchableOpacity>
       </View>
-      
+
+      {/* Profile Section */}
       <View style={styles.profileSection}>
         <Image
-          source={{ uri: 'https://via.placeholder.com/50' }}
+          source={require('../../assets/images/UserIcon.png')} // Updated to use UserIcon.png
           style={styles.profileImage}
         />
         <View>
@@ -36,7 +43,8 @@ const SettingsScreen = () => {
         </View>
         <Feather name="edit-3" size={20} color="black" style={styles.editIcon} />
       </View>
-      
+
+      {/* Menu Section */}
       <View style={styles.menuSection}>
         <MenuItem icon="lock" title="Account Privacy" />
         <MenuItem icon="bell" title="Notifications" onPress={() => navigation.navigate('Notification')} />
@@ -44,7 +52,8 @@ const SettingsScreen = () => {
         <MenuItem icon="help-circle" title="Help" />
         <MenuItem icon="shield" title="Privacy Policy" />
       </View>
-      
+
+      {/* Bottom Section */}
       <View style={styles.bottomSection}>
         <MenuItem icon="log-out" title="Log Out" />
         <MenuItem icon="trash" title="Delete Account" />
@@ -53,13 +62,6 @@ const SettingsScreen = () => {
   );
 };
 
-const MenuItem = ({ icon, title }) => (
-  <TouchableOpacity style={styles.menuItem}>
-    <Feather name={icon} size={20} color="black" />
-    <Text style={styles.menuText}>{title}</Text>
-  </TouchableOpacity>
-);
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -67,7 +69,7 @@ const styles = StyleSheet.create({
     padding: 30,
   },
   header: {
-    padding:20,
+    padding: 20,
     flexDirection: 'row',
     alignItems: 'center',
   },
@@ -85,9 +87,9 @@ const styles = StyleSheet.create({
     marginVertical: 15,
   },
   profileImage: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
+    width: 40,  // Reduced from 50 to 40
+    height: 40, // Reduced from 50 to 40
+    borderRadius: 20, // Adjusted to match new size
     marginRight: 10,
   },
   userName: {

@@ -6,31 +6,38 @@ import { StackNavigationProp } from '@react-navigation/stack';
 
 // Define navigation type
 type RootStackParamList = {
-  ProfileAndSettings: undefined;
+  HomeScreen: undefined;
 };
 
-type SettingsScreenNavigationProp = StackNavigationProp<RootStackParamList, 'ProfileAndSettings'>;
+type SettingsScreenNavigationProp = StackNavigationProp<RootStackParamList, 'HomeScreen'>;
 
 const SettingsScreen = () => {
   const navigation = useNavigation<SettingsScreenNavigationProp>();
 
   return (
     <View style={styles.container}>
+      {/* Header */}
       <View style={styles.header}>
-        <Ionicons name="chevron-back" size={24} color="black" />
+        {/* Back Button */}
+        <TouchableOpacity onPress={() => navigation.navigate('profileAndSettings')}>
+          <Ionicons name="chevron-back" size={24} color="black" />
+        </TouchableOpacity>
+
+        {/* Settings Title */}
         <TouchableOpacity onPress={() => navigation.navigate('profileAndSettings')}>
           <Text style={styles.headerTitle}>Settings</Text>
         </TouchableOpacity>
       </View>
-      
+
+      {/* Profile Section */}
       <View style={styles.profileSection}>
-        <Image
-          source={{ uri: 'https://via.placeholder.com/80' }}
-          style={styles.profileImage}
-        />
+        <TouchableOpacity style={styles.profileImageContainer}>
+          <Image source={require('../../assets/images/UserIcon.png')} style={styles.profileImage} />
+        </TouchableOpacity>
         <Text style={styles.changePhotoText}>Change profile photo</Text>
       </View>
-      
+
+      {/* Info Section */}
       <View style={styles.infoSection}>
         <InfoItem icon="user" title="Username" />
         <InfoItem icon="phone" title="Phone Number" />
@@ -69,13 +76,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginVertical: 20,
   },
-  profileImage: {
+  profileImageContainer: {
     width: 80,
     height: 80,
     borderRadius: 40,
     backgroundColor: '#fff',
     justifyContent: 'center',
     alignItems: 'center',
+    overflow: 'hidden', // Keeps the image inside the circle
+  },
+  profileImage: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'contain',
   },
   changePhotoText: {
     marginTop: 10,

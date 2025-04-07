@@ -45,8 +45,8 @@ const EmailRegistrationScreen = () => {
                 </TouchableOpacity>
             </View>
 
-            <TouchableOpacity style={styles.signInButton}>
-                <Text style={styles.signInText}>Sign In</Text>
+            <TouchableOpacity style={styles.signInButton} onPress={() => navigation.navigate('NameInputScreen')}>
+                <Text style={styles.signInText}>Sign Up</Text>
             </TouchableOpacity>
 
             <Text style={styles.orContinueText}>or continue with</Text>

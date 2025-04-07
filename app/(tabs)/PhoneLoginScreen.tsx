@@ -18,6 +18,10 @@ const PhoneLoginScreen = () => {
         navigation.navigate('EmailLoginScreen');
     };
 
+    const handleSignInPress = () => {
+        navigation.navigate('HomeScreen');
+    };
+
     return (
         <ScrollView contentContainerStyle={styles.container}>
             <Text style={styles.newUser} onPress={handleNewUserPress}>New User?</Text>
@@ -33,7 +37,7 @@ const PhoneLoginScreen = () => {
                         keyboardType="phone-pad"
                     />
                 </View>
-                <TouchableOpacity style={styles.signInButton}>
+                <TouchableOpacity style={styles.signInButton} onPress={handleSignInPress}>
                     <Text style={styles.signInText}>Sign In</Text>
                 </TouchableOpacity>
             </View>
