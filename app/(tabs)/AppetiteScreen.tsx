@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -17,31 +17,35 @@ const WeatherFeelingScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.question}>How often do you feel hungry?</Text>
-      <View style={styles.optionsContainer}>
-        {options.map((option, index) => (
-          <TouchableOpacity
-            key={index}
-            style={[styles.option, selectedOption === option && styles.selectedOption]}
-            onPress={() => setSelectedOption(option)}
-          >
-            <Ionicons
-              name={selectedOption === option ? "radio-button-on" : "radio-button-off"}
-              size={20}
-              color={selectedOption === option ? "black" : "black"}
-            />
-            <Text style={styles.optionText}>{option}</Text>
+      <ScrollView contentContainerStyle={styles.scrollContent}>
+        <Text style={styles.question}>How often do you feel hungry?</Text>
+
+        <View style={styles.optionsContainer}>
+          {options.map((option, index) => (
+            <TouchableOpacity
+              key={index}
+              style={[styles.option, selectedOption === option && styles.selectedOption]}
+              onPress={() => setSelectedOption(option)}
+            >
+              <Ionicons
+                name={selectedOption === option ? "radio-button-on" : "radio-button-off"}
+                size={20}
+                color="black"
+              />
+              <Text style={styles.optionText}>{option}</Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate('FollowUpQuestionsScreen1')}>
+            <Text style={styles.buttonText}>Back</Text>
           </TouchableOpacity>
-        ))}
-      </View>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate('FollowUpQuestionsScreen1')}>
-          <Text style={styles.buttonText}>Back</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.nextButton}onPress={() => navigation.navigate('FollowUpQuestions2')}>
-          <Text style={styles.buttonText}>Next</Text>
-        </TouchableOpacity>
-      </View>
+          <TouchableOpacity style={styles.nextButton} onPress={() => navigation.navigate('FollowUpQuestions2')}>
+            <Text style={styles.buttonText}>Next</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
     </View>
   );
 };
@@ -51,18 +55,20 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#F7E7AE',
     padding: 20,
-    justifyContent: 'center',
+    paddingTop: 120,
+  },
+  scrollContent: {
+    paddingBottom: 40,
   },
   question: {
-    fontSize: 18,
+    fontSize: 19,
     fontWeight: 'bold',
-    textAlign: 'center',
+    textAlign: 'left',
     marginBottom: 40,
     color: '#6D3B1E',
-    marginTop: -150,
   },
   optionsContainer: {
-    marginTop: -20,
+    marginBottom: 40,
   },
   option: {
     flexDirection: 'row',
@@ -83,7 +89,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 150,
+    marginTop: 70,
   },
   backButton: {
     backgroundColor: 'white',
@@ -94,13 +100,12 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 2,
-},
+  },
   nextButton: {
-    backgroundColor: '#A4C639',
-    padding: 10,
+    backgroundColor: '#A4C27E',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
     borderRadius: 10,
-    width: 100,
-    alignItems: 'center',
   },
   buttonText: {
     color: 'black',
@@ -108,5 +113,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
+
 
 export default WeatherFeelingScreen;

@@ -19,9 +19,9 @@ const FollowUpQuestionsScreen1 = () => {
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <Text style={styles.title}>Follow Up Questions :</Text>
-        
+
         <View style={styles.questionContainer}>
-          <Text style={styles.question}>Do you eat small meals but snack often? </Text>
+          <Text style={styles.question}>Does your skin feel rough or flaky? </Text>
           <View style={styles.optionRow}>
             <TouchableOpacity
               style={styles.optionButton}
@@ -47,9 +47,9 @@ const FollowUpQuestionsScreen1 = () => {
             </TouchableOpacity>
           </View>
         </View>
-        
+
         <View style={styles.questionContainer}>
-          <Text style={styles.question}>Do you feel hot or get headaches when hungry?  </Text>
+          <Text style={styles.question}>Do you get acne after eating spicy food?  </Text>
           <View style={styles.optionRow}>
             <TouchableOpacity
               style={styles.optionButton}
@@ -75,9 +75,9 @@ const FollowUpQuestionsScreen1 = () => {
             </TouchableOpacity>
           </View>
         </View>
-        
+
         <View style={styles.questionContainer}>
-          <Text style={styles.question}>Do you eat more when stressed or at night? </Text>
+          <Text style={styles.question}>Does your skin feel sticky or heavy in humid weather? </Text>
           <View style={styles.optionRow}>
             <TouchableOpacity
               style={styles.optionButton}
@@ -104,11 +104,38 @@ const FollowUpQuestionsScreen1 = () => {
           </View>
         </View>
 
+        <View style={styles.questionContainer}>
+          <Text style={styles.question}>Does your skin change a lot with seasons?  </Text>
+          <View style={styles.optionRow}>
+            <TouchableOpacity
+              style={styles.optionButton}
+              onPress={() => handleSelect('kapha', 'yes')}
+            >
+              <Ionicons 
+                name={answers.kapha === 'yes' ? 'radio-button-on' : 'radio-button-off'} 
+                size={20} 
+                color={answers.kapha === 'yes' ? '#A4C27E' : 'black'}
+              />
+              <Text style={styles.optionText}>Yes</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.optionButton}
+              onPress={() => handleSelect('kapha', 'no')}
+            >
+              <Ionicons 
+                name={answers.kapha === 'no' ? 'radio-button-on' : 'radio-button-off'} 
+                size={20} 
+                color={answers.kapha === 'no' ? '#A4C27E' : 'black'}
+              />
+              <Text style={styles.optionText}>No</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate('AppetiteScreen')}>
+          <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate('SkinKYP')}>
             <Text style={styles.backButtonText}>Back</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.nextButton} onPress={() => navigation.navigate('DigestionScreen')}>
+          <TouchableOpacity style={styles.nextButton} onPress={() => navigation.navigate('MemoryKYP')}>
             <Text style={styles.buttonText}>Next</Text>
           </TouchableOpacity>
         </View>
@@ -121,21 +148,20 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FFF9E1',
-    padding: 20,
-    paddingTop: 120,
   },
   scrollContent: {
-    paddingBottom: 60,
+    padding: 20,
+    paddingBottom: 40,
   },
   title: {
     fontSize: 20,
     fontWeight: 'bold',
     color: '#6D3B1E',
-    marginBottom: 15,
+    marginBottom: 20,
     textAlign: 'center',
   },
   questionContainer: {
-    marginBottom: 15,
+    marginBottom: 25,
   },
   question: {
     fontSize: 16,
@@ -144,17 +170,16 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   optionRow: {
-    flexDirection: 'column',
-    // justifyContent: 'space-between',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   optionButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 5,
+    padding: 15,
     marginHorizontal: 5,
     borderRadius: 10,
     backgroundColor: 'transparent',
-    marginRight: 50,
   },
   optionText: {
     fontSize: 16,
@@ -164,7 +189,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 103,
+    marginTop: 30,
   },
   backButton: {
     backgroundColor: 'white',

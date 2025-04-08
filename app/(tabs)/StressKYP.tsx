@@ -8,16 +8,15 @@ const WeatherFeelingScreen = () => {
   const [selectedOption, setSelectedOption] = useState(null);
 
   const options = [
-    "I feel too hot and sweat a lot in summer",
-    "I feel very cold even when others are fine",
-    "I feel heavy and tired when it's humid",
-    "I feel okay in all weather"
+    "I get anxious and overthink.",
+    "I get angry or frustrated.",
+    "I go away and stay quiet"
   ];
 
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
-        <Text style={styles.question}>How do you feel in different weather?</Text>
+        <Text style={styles.question}>How do you respond to stress?</Text>
         <View style={styles.optionsContainer}>
           {options.map((option, index) => (
             <TouchableOpacity
@@ -34,18 +33,11 @@ const WeatherFeelingScreen = () => {
             </TouchableOpacity>
           ))}
         </View>
-
         <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            style={styles.backButton}
-            onPress={() => navigation.navigate('DiscoverPrakrutiScreen')}
-          >
+          <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate('SleepFollowupKYP')}>
             <Text style={styles.buttonText}>Back</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.nextButton}
-            onPress={() => navigation.navigate('FollowUpQuestionsScreen1')}
-          >
+          <TouchableOpacity style={styles.nextButton} onPress={() => navigation.navigate('MentalhealthKYP')}>
             <Text style={styles.buttonText}>Next</Text>
           </TouchableOpacity>
         </View>
@@ -58,16 +50,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F7E7AE',
-    padding: 20,
-    paddingTop: 120,
   },
   scrollContent: {
+    padding: 20,
+    paddingTop: 100,
     paddingBottom: 40,
+    flexGrow: 1,
+    justifyContent: 'center',
   },
   question: {
     fontSize: 19,
     fontWeight: 'bold',
-    textAlign: 'left',
+    textAlign: 'center',
     marginBottom: 40,
     color: '#6D3B1E',
   },
@@ -93,7 +87,6 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 130,
   },
   backButton: {
     backgroundColor: 'white',

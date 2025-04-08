@@ -1,148 +1,117 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { RadioButton } from 'react-native-paper';
+import { Ionicons } from '@expo/vector-icons';
 
-const DigestionScreen = () => {
-  const navigation = useNavigation(); // ✅ Use navigation hook
-  const [selectedOption, setSelectedOption] = useState('');
+const WeatherFeelingScreen = () => {
+  const navigation = useNavigation();
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  const options = [
+    "Irregular or bloated",
+    "Fast and loose",
+    "Slow and heavy",
+    "Balanced and regular",
+    "Sensitive or easily upset"
+  ];
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>How is your digestion?</Text>
+      <ScrollView contentContainerStyle={styles.scrollContent}>
+        <Text style={styles.question}>How is your digestion?</Text>
+        
+        <View style={styles.optionsContainer}>
+          {options.map((option, index) => (
+            <TouchableOpacity
+              key={index}
+              style={[styles.option, selectedOption === option && styles.selectedOption]}
+              onPress={() => setSelectedOption(option)}
+            >
+              <Ionicons
+                name={selectedOption === option ? "radio-button-on" : "radio-button-off"}
+                size={20}
+                color="black"
+              />
+              <Text style={styles.optionText}>{option}</Text>
+            </TouchableOpacity>
+          ))}
+        </View>
 
-      {/* Vata */}
-      <TouchableOpacity
-        style={[
-          styles.optionContainer,
-          selectedOption === 'vata' && styles.selectedOption,
-        ]}
-        onPress={() => setSelectedOption('vata')}
-      >
-        <RadioButton
-          value="vata"
-          status={selectedOption === 'vata' ? 'checked' : 'unchecked'}
-          onPress={() => setSelectedOption('vata')}
-          color="#6DA34D"
-        />
-        <Text style={styles.optionText}>
-          Irregular, bloated, or constipated (Vata)
-        </Text>
-      </TouchableOpacity>
-
-      {/* Pitta */}
-      <TouchableOpacity
-        style={[
-          styles.optionContainer,
-          selectedOption === 'pitta' && styles.selectedOption,
-        ]}
-        onPress={() => setSelectedOption('pitta')}
-      >
-        <RadioButton
-          value="pitta"
-          status={selectedOption === 'pitta' ? 'checked' : 'unchecked'}
-          onPress={() => setSelectedOption('pitta')}
-          color="#EAC64C"
-        />
-        <Text style={styles.optionText}>
-          Fast, acidic, or loose stools (Pitta)
-        </Text>
-      </TouchableOpacity>
-
-      {/* Kapha */}
-      <TouchableOpacity
-        style={[
-          styles.optionContainer,
-          selectedOption === 'kapha' && styles.selectedOption,
-        ]}
-        onPress={() => setSelectedOption('kapha')}
-      >
-        <RadioButton
-          value="kapha"
-          status={selectedOption === 'kapha' ? 'checked' : 'unchecked'}
-          onPress={() => setSelectedOption('kapha')}
-          color="#EAC64C"
-        />
-        <Text style={styles.optionText}>
-          Slow, heavy, or sluggish (Kapha)
-        </Text>
-      </TouchableOpacity>
-
-      {/* Navigation Buttons */}
-      <View style={styles.buttonRow}>
-        <TouchableOpacity
-          style={styles.backButton}
-          onPress={() => navigation.navigate('FollowUpQuestions2')}
-        >
-          <Text style={styles.buttonText}>Back</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.nextButton}
-          onPress={() => console.log('Next pressed')} // Replace with navigation
-        >
-          <Text style={styles.buttonText}>Next</Text>
-        </TouchableOpacity>
-      </View>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate('FollowUpQuestions2')}>
+            <Text style={styles.buttonText}>Back</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.nextButton} onPress={() => navigation.navigate('SleepKYP')}>
+            <Text style={styles.buttonText}>Next</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
     </View>
   );
 };
 
-export default DigestionScreen;
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fdf5cc',
+    backgroundColor: '#F7E7AE',
     padding: 20,
-    alignItems: 'center',
+    paddingTop: 120,
   },
-  title: {
-    fontSize: 22,
+  scrollContent: {
+    paddingBottom: 40,
+  },
+  question: {
+    fontSize: 19,
     fontWeight: 'bold',
-    color: '#5a3e2b',
-    marginBottom: 30,
+    textAlign: 'left',
+    marginBottom: 40,
+    color: '#6D3B1E',
   },
-  optionContainer: {
+  optionsContainer: {
+    marginBottom: 40,
+  },
+  option: {
     flexDirection: 'row',
     alignItems: 'center',
-    width: '100%',
-    backgroundColor: '#F7E6A2',
+    backgroundColor: '#FDF3D6',
     padding: 15,
-    borderRadius: 12,
-    marginVertical: 8,
+    borderRadius: 10,
+    marginVertical: 5,
   },
   selectedOption: {
-    backgroundColor: '#A4D07B',
+    backgroundColor: '#A4C27E',
   },
   optionText: {
     fontSize: 16,
+    color: 'black',
     marginLeft: 10,
-    color: '#3a2f1b',
   },
-  buttonRow: {
+  buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 40,
-    width: '100%',
+    marginTop: 70,
   },
   backButton: {
     backgroundColor: 'white',
-    padding: 10,
-    borderRadius: 8,
-    width: '45%',
-    alignItems: 'center',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
   },
   nextButton: {
-    backgroundColor: '#6DA34D',
-    padding: 10,
-    borderRadius: 8,
-    width: '45%',
-    alignItems: 'center',
+    backgroundColor: '#A4C27E',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 10,
   },
   buttonText: {
+    color: 'black',
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#1f1f1f',
   },
 });
+
+export default WeatherFeelingScreen;
