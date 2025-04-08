@@ -47,12 +47,12 @@ const AllergyScreen = () => {
             
             {/* Buttons above the logo */}
             <View style={styles.buttonContainer}>
-                <TouchableOpacity
-                    style={styles.backButton}
-                    onPress={() => navigation.goBack()}
-                >
-                    <Text style={styles.buttonText}>Back</Text>
-                </TouchableOpacity>
+                  <TouchableOpacity
+                                                    style={styles.backButton}
+                                                    onPress={() => navigation.navigate('FamilyHealthScreen')} // Navigates to UserMovement
+                                                >
+                                                    <Text style={styles.buttonText}>Back</Text>
+                                                </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.nextButton}
                     onPress={() => navigation.navigate('HomeScreen')} // Navigates to FamilyHealthScreen

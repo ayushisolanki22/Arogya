@@ -49,13 +49,13 @@ const UserExercise = () => {
             <View style={styles.buttonContainer}>
                 <TouchableOpacity
                     style={styles.backButton}
-                    onPress={() => navigation.goBack()}
+                    onPress={() => navigation.navigate('WelcomeScreen')}
                 >
                     <Text style={styles.buttonText}>Back</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.nextButton}
-                    onPress={() => navigation.navigate('UserMovement')} // Navigates to FamilyHealthScreen
+                    onPress={() => navigation.navigate('UserMovement')}
                 >
                     <Text style={styles.buttonText}>Next</Text>
                 </TouchableOpacity>
@@ -74,14 +74,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         paddingHorizontal: 20,
-        paddingTop: 80, // Moved everything down
+        paddingTop: 80,
     },
     title: {
         fontSize: 18,
         fontWeight: 'bold',
         color: '#3E5025',
         alignSelf: 'flex-start',
-        marginBottom: 10, // Moved title down
+        marginBottom: 10,
     },
     optionsContainer: {
         width: '100%',
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
         paddingVertical: 15,
         paddingHorizontal: 20,
         borderRadius: 10,
-        marginBottom: 15, // More spacing between options
+        marginBottom: 15,
         width: '100%',
     },
     selectedOption: {
@@ -110,15 +110,15 @@ const styles = StyleSheet.create({
         height: height * 0.15,
         resizeMode: 'contain',
         opacity: 0.2,
-        marginTop: 60, // Moved image further down
+        marginTop: 60,
     },
     buttonContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         width: '100%',
         paddingHorizontal: '10%',
-        marginTop: 5, // Moved buttons further down
-        marginBottom: 120, // Adjusted space between buttons and logo
+        marginTop: 5,
+        marginBottom: 120,
     },
     backButton: {
         backgroundColor: 'white',
@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
         width: 100,
         height: 50,
         resizeMode: 'contain',
-        marginTop: 40, // Moved logo down
+        marginTop: 40,
     },
 });
 

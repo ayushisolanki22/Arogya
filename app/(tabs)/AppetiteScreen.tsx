@@ -1,44 +1,44 @@
-import React, { useState } from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { useNavigation } from '@react-navigation/native'; // ✅ Import this
-import { Ionicons } from "@expo/vector-icons";
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { Ionicons } from '@expo/vector-icons';
 
-const AppetiteScreen = () => {
-  const navigation = useNavigation(); // ✅ Fix: Add useNavigation
-
+const WeatherFeelingScreen = () => {
+  const navigation = useNavigation();
   const [selectedOption, setSelectedOption] = useState(null);
 
   const options = [
-    { id: "vata", label: "Forget to eat or not hungry. " },
-    { id: "pitta", label: "Hungry often, feel bad if I skip. " },
-    { id: "kapha", label: "Can wait long but eat a lot. " },
+    "Rarely hungry",
+    "Very hungry, often.",
+    "Slow hunger, but can eat a lot ",
+    "Balanced hunger ",
+    "Hunger changes daily "
   ];
 
   return (
     <View style={styles.container}>
       <Text style={styles.question}>How often do you feel hungry?</Text>
-      {options.map((option) => (
-        <TouchableOpacity
-          key={option.id}
-          style={[
-            styles.optionContainer,
-            selectedOption === option.id && styles.selectedOption,
-          ]}
-          onPress={() => setSelectedOption(option.id)}
-        >
-          <Ionicons
-            name={selectedOption === option.id ? "checkmark-circle" : "ellipse-outline"}
-            size={24}
-            color={selectedOption === option.id ? "#4CAF50" : "#555"}
-          />
-          <Text style={styles.optionText}>{option.label}</Text>
-        </TouchableOpacity>
-      ))}
+      <View style={styles.optionsContainer}>
+        {options.map((option, index) => (
+          <TouchableOpacity
+            key={index}
+            style={[styles.option, selectedOption === option && styles.selectedOption]}
+            onPress={() => setSelectedOption(option)}
+          >
+            <Ionicons
+              name={selectedOption === option ? "radio-button-on" : "radio-button-off"}
+              size={20}
+              color={selectedOption === option ? "black" : "black"}
+            />
+            <Text style={styles.optionText}>{option}</Text>
+          </TouchableOpacity>
+        ))}
+      </View>
       <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate('FollowUpQuestionsScreen1')}>
           <Text style={styles.buttonText}>Back</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.nextButton} onPress={() => navigation.navigate('FollowUpQuestions2')}>
+        <TouchableOpacity style={styles.nextButton}onPress={() => navigation.navigate('FollowUpQuestions2')}>
           <Text style={styles.buttonText}>Next</Text>
         </TouchableOpacity>
       </View>
@@ -49,52 +49,64 @@ const AppetiteScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#FFF8E1",
+    backgroundColor: '#F7E7AE',
     padding: 20,
-    justifyContent: "center",
+    justifyContent: 'center',
   },
   question: {
     fontSize: 18,
-    fontWeight: "bold",
-    textAlign: "center",
-    marginBottom: 20,
-    color: "#8B4513",
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: 40,
+    color: '#6D3B1E',
+    marginTop: -150,
   },
-  optionContainer: {
-    flexDirection: "row",
-    alignItems: "center",
+  optionsContainer: {
+    marginTop: -20,
+  },
+  option: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#FDF3D6',
     padding: 15,
     borderRadius: 10,
-    backgroundColor: "#FFF",
-    marginBottom: 10,
+    marginVertical: 5,
   },
   selectedOption: {
-    backgroundColor: "#C8E6C9",
+    backgroundColor: '#A4C27E',
   },
   optionText: {
     fontSize: 16,
+    color: 'black',
     marginLeft: 10,
   },
   buttonContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginTop: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 150,
   },
   backButton: {
-    backgroundColor: "#FFF",
-    padding: 10,
-    borderRadius: 5,
-  },
+    backgroundColor: 'white',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
+},
   nextButton: {
-    backgroundColor: "#4CAF50",
+    backgroundColor: '#A4C639',
     padding: 10,
-    borderRadius: 5,
+    borderRadius: 10,
+    width: 100,
+    alignItems: 'center',
   },
   buttonText: {
+    color: 'black',
     fontSize: 16,
-    textAlign: "center",
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
 });
 
-export default AppetiteScreen;
+export default WeatherFeelingScreen;

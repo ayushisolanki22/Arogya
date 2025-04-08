@@ -33,7 +33,10 @@ const GenderSelectionScreen = () => {
             </View>
             <Image source={require('../../assets/images/Yoga.png')} style={styles.yogaImage} />
             <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.backButton}>
+                <TouchableOpacity 
+                    style={styles.backButton} 
+                    onPress={() => navigation.navigate('NameInputScreen')}
+                >
                     <Text style={styles.buttonText}>Back</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
