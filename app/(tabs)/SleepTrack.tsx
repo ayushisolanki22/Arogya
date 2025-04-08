@@ -1,5 +1,12 @@
 import React, { useState, useRef } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image, PanResponder } from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Image,
+  PanResponder,
+} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { ProgressBar } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
@@ -15,7 +22,7 @@ const SleepTrack = () => {
       onStartShouldSetPanResponder: () => true,
       onMoveShouldSetPanResponder: () => true,
       onPanResponderRelease: (_, gestureState) => {
-        if (gestureState.dx > 100) {  // ✅ Detect right swipe
+        if (gestureState.dx > 100) {
           console.log("Swiped Right! Navigating to InsightsScreen...");
           navigation.navigate('InsightsScreen');
         }
@@ -28,7 +35,10 @@ const SleepTrack = () => {
       {/* Header */}
       <View style={styles.header}>
         <TouchableOpacity onPress={() => navigation.navigate('InsightsScreen')}>
-          <Ionicons name="arrow-back" size={24} color="black" />
+          <Image
+            source={require('../../assets/images/BackButton.png')}
+            style={styles.backIcon}
+          />
         </TouchableOpacity>
         <Text style={styles.date}>Today, 11 Feb</Text>
         <View style={{ width: 24 }} />
@@ -38,7 +48,7 @@ const SleepTrack = () => {
       <View style={styles.infoBox}>
         <Text style={styles.infoText}>
           <Text style={styles.bold}>Hi User,</Text>
-          {"\n"}Quality sleep is the foundation of good health. Track your sleep to restore balance, boost energy, and enhance well-being. 
+          {"\n"}Quality sleep is the foundation of good health. Track your sleep to restore balance, boost energy, and enhance well-being.
           Let Ayurveda guide you to restful nights and brighter days!
         </Text>
       </View>
@@ -46,7 +56,7 @@ const SleepTrack = () => {
       {/* Sleep Tracking Input */}
       <Text style={styles.trackText}>Please track your sleep timings here</Text>
       <View style={styles.sleepInputContainer}>
-        <TouchableOpacity 
+        <TouchableOpacity
           onPress={() => setSleepHours(Math.max(0, sleepHours - 1))}
         >
           <Ionicons name="remove-circle-outline" size={30} color="black" />
@@ -54,7 +64,7 @@ const SleepTrack = () => {
 
         <Text style={styles.sleepText}>{sleepHours}h of {maxSleep}h</Text>
 
-        <TouchableOpacity 
+        <TouchableOpacity
           onPress={() => setSleepHours(Math.min(maxSleep, sleepHours + 1))}
         >
           <Ionicons name="add-circle-outline" size={30} color="black" />
@@ -74,7 +84,7 @@ const SleepTrack = () => {
       {/* Tips for Better Sleep */}
       <Text style={styles.tipsTitle}>😴 Tips For You To Sleep Better</Text>
       <Text style={styles.tipsText}>
-        Create a calming bedtime routine by disconnecting from screens, practicing deep breathing, and sipping warm herbal tea. 
+        Create a calming bedtime routine by disconnecting from screens, practicing deep breathing, and sipping warm herbal tea.
         Maintain a consistent sleep schedule and ensure your space is dark, quiet, and comfortable.
       </Text>
 
@@ -95,6 +105,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     marginTop: 40,
+  },
+  backIcon: {
+    width: 24,
+    height: 24,
+    resizeMode: 'contain',
   },
   date: {
     fontSize: 18,
@@ -154,14 +169,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 15,
     textAlign: 'center',
-
   },
   tipsText: {
     fontSize: 14,
     color: 'black',
     lineHeight: 20,
     textAlign: 'center',
-
   },
   logo: {
     width: 130,

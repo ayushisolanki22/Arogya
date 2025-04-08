@@ -96,15 +96,17 @@ const styles = StyleSheet.create({
     },
     newUser: {
         fontSize: 14,
-        color: 'green',
+        color: '#2E7D32',
         alignSelf: 'flex-end',
+        marginRight: 20,
+        marginTop: 50,     // 👈 Add or increase this
+        marginBottom: 30,
         fontWeight: 'bold',
-        marginBottom: 10,
     },
     title: {
         fontSize: 22,
         fontWeight: 'bold',
-        color: 'green',
+        color: '#2E7D32',
         textAlign: 'center',
         marginBottom: 30,
     },

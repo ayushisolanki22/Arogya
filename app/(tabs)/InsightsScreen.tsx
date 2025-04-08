@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
-import { 
-  View, Text, TouchableOpacity, Image, FlatList, 
-  StyleSheet, PanResponder, Animated 
+import {
+  View, Text, TouchableOpacity, Image, FlatList,
+  StyleSheet, PanResponder, Animated
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -61,13 +61,15 @@ const InsightsScreen = () => {
                 <Text style={styles.cardGoal}>Goal: {item.goal}</Text>
               </View>
               {/* Navigate to respective screens */}
-              <TouchableOpacity 
-                style={styles.addButton} 
+              <TouchableOpacity
+                style={styles.addButton}
                 onPress={() => {
                   if (item.title === 'Sleep') {
                     navigation.navigate('SleepTrack');
                   } else if (item.title === 'Water') {
                     navigation.navigate('WaterInsights');
+                  } else if (item.title === 'Stress Level') {
+                    navigation.navigate('StressTracker');
                   }
                 }}
               >

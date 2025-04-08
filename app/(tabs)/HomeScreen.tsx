@@ -28,7 +28,7 @@ const HomeScreen: React.FC = () => {
         </View>
         <TouchableOpacity 
           style={styles.profileIcon} 
-          onPress={() => navigation.navigate('SettingAndActivity')} // Navigate on press
+          onPress={() => navigation.navigate('SettingsAndActivity')} // Navigate on press
         >
           <Ionicons name="person-circle-outline" size={34} color="black" />
         </TouchableOpacity>
