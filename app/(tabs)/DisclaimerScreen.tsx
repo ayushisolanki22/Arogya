@@ -1,9 +1,22 @@
 import React, { useState } from 'react';
 import { View, Text, ScrollView, StyleSheet, Image } from 'react-native';
 import { CheckBox } from 'react-native-elements';
+import { useNavigation } from '@react-navigation/native';
 
 const DisclaimerScreen = () => {
     const [isChecked, setIsChecked] = useState(false);
+    const navigation = useNavigation();
+
+    const handleCheck = () => {
+        const newChecked = !isChecked;
+        setIsChecked(newChecked);
+
+        if (!isChecked) {
+            setTimeout(() => {
+                navigation.navigate('HomeScreen');
+            }, 1000); // Wait 1 second
+        }
+    };
 
     return (
         <View style={styles.container}>
@@ -26,36 +39,24 @@ const DisclaimerScreen = () => {
                     Confidentiality Notice
                 </Text>
                 <Text style={styles.paragraph}>
-                    We deeply respect your privacy and are committed to protecting your personal information with the highest standards of security. Any details you provide within this application, including your health data, personal preferences, and any interactions, will be kept strictly confidential and used only for improving your experience and offering personalized Ayurvedic insights.
-                </Text>
-                <Text style={styles.paragraph}>
-                    How We Protect Your Information:
-                    {'\n'}- Strict Confidentiality: Your personal data is never shared, sold, or disclosed to third parties without your explicit consent.
-                    {'\n'}- Limited Access: Only authorized personnel involved in app maintenance and support may access data, and even then, only for necessary operational purposes.
-                    {'\n'}- No Misuse of Information: Your health-related data is used solely to provide Ayurvedic recommendations and improve the accuracy of our insights.
-                </Text>
-                <Text style={styles.paragraph}>
-                    While we take every possible measure to safeguard your information, we encourage users to be mindful of their own data security as well. If you ever suspect unauthorized access or misuse, please contact us immediately.
-                </Text>
-                <Text style={styles.paragraph}>
-                    By using this application, you acknowledge and agree to our privacy practices. For full details on how we collect, store, and protect your data, please review our Privacy Policy.
+                    We deeply respect your privacy and are committed to protecting your personal information with the highest standards of security...
                 </Text>
 
-                {/* Checkbox with white background aligned left */}
+                {/* Checkbox */}
                 <View style={styles.checkboxWrapper}>
                     <CheckBox
                         checked={isChecked}
-                        onPress={() => setIsChecked(!isChecked)}
+                        onPress={handleCheck}
                         checkedColor="green"
                         containerStyle={styles.checkbox}
                     />
-                    <Text style={styles.checkboxText}>I accept term & condition</Text>
+                    <Text style={styles.checkboxText}>I accept terms & conditions</Text>
                 </View>
             </ScrollView>
 
-            {/* Arogya logo image */}
+            {/* Logo */}
             <Image
-                source={require('../../assets/images/ArogyaLogo.png')} // Adjust path as needed
+                source={require('../../assets/images/ArogyaLogo.png')}
                 style={styles.logoImage}
                 resizeMode="contain"
             />

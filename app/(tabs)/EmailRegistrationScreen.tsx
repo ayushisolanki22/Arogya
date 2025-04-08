@@ -15,7 +15,10 @@ const EmailRegistrationScreen = () => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.alreadyUser} onPress={() => navigation.navigate('EmailLoginScreen')}>Already a user?</Text>
+            <Text style={styles.alreadyUser} onPress={() => navigation.navigate('EmailLoginScreen')}>
+                Already a user?
+            </Text>
+
             <Text style={styles.title}>REGISTER</Text>
 
             <View style={styles.inputContainer}>
@@ -79,21 +82,25 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center',
         backgroundColor: '#FDF6E3',
+        paddingVertical: 40,
     },
     alreadyUser: {
         fontSize: 14,
         color: 'green',
         alignSelf: 'flex-end',
         marginRight: 20,
+        marginTop: 50,     // 👈 Add or increase this
+        marginBottom: 30,
         fontWeight: 'bold',
     },
-    title: {
-        fontSize: 24,
+
+     title: {
+        fontSize: 28,
         fontWeight: 'bold',
         color: '#2E7D32',
-        marginBottom: 30,
+        marginTop: 20,       // 👈 Add this or increase to push it down
+        marginBottom: 40,
     },
     inputContainer: {
         flexDirection: 'row',
@@ -103,9 +110,9 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         paddingHorizontal: 10,
         backgroundColor: 'white',
-        width: '85%',
-        height: 50,
-        marginBottom: 15,
+        width: '95%', // increased from 85%
+        height: 55,
+        marginBottom: 25,
     },
     icon: {
         marginRight: 10,
@@ -116,13 +123,15 @@ const styles = StyleSheet.create({
         color: 'black',
     },
     signInButton: {
-        width: '85%',
+        width: '95%',
         backgroundColor: 'white',
-        padding: 14,
+        padding: 16,
         borderRadius: 10,
         alignItems: 'center',
-        marginBottom: 15,
+        marginTop: 5,  // 👈 lowered this to bring the button up
+        marginBottom: 25,
     },
+    
     signInText: {
         fontSize: 16,
         color: 'black',
@@ -131,17 +140,17 @@ const styles = StyleSheet.create({
     orContinueText: {
         fontSize: 14,
         color: '#777',
-        marginBottom: 10,
+        marginBottom: 20,
     },
     phoneNumberButton: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: 'white',
-        padding: 14,
+        padding: 16,
         borderRadius: 10,
-        width: '85%',
-        marginBottom: 15,
+        width: '95%', // increased from 85%
+        marginBottom: 30,
     },
     phoneNumberText: {
         fontSize: 16,
@@ -150,32 +159,39 @@ const styles = StyleSheet.create({
     },
     socialIconsContainer: {
         flexDirection: 'row',
-        width: '85%',
+        width: '95%',
         justifyContent: 'space-between',
         alignItems: 'center',
+        marginTop: 30, // 👈 Add this or increase the existing value
+        marginBottom: 60,
+        position: 'relative',
     },
-    socialIcon: {
-        width: 50,
-        height: 50,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    socialIconCenter: {
-        width: 50,
-        height: 50,
-        alignItems: 'center',
-        justifyContent: 'center',
-        position: 'absolute',
-        left: '50%',
-        marginLeft: -25,
-    },
+    
+socialIcon: {
+    width: 50,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+},
+socialIconCenter: {
+    position: 'absolute',
+    left: '50%',
+    transform: [{ translateX: -25 }], // Center it horizontally
+    width: 50,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+},
+
     iconImage: {
         width: 40,
         height: 40,
         resizeMode: 'contain',
     },
     logoContainer: {
-        marginTop: 200,
+        alignItems: 'center',
+        marginTop: 50,
+        marginBottom: 20,
     },
     logo: {
         width: 100,
@@ -183,5 +199,6 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
     },
 });
+
 
 export default EmailRegistrationScreen;

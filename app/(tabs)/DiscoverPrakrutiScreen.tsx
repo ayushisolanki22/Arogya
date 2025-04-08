@@ -29,14 +29,29 @@ const DiscoverPrakrutiScreen = () => {
             <Text style={styles.description}>
                 Take the test now and embark on a journey to holistic well-being! 💚
             </Text>
+
             <Image source={require('../../assets/images/Ayurveda.png')} style={styles.image} />
+
             <Text style={styles.highlight}>Balance your Prakruti, balance your life.</Text>
 
-            {/* Next Button */}
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('WeatherFeelingScreen')}>
-                <Text style={styles.buttonText}>Next</Text>
-            </TouchableOpacity>
+            {/* Buttons Above Logo */}
+            <View style={styles.bottomButtons}>
+                <TouchableOpacity
+                    style={[styles.navButton, styles.backButton]}
+                    onPress={() => navigation.navigate('HomeScreen')}
+                >
+                    <Text style={styles.navButtonText}>Back</Text>
+                </TouchableOpacity>
 
+                <TouchableOpacity
+                    style={[styles.navButton, styles.nextButton]}
+                    onPress={() => navigation.navigate('WeatherFeelingScreen')}
+                >
+                    <Text style={styles.navButtonText}>Next</Text>
+                </TouchableOpacity>
+            </View>
+
+            {/* Logo */}
             <Image source={require('../../assets/images/ArogyaLogo.png')} style={styles.logo} />
         </View>
     );
@@ -62,6 +77,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: '#3E5025',
         marginBottom: 20,
+        textAlign: 'center',
     },
     description: {
         fontSize: 16,
@@ -84,23 +100,39 @@ const styles = StyleSheet.create({
         marginVertical: 20,
         opacity: 0.5,
     },
+    bottomButtons: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        width: '100%',
+        paddingHorizontal: 30,
+        marginBottom: 10,
+    },
+    navButton: {
+        paddingVertical: 10,
+        paddingHorizontal: 25,
+        borderRadius: 10,
+        shadowColor: '#000',
+        shadowOpacity: 0.1,
+        shadowOffset: { width: 2, height: 2 },
+        shadowRadius: 4,
+        elevation: 3,
+    },
+    backButton: {
+        backgroundColor: '#FFFFFF',
+    },
+    nextButton: {
+        backgroundColor: '#A4C27E',
+    },
+    navButtonText: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: '#000',
+    },
     logo: {
         width: 100,
         height: 50,
         resizeMode: 'contain',
-        marginTop: 30,
-    },
-    button: {
-        backgroundColor: '#A4C639',
-        padding: 12,
-        borderRadius: 10,
-        width: 120,
-        alignItems: 'center',
-    },
-    buttonText: {
-        color: '#FFFFFF',
-        fontSize: 16,
-        fontWeight: 'bold',
+        marginBottom: 30,
     },
 });
 

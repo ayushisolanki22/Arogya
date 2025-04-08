@@ -55,7 +55,7 @@ const AllergyScreen = () => {
                                                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.nextButton}
-                    onPress={() => navigation.navigate('HomeScreen')} // Navigates to FamilyHealthScreen
+                    onPress={() => navigation.navigate('DisclaimerScreen')} // Navigates to FamilyHealthScreen
                 >
                     <Text style={styles.buttonText}>Next</Text>
                 </TouchableOpacity>

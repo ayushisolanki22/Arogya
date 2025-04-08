@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
-import { 
-  View, Text, TouchableOpacity, StyleSheet, Image, ImageBackground, 
-  PanResponder 
+import {
+  View, Text, TouchableOpacity, StyleSheet, Image, ImageBackground,
+  PanResponder
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { ProgressBar } from 'react-native-paper';
@@ -18,8 +18,8 @@ const WaterInsights = () => {
       onStartShouldSetPanResponder: () => true,
       onMoveShouldSetPanResponder: () => true,
       onPanResponderRelease: (evt, gestureState) => {
-        if (gestureState.dx > 100) { // Detect right swipe
-          navigation.navigate('InsightsScreen'); 
+        if (gestureState.dx > 100) {
+          navigation.navigate('InsightsScreen');
         }
       },
     })
@@ -30,7 +30,10 @@ const WaterInsights = () => {
       {/* Header */}
       <View style={styles.header}>
         <TouchableOpacity onPress={() => navigation.navigate('InsightsScreen')}>
-          <Ionicons name="arrow-back" size={24} color="black" />
+          <Image
+            source={require('../../assets/images/BackButton.png')}
+            style={styles.backIcon}
+          />
         </TouchableOpacity>
         <Text style={styles.date}>Today, 11 Feb</Text>
         <TouchableOpacity>
@@ -102,6 +105,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     marginTop: 40,
+  },
+  backIcon: {
+    width: 24,
+    height: 24,
+    resizeMode: 'contain',
   },
   date: {
     fontSize: 18,
