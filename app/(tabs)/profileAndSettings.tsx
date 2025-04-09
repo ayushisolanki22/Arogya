@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, Image, Modal } from 'react-native';
 import { Ionicons, Feather } from '@expo/vector-icons';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
@@ -9,6 +9,10 @@ type SettingsScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Set
 
 const SettingsScreen = () => {
   const navigation = useNavigation<SettingsScreenNavigationProp>();
+
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showSaveLoginModal, setShowSaveLoginModal] = useState(false);
+  const [showLogoutConfirmModal, setShowLogoutConfirmModal] = useState(false);
 
   const MenuItem: React.FC<{ icon: any; title: string; onPress?: () => void }> = ({ icon, title, onPress }) => (
     <TouchableOpacity style={styles.menuItem} onPress={onPress}>
@@ -38,7 +42,6 @@ const SettingsScreen = () => {
           </TouchableOpacity>
           <Text style={styles.userPhone}>+91 1234567890</Text>
         </View>
-        {/* Pencil Icon moved to the marked position */}
         <TouchableOpacity onPress={() => navigation.navigate('SettingsAndActivity')} style={styles.editIconContainer}>
           <Feather name="edit-3" size={20} color="black" />
         </TouchableOpacity>
@@ -47,17 +50,93 @@ const SettingsScreen = () => {
       {/* Menu Section */}
       <View style={styles.menuSection}>
         <MenuItem icon="lock" title="Account Privacy" />
+        <View style={styles.divider} />
         <MenuItem icon="bell" title="Notifications" onPress={() => navigation.navigate('Notification')} />
-        <MenuItem icon="info" title="About" />
-        <MenuItem icon="help-circle" title="Help" />
-        <MenuItem icon="shield" title="Privacy Policy" />
+        <View style={styles.divider} />
+        <MenuItem icon="info" title="About" onPress={() => navigation.navigate('AboutScreen')} />
+        <View style={styles.divider} />
+        <MenuItem icon="help-circle" title="Help" onPress={() => navigation.navigate('HelpScreen')} />
+        <View style={styles.divider} />
+        <MenuItem icon="shield" title="Privacy Policy" onPress={() => navigation.navigate('PrivacyPolicy')} />
       </View>
 
       {/* Bottom Section */}
       <View style={styles.bottomSection}>
-        <MenuItem icon="log-out" title="Log Out" />
-        <MenuItem icon="trash" title="Delete Account" />
+        <MenuItem icon="log-out" title="Log Out" onPress={() => setShowSaveLoginModal(true)} />
+        <View style={styles.divider} />
+        <MenuItem icon="trash" title="Delete Account" onPress={() => setShowDeleteModal(true)} />
       </View>
+
+      {/* Delete Confirmation Modal */}
+      <Modal transparent animationType="fade" visible={showDeleteModal}>
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalBox}>
+            <Text style={styles.modalText}>Are you sure you want to delete your account?</Text>
+            <View style={styles.modalButtonContainer}>
+              <TouchableOpacity style={styles.modalButton} onPress={() => setShowDeleteModal(false)}>
+                <Text style={styles.modalButtonText}>No</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.modalButton}
+                onPress={() => {
+                  setShowDeleteModal(false);
+                  // Add delete logic here
+                }}>
+                <Text style={styles.modalButtonText}>Yes</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </Modal>
+
+      {/* Save Login Info Modal */}
+      <Modal transparent animationType="fade" visible={showSaveLoginModal}>
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalBox}>
+            <Text style={styles.modalText}>Do you want to save your login information?</Text>
+            <View style={styles.modalButtonContainer}>
+              <TouchableOpacity
+                style={styles.modalButton}
+                onPress={() => {
+                  setShowSaveLoginModal(false);
+                  setShowLogoutConfirmModal(true);
+                }}>
+                <Text style={styles.modalButtonText}>No</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.modalButton}
+                onPress={() => {
+                  setShowSaveLoginModal(false);
+                  setShowLogoutConfirmModal(true);
+                }}>
+                <Text style={styles.modalButtonText}>Yes</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </Modal>
+
+      {/* Final Logout Confirmation Modal */}
+      <Modal transparent animationType="fade" visible={showLogoutConfirmModal}>
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalBox}>
+            <Text style={styles.modalText}>Do you want to logout your account?</Text>
+            <View style={styles.modalButtonContainer}>
+              <TouchableOpacity style={styles.modalButton} onPress={() => setShowLogoutConfirmModal(false)}>
+                <Text style={styles.modalButtonText}>No</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.modalButton}
+                onPress={() => {
+                  setShowLogoutConfirmModal(false);
+                  // Add logout logic here
+                }}>
+                <Text style={styles.modalButtonText}>Yes</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };
@@ -67,11 +146,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#F8E5BF',
     padding: 30,
+    paddingTop: 90, // shifted everything down
   },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 20,
+    paddingHorizontal: 0,
+    paddingBottom: 10,
   },
   headerTitle: {
     fontSize: 18,
@@ -88,7 +169,7 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
   userIcon: {
-    width: 40, // Slightly reduced size
+    width: 40,
     height: 40,
     borderRadius: 20,
     marginRight: 10,
@@ -103,13 +184,19 @@ const styles = StyleSheet.create({
   },
   editIconContainer: {
     position: 'absolute',
-    right: 15,  // Keep it aligned to the right
-    top: 24,     // Adjusted from 15 to 20 to move it downward
+    right: 15,
+    top: 24,
   },
   menuSection: {
     backgroundColor: '#fff',
     borderRadius: 10,
-    paddingVertical: 10,
+    paddingVertical: 5,
+  },
+  bottomSection: {
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    paddingVertical: 5,
+    marginTop: 20,
   },
   menuItem: {
     flexDirection: 'row',
@@ -120,11 +207,42 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginLeft: 10,
   },
-  bottomSection: {
+  divider: {
+    height: 1,
+    backgroundColor: '#ccc',
+    marginHorizontal: 15,
+  },
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.4)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modalBox: {
     backgroundColor: '#fff',
+    padding: 25,
     borderRadius: 10,
-    paddingVertical: 10,
-    marginTop: 20,
+    width: '80%',
+  },
+  modalText: {
+    fontSize: 16,
+    textAlign: 'center',
+    marginBottom: 20,
+  },
+  modalButtonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
+  modalButton: {
+    padding: 10,
+    backgroundColor: '#000',
+    borderRadius: 8,
+    width: '40%',
+    alignItems: 'center',
+  },
+  modalButtonText: {
+    color: '#fff',
+    fontWeight: 'bold',
   },
 });
 

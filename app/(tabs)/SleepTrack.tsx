@@ -9,21 +9,22 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { ProgressBar } from 'react-native-paper';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 const SleepTrack = () => {
   const navigation = useNavigation();
+  const route = useRoute();
+  const selectedDate = route.params?.date || 'Date not found';
   const [sleepHours, setSleepHours] = useState(0);
+  const [isAdded, setIsAdded] = useState(false);
   const maxSleep = 8;
 
-  // ✅ PanResponder for swipe detection
   const panResponder = useRef(
     PanResponder.create({
       onStartShouldSetPanResponder: () => true,
       onMoveShouldSetPanResponder: () => true,
       onPanResponderRelease: (_, gestureState) => {
         if (gestureState.dx > 100) {
-          console.log("Swiped Right! Navigating to InsightsScreen...");
           navigation.navigate('InsightsScreen');
         }
       },
@@ -40,7 +41,7 @@ const SleepTrack = () => {
             style={styles.backIcon}
           />
         </TouchableOpacity>
-        <Text style={styles.date}>Today, 11 Feb</Text>
+        <Text style={styles.date}>{selectedDate}</Text>
         <View style={{ width: 24 }} />
       </View>
 
@@ -57,7 +58,10 @@ const SleepTrack = () => {
       <Text style={styles.trackText}>Please track your sleep timings here</Text>
       <View style={styles.sleepInputContainer}>
         <TouchableOpacity
-          onPress={() => setSleepHours(Math.max(0, sleepHours - 1))}
+          onPress={() => {
+            if (isAdded) setIsAdded(false);
+            setSleepHours(Math.max(0, sleepHours - 1));
+          }}
         >
           <Ionicons name="remove-circle-outline" size={30} color="black" />
         </TouchableOpacity>
@@ -65,7 +69,10 @@ const SleepTrack = () => {
         <Text style={styles.sleepText}>{sleepHours}h of {maxSleep}h</Text>
 
         <TouchableOpacity
-          onPress={() => setSleepHours(Math.min(maxSleep, sleepHours + 1))}
+          onPress={() => {
+            if (isAdded) setIsAdded(false);
+            setSleepHours(Math.min(maxSleep, sleepHours + 1));
+          }}
         >
           <Ionicons name="add-circle-outline" size={30} color="black" />
         </TouchableOpacity>
@@ -74,19 +81,38 @@ const SleepTrack = () => {
       {/* Progress Bar */}
       <ProgressBar progress={sleepHours / maxSleep} color="black" style={styles.progressBar} />
 
+      {/* Add Button */}
+      {sleepHours > 0 && !isAdded && (
+        <View style={{ alignItems: 'flex-end' }}>
+          <TouchableOpacity style={styles.addTrackButton} onPress={() => setIsAdded(true)}>
+            <Text style={styles.addTrackText}>Add</Text>
+          </TouchableOpacity>
+        </View>
+      )}
+
       {/* My Sleep Section */}
       <Text style={styles.sectionTitle}>My Sleep</Text>
       <View style={styles.sleepIconContainer}>
-        <Ionicons name="time" size={60} color="black" />
-        <Text style={styles.noRecordsText}>No records yet!</Text>
+        {!isAdded ? (
+          <>
+            <Ionicons name="time" size={60} color="black" />
+            <Text style={styles.noRecordsText}>No records yet!</Text>
+          </>
+        ) : (
+          <Text style={styles.sleepRecord}>
+            {sleepHours}h of {maxSleep}h on {selectedDate}
+          </Text>
+        )}
       </View>
 
       {/* Tips for Better Sleep */}
-      <Text style={styles.tipsTitle}>😴 Tips For You To Sleep Better</Text>
-      <Text style={styles.tipsText}>
-        Create a calming bedtime routine by disconnecting from screens, practicing deep breathing, and sipping warm herbal tea.
-        Maintain a consistent sleep schedule and ensure your space is dark, quiet, and comfortable.
-      </Text>
+      <View style={styles.tipsContainer}>
+        <Text style={styles.tipsTitle}>😴 Tips For You To Sleep Better</Text>
+        <Text style={styles.tipsText}>
+          Create a calming bedtime routine by disconnecting from screens, practicing deep breathing, and sipping warm herbal tea.
+          Maintain a consistent sleep schedule and ensure your space is dark, quiet, and comfortable.
+        </Text>
+      </View>
 
       {/* Logo */}
       <Image source={require('../../assets/images/ArogyaLogo.png')} style={styles.logo} />
@@ -135,52 +161,84 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginTop: 5,
     fontWeight: 'bold',
+    textAlign: 'left',
   },
   sleepInputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     marginVertical: 10,
   },
   sleepText: {
     fontSize: 18,
     marginHorizontal: 15,
+    textAlign: 'center',
   },
   progressBar: {
     height: 8,
     borderRadius: 5,
     marginVertical: 10,
   },
+  addTrackButton: {
+    backgroundColor: '#ffffff',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 10,
+    marginTop: 5,
+    marginBottom: 20,
+  },
+  addTrackText: {
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
   sectionTitle: {
     fontSize: 16,
     fontWeight: 'bold',
     marginBottom: 15,
+    textAlign: 'left',
   },
   sleepIconContainer: {
+    width: '100%',
     alignItems: 'center',
-    marginBottom: 20,
+    justifyContent: 'center',
+    marginBottom: 30,
   },
   noRecordsText: {
     fontSize: 14,
     color: 'black',
+    textAlign: 'center',
+  },
+  sleepRecord: {
+    fontSize: 16,
+    color: 'black',
+    textAlign: 'left',
+    fontWeight: 'bold',
+    width: '100%',
+  },
+  tipsContainer: {
+    marginTop: 20,
+    paddingBottom: 20,
+    alignItems: 'flex-start',
   },
   tipsTitle: {
     fontSize: 14,
     fontWeight: 'bold',
     marginBottom: 15,
-    textAlign: 'center',
+    textAlign: 'left',
   },
   tipsText: {
     fontSize: 14,
     color: 'black',
     lineHeight: 20,
-    textAlign: 'center',
+    textAlign: 'left',
   },
   logo: {
-    width: 130,
-    height: 50,
+    position: 'absolute',
+    bottom: 80,
     alignSelf: 'center',
-    marginTop: 40,
+    width: 100,
+    height: 40,
+    resizeMode: 'contain',
   },
 });
 

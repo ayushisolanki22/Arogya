@@ -10,7 +10,8 @@ const GenderSelectionScreen = () => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>SELECT YOUR GENDER</Text>
+            <Image source={require('../../assets/images/Name.png')} style={styles.nameImage} />
+            <Text style={styles.title}>Select your gender</Text>
             <View style={styles.genderContainer}>
                 <TouchableOpacity
                     style={[styles.genderCircle, selectedGender === 'Male' && styles.selectedGender]}
@@ -58,20 +59,35 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         paddingHorizontal: 20,
+        paddingBottom: 130, // ⬅️ Reduced to allow components to move lower
     },
+    
+    nameImage: {
+        width: 50,
+        height: 50,
+        resizeMode: 'contain',
+        marginTop: 20, // ⬅️ Added to push it down slightly
+        marginBottom: 0, // ⬅️ Adjusted to bring it closer to title
+    },
+    
     title: {
         fontSize: 18,
         fontWeight: 'bold',
         color: '#000',
         textAlign: 'center',
-        marginBottom: 20,
+        marginBottom: 0,
+        marginTop: 10,
     },
+
     genderContainer: {
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'center',
         alignItems: 'center',
+        marginBottom: 10,
+        marginTop: 10, // ⬅️ Increased to space from title
     },
+
     genderCircle: {
         width: width * 0.25,
         height: width * 0.25,
@@ -83,51 +99,66 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: 'black',
     },
+
     selectedGender: {
         backgroundColor: '#A4C27E',
     },
+
     genderText: {
         fontSize: 16,
         fontWeight: 'bold',
         color: '#000',
     },
+
     yogaImage: {
-        width: width * 0.5,
-        height: height * 0.2,
+        width: width * 0.4,
+        height: height * 0.18,
         resizeMode: 'contain',
         opacity: 0.2,
-        marginTop: 20,
+        marginTop: 45,
     },
+
     buttonContainer: {
+        position: 'absolute',
+        bottom: 180,
         flexDirection: 'row',
-        justifyContent: 'space-between',
-        width: '80%',
-        marginTop: 20,
+        justifyContent: 'center',
+        width: '100%',
+        paddingHorizontal: 20,
     },
+
     backButton: {
         backgroundColor: 'white',
-        paddingVertical: 10,
-        paddingHorizontal: 20,
+        paddingVertical: 12,
+        paddingHorizontal: 25,
         borderRadius: 10,
+        marginRight: 10,
     },
+
     nextButton: {
         backgroundColor: '#A4C27E',
-        paddingVertical: 10,
-        paddingHorizontal: 20,
+        paddingVertical: 12,
+        paddingHorizontal: 25,
         borderRadius: 10,
+        marginLeft: 177,
     },
+
     buttonText: {
         fontSize: 16,
         fontWeight: 'bold',
         color: 'black',
     },
+
     logo: {
         width: 100,
         height: 40,
         resizeMode: 'contain',
         position: 'absolute',
-        bottom: 40,
+        bottom: 80,
+        alignSelf: 'center',
     },
 });
+
+
 
 export default GenderSelectionScreen;

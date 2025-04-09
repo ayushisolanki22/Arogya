@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#FDF6E3',
         alignItems: 'center',
-        paddingTop: 60,
+        paddingTop: 70,
         paddingHorizontal: 20,
     },
     alreadyUserContainer: {
@@ -217,12 +217,13 @@ const styles = StyleSheet.create({
     signInButton: {
         width: '105%',
         backgroundColor: 'white',
-        paddingVertical: 14,
+        padding: 16,              // ⬅️ Adds padding on all sides (including vertical)
         borderRadius: 10,
         alignItems: 'center',
         alignSelf: 'center',
         marginBottom: 30,
     },
+    
     signInText: {
         fontSize: 16,
         fontWeight: 'bold',
@@ -282,7 +283,7 @@ const styles = StyleSheet.create({
     },
     logoContainer: {
         alignItems: 'center',
-        marginTop: 50,
+        marginTop: 35,  // ⬅️ Reduced from 50 to 20 to lift just the logo
         marginBottom: 20,
     },
     logo: {

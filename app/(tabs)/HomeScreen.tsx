@@ -11,7 +11,8 @@ type RootStackParamList = {
   LifestyleDiet: undefined;
   ChatBox: undefined;
   InsightsScreen: undefined;
-  SettingAndActivity: undefined;
+  SettingsAndActivity: undefined;
+  ProfileAndSettings: undefined; // <-- Added new screen
 };
 
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
@@ -26,12 +27,17 @@ const HomeScreen: React.FC = () => {
         <View style={styles.greetingContainer}>
           <Text style={styles.greeting}>Hello User,</Text>
         </View>
-        <TouchableOpacity 
-          style={styles.profileIcon} 
-          onPress={() => navigation.navigate('SettingsAndActivity')} // Navigate on press
-        >
-          <Ionicons name="person-circle-outline" size={34} color="black" />
-        </TouchableOpacity>
+
+        {/* User Icon + Settings Icon */}
+        <View style={styles.iconRow}>
+          <TouchableOpacity onPress={() => navigation.navigate('SettingsAndActivity')}>
+            <Ionicons name="person-circle-outline" size={34} color="black" />
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => navigation.navigate('profileAndSettings')}>
+            <Image source={require('../../assets/images/Settings.png')} style={styles.settingsIcon} />
+          </TouchableOpacity>
+        </View>
       </View>
 
       {/* Cards */}
@@ -79,23 +85,33 @@ const styles = StyleSheet.create({
   },
   header: {
     backgroundColor: '#fefde1',
-    paddingVertical: 20,
+    paddingVertical: 50,
     paddingHorizontal: 15,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
   },
   greetingContainer: {
-    flex: 1,
-    alignItems: 'flex-start', // Align "Hello User," to the left
+    position: 'absolute',
+    top: 130,
+    left: 30,
+    zIndex: 10,
   },
   greeting: {
     fontSize: 20,
     color: 'black',
-    marginTop: 50, // Moves "Hello User" directly above Prakruti
+    marginTop: 20,
   },
-  profileIcon: {
-    marginRight: 15,
+  iconRow: {
+    position: 'absolute',
+    top: 80,
+    right: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    zIndex: 10,
+  },
+  settingsIcon: {
+    width: 26,
+    height: 26,
+    marginLeft: 10,
   },
   cardContainer: {
     flex: 1,

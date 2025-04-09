@@ -9,22 +9,34 @@ const RegistrationSuccessScreen = () => {
     const navigation = useNavigation();
 
     useEffect(() => {
-        // Trigger confetti after mount
+        // Confetti on mount
     }, []);
 
     return (
         <View style={styles.container}>
             <ConfettiCannon count={200} origin={{ x: width / 2, y: 0 }} fadeOut={true} />
-            <Text style={styles.title}>🎉 Registration Successful! 🎉</Text>
-            <Text style={styles.subtitle}>Dear [User's Name],</Text>
-            <Text style={styles.description}>Welcome to Arogya - Your Personalized Ayurvedic Wellness Companion! 🌱{"\n"}Your registration is successfully completed.</Text>
-            <View style={styles.checklistContainer}>
-                <Text style={styles.checklistItem}>✅ Discover your unique Prakruti (body type)</Text>
-                <Text style={styles.checklistItem}>✅ Track your stress, food, and water intake</Text>
-                <Text style={styles.checklistItem}>✅ Get personalized Ayurvedic remedies</Text>
-                <Text style={styles.checklistItem}>✅ Consult AyurBot for instant health advice</Text>
+            
+            <View style={styles.contentWrapper}>
+                <Text style={styles.title}>🎉 Registration Successful! 🎉</Text>
+                <Text style={styles.subtitle}>Dear [User's Name],</Text>
+                <Text style={styles.description}>
+                    Welcome to Arogya - Your Personalized Ayurvedic Wellness Companion! 🌱{"\n"}
+                    Your registration is successfully completed.
+                </Text>
+
+                <View style={styles.checklistContainer}>
+                    <Text style={styles.checklistItem}>✅ Discover your unique Prakruti (body type)</Text>
+                    <Text style={styles.checklistItem}>✅ Track your stress, food, and water intake</Text>
+                    <Text style={styles.checklistItem}>✅ Get personalized Ayurvedic remedies</Text>
+                    <Text style={styles.checklistItem}>✅ Consult AyurBot for instant health advice</Text>
+                </View>
+
+                <Text style={styles.journeyText}>
+                    ✨ Start your wellness journey towards a balanced and healthy lifestyle with Ayurveda! ✨{"\n"}
+                    👉 Let’s Begin! 🚀
+                </Text>
             </View>
-            <Text style={styles.journeyText}>✨ Start your wellness journey towards a balanced and healthy lifestyle with Ayurveda! ✨{"\n"}👉 Let’s Begin! 🚀</Text>
+
             <View style={styles.buttonContainer}>
                 <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate('BirthdateInputScreen')}>
                     <Text style={styles.buttonText}>Back</Text>
@@ -44,6 +56,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         paddingHorizontal: 20,
+    },
+    contentWrapper: {
+        marginTop: -60, // 👈 This moves content up slightly
+        alignItems: 'center',
     },
     title: {
         fontSize: 24,
@@ -80,21 +96,26 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
     buttonContainer: {
+        position: 'absolute',
+        bottom: 180,
         flexDirection: 'row',
-        justifyContent: 'space-between',
-        width: '80%',
+        justifyContent: 'center',
+        width: '100%',
+        paddingHorizontal: 20,
     },
     backButton: {
         backgroundColor: 'white',
-        paddingVertical: 10,
-        paddingHorizontal: 20,
+        paddingVertical: 12,
+        paddingHorizontal: 25,
         borderRadius: 10,
+        marginRight: 10,
     },
     nextButton: {
         backgroundColor: '#A4C27E',
-        paddingVertical: 10,
-        paddingHorizontal: 20,
+        paddingVertical: 12,
+        paddingHorizontal: 25,
         borderRadius: 10,
+        marginLeft: 177,
     },
     buttonText: {
         fontSize: 16,
