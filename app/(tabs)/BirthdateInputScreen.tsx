@@ -51,7 +51,7 @@ const BirthdateInputScreen = () => {
             <View style={styles.buttonContainer}>
                 <TouchableOpacity 
                     style={styles.backButton}
-                    onPress={() => navigation.navigate('NameInputScreen')}
+                    onPress={() => navigation.navigate('GenderSelection')}
                 >
                     <Text style={styles.buttonText}>Back</Text>
                 </TouchableOpacity>

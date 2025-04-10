@@ -1,21 +1,42 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 
-const HomeScreen = ({ navigation }) => {
+// Define Navigation Type
+type RootStackParamList = {
+  Home: undefined;
+  DiscoverPrakrutiScreen: undefined;
+  LifestyleDiet: undefined;
+  ChatBox: undefined;
+  InsightsScreen: undefined;
+  SettingAndActivity: undefined;
+};
+
+type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
+
+const HomeScreen: React.FC = () => {
+  const navigation = useNavigation<HomeScreenNavigationProp>();
+
   return (
     <View style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
-        <Text style={styles.greeting}>Hello User,</Text>
-        <TouchableOpacity style={styles.profileIcon}>
+        <View style={styles.greetingContainer}>
+          <Text style={styles.greeting}>Hello User,</Text>
+        </View>
+        <TouchableOpacity 
+          style={styles.profileIcon} 
+          onPress={() => navigation.navigate('SettingsAndActivity')} // Navigate on press
+        >
           <Ionicons name="person-circle-outline" size={34} color="black" />
         </TouchableOpacity>
       </View>
 
       {/* Cards */}
       <View style={styles.cardContainer}>
-        <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('Prakruti')}>
+        <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('DiscoverPrakrutiScreen')}>
           <Text style={styles.cardTitle}>PRAKRUTI</Text>
           <Text style={styles.cardDescription}>Tap to know your prakruti here.</Text>
         </TouchableOpacity>
@@ -29,24 +50,20 @@ const HomeScreen = ({ navigation }) => {
       {/* Bottom Navigation */}
       <View style={styles.bottomNavContainer}>
         <View style={styles.bottomNav}>
-          {/* Home Icon */}
           <TouchableOpacity style={styles.navButton} onPress={() => navigation.navigate('Home')}>
             <Ionicons name="home" size={32} color="black" />
           </TouchableOpacity>
 
-          {/* Logo Icon (Separate) */}
-          <TouchableOpacity style={styles.logoButton} onPress={() => navigation.navigate('Prakruti')}>
+          <TouchableOpacity style={styles.logoButton} onPress={() => navigation.navigate('DiscoverPrakrutiScreen')}>
             <Image source={require('../../assets/images/Logo.png')} style={styles.logoIcon} />
           </TouchableOpacity>
 
-          {/* ChatBox Icon (Separate) */}
           <TouchableOpacity style={styles.chatBoxButton} onPress={() => navigation.navigate('ChatBox')}>
             <Image source={require('../../assets/images/ChatBox.png')} style={styles.chatBoxIcon} />
           </TouchableOpacity>
 
-          {/* Bar Chart Icon — Navigates to InsightsScreen */}
           <TouchableOpacity style={styles.navButton} onPress={() => navigation.navigate('InsightsScreen')}>
-            <Ionicons name="bar-chart" size={32} color="black" />
+            <Image source={require('../../assets/images/Insight.png')} style={styles.insightIcon} />
           </TouchableOpacity>
         </View>
       </View>
@@ -68,9 +85,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+  greetingContainer: {
+    flex: 1,
+    alignItems: 'flex-start', // Align "Hello User," to the left
+  },
   greeting: {
     fontSize: 20,
     color: 'black',
+    marginTop: 50, // Moves "Hello User" directly above Prakruti
   },
   profileIcon: {
     marginRight: 15,
@@ -79,13 +101,13 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 50,
-    paddingVertical: 50,
+    paddingHorizontal: 5,
+    paddingVertical: 15,
   },
   card: {
     backgroundColor: 'white',
-    width: '90%', // Keeps the increased horizontal size
-    height: 150, // Increased height to make it vertically larger
+    width: '90%',
+    height: 210,
     marginVertical: 15,
     padding: 40,
     borderRadius: 20,
@@ -151,6 +173,10 @@ const styles = StyleSheet.create({
     height: 31,
   },
   chatBoxIcon: {
+    width: 32,
+    height: 32,
+  },
+  insightIcon: {
     width: 32,
     height: 32,
   },

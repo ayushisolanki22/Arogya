@@ -29,12 +29,9 @@ const NameInputScreen = () => {
             />
             <Image source={require('../../assets/images/Yoga.png')} style={styles.yogaImage} />
             <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.backButton}>
-                    <Text style={styles.buttonText}>Back</Text>
-                </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.nextButton}
-                    onPress={() => navigation.navigate('BirthdateInputScreen')}
+                    onPress={() => navigation.navigate('GenderSelection')}
                 >
                     <Text style={styles.buttonText}>Next</Text>
                 </TouchableOpacity>
@@ -82,15 +79,9 @@ const styles = StyleSheet.create({
     },
     buttonContainer: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'flex-end', // Aligns "Next" button to the right
         width: '80%',
         marginTop: 20,
-    },
-    backButton: {
-        backgroundColor: 'white',
-        paddingVertical: 10,
-        paddingHorizontal: 20,
-        borderRadius: 10,
     },
     nextButton: {
         backgroundColor: '#A4C27E',

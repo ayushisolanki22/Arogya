@@ -1,5 +1,16 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet, Modal, FlatList, Dimensions, Linking } from 'react-native';
+import {
+    View,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    Image,
+    StyleSheet,
+    Modal,
+    FlatList,
+    Dimensions,
+    Linking
+} from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
@@ -18,6 +29,7 @@ const PhoneRegistrationScreen = () => {
     const navigation = useNavigation();
     const [selectedCountry, setSelectedCountry] = useState('+91');
     const [phoneNumber, setPhoneNumber] = useState('');
+    const [otp, setOtp] = useState('');
     const [modalVisible, setModalVisible] = useState(false);
 
     const openLink = (url) => {
@@ -26,9 +38,13 @@ const PhoneRegistrationScreen = () => {
 
     return (
         <View style={styles.container}>
-            <TouchableOpacity onPress={() => navigation.navigate('PhoneLoginScreen')} style={styles.alreadyUserContainer}>
+            <TouchableOpacity
+                onPress={() => navigation.navigate('PhoneLoginScreen')}
+                style={styles.alreadyUserContainer}
+            >
                 <Text style={styles.alreadyUser}>Already a user?</Text>
             </TouchableOpacity>
+
             <Text style={styles.title}>REGISTER</Text>
 
             <View style={styles.phoneInputContainer}>
@@ -45,13 +61,30 @@ const PhoneRegistrationScreen = () => {
                 />
             </View>
 
-            <TouchableOpacity style={styles.signInButton}>
-                <Text style={styles.signInText}>Sign In</Text>
+            <View style={styles.otpInputContainer}>
+                <TextInput
+                    placeholder="Enter OTP"
+                    placeholderTextColor="black"
+                    style={styles.otpInput}
+                    keyboardType="number-pad"
+                    value={otp}
+                    onChangeText={setOtp}
+                />
+            </View>
+
+            <TouchableOpacity
+                style={styles.signInButton}
+                onPress={() => navigation.navigate('NameInputScreen')}
+            >
+                <Text style={styles.signInText}>Sign Up</Text>
             </TouchableOpacity>
 
             <Text style={styles.orContinueText}>or continue with</Text>
 
-            <TouchableOpacity style={styles.emailButton} onPress={() => navigation.navigate('EmailRegistrationScreen')}>
+            <TouchableOpacity
+                style={styles.emailButton}
+                onPress={() => navigation.navigate('EmailRegistrationScreen')}
+            >
                 <FontAwesome name="envelope" size={20} color="black" />
                 <Text style={styles.emailText}> Email</Text>
             </TouchableOpacity>
@@ -60,7 +93,10 @@ const PhoneRegistrationScreen = () => {
                 <TouchableOpacity style={styles.socialIcon} onPress={() => openLink('https://www.facebook.com/')}>
                     <Image source={require('../../assets/images/Facebook.png')} style={styles.iconImage} />
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.socialIconCenter} onPress={() => openLink('https://accounts.google.com/')}>
+                <TouchableOpacity
+                    style={styles.socialIconCenter}
+                    onPress={() => openLink('https://accounts.google.com/')}
+                >
                     <Image source={require('../../assets/images/Google.png')} style={styles.iconImage} />
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.socialIcon} onPress={() => openLink('https://support.apple.com/')}>
@@ -87,7 +123,9 @@ const PhoneRegistrationScreen = () => {
                                         setModalVisible(false);
                                     }}
                                 >
-                                    <Text style={styles.countryText}>{item.country} ({item.code})</Text>
+                                    <Text style={styles.countryText}>
+                                        {item.country} ({item.code})
+                                    </Text>
                                 </TouchableOpacity>
                             )}
                         />
@@ -104,13 +142,15 @@ const PhoneRegistrationScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
         backgroundColor: '#FDF6E3',
+        alignItems: 'center',
+        paddingTop: 60,
+        paddingHorizontal: 20,
     },
     alreadyUserContainer: {
         alignSelf: 'flex-end',
-        marginRight: 20,
+        marginTop: 30,
+        marginBottom: 20,
     },
     alreadyUser: {
         fontSize: 14,
@@ -118,23 +158,24 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     title: {
-        fontSize: 24,
+        fontSize: 28,
         fontWeight: 'bold',
         color: '#2E7D32',
-        marginBottom: 30,
+        marginTop: 20,
+        marginBottom: 40,
     },
     phoneInputContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'center',
         borderWidth: 1,
         borderColor: '#ccc',
         borderRadius: 10,
         paddingHorizontal: 10,
         backgroundColor: 'white',
-        width: '85%',
-        height: 50,
-        marginBottom: 15,
+        width: '105%',
+        alignSelf: 'center',
+        height: 55,
+        marginBottom: 25,
     },
     countryCodeButton: {
         justifyContent: 'center',
@@ -146,7 +187,6 @@ const styles = StyleSheet.create({
         fontSize: 14,
         color: 'black',
         fontWeight: 'bold',
-        textAlignVertical: 'center',
     },
     phoneInput: {
         flex: 1,
@@ -154,17 +194,44 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
         color: 'black',
     },
-    signInButton: {
-        width: '85%',
+    otpInputContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderWidth: 1,
+        borderColor: '#ccc',
+        borderRadius: 10,
+        paddingHorizontal: 10,
         backgroundColor: 'white',
-        padding: 14,
+        width: '105%',
+        alignSelf: 'center',
+        height: 55,
+        marginBottom: 25,
+        marginTop: -5,
+    },
+    otpInput: {
+        flex: 1,
+        fontSize: 16,
+        paddingLeft: 10,
+        color: 'black',
+    },
+    signInButton: {
+        width: '105%',
+        backgroundColor: 'white',
+        paddingVertical: 14,
         borderRadius: 10,
         alignItems: 'center',
-        marginBottom: 15,
+        alignSelf: 'center',
+        marginBottom: 30,
+    },
+    signInText: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: '#black',
     },
     orContinueText: {
         fontSize: 14,
         color: '#777',
+        marginTop: 0,
         marginBottom: 10,
     },
     emailButton: {
@@ -173,20 +240,25 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: 'white',
         borderRadius: 10,
-        width: '85%',
+        width: '105%',
+        alignSelf: 'center',
         height: 50,
-        marginBottom: 15,
+        marginTop: 20,
+        marginBottom: 30,
     },
     emailText: {
         fontSize: 16,
         color: 'black',
         fontWeight: 'bold',
+        marginLeft: 8,
     },
     socialIconsContainer: {
         flexDirection: 'row',
-        width: '85%',
+        width: '100%',
         justifyContent: 'space-between',
         alignItems: 'center',
+        marginTop: 10,
+        marginBottom: 50,
     },
     socialIcon: {
         width: 50,
@@ -209,7 +281,9 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
     },
     logoContainer: {
-        marginTop: 200,
+        alignItems: 'center',
+        marginTop: 50,
+        marginBottom: 20,
     },
     logo: {
         width: 100,

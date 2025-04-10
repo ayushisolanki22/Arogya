@@ -5,14 +5,16 @@ import { Ionicons } from '@expo/vector-icons';
 
 const { width, height } = Dimensions.get('window');
 
-const PhysicalActivityScreen = () => {
+const UserExercise = () => {
     const [selectedOption, setSelectedOption] = useState(null);
     const navigation = useNavigation();
 
     const options = [
-        'Getting tired fast',
-        'Strong & Active',
-        'Like it slow & easy'
+        'Get tired quickly',
+        'Strong and active',
+        'Slow and easy',
+        'Push hard, recover fast',
+        'Struggle to stay consistent'
     ];
 
     const handleSelect = (option) => {
@@ -21,7 +23,7 @@ const PhysicalActivityScreen = () => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>How do you react to physical activity?</Text>
+            <Text style={styles.title}>How do you feel during exercise?</Text>
             <View style={styles.optionsContainer}>
                 {options.map((option, index) => (
                     <TouchableOpacity
@@ -35,7 +37,7 @@ const PhysicalActivityScreen = () => {
                         <Ionicons
                             name={selectedOption === option ? 'radio-button-on' : 'radio-button-off'}
                             size={20}
-                            color={selectedOption === option ? 'black' : 'black'}
+                            color="black"
                         />
                         <Text style={styles.optionText}>{option}</Text>
                     </TouchableOpacity>
@@ -47,13 +49,13 @@ const PhysicalActivityScreen = () => {
             <View style={styles.buttonContainer}>
                 <TouchableOpacity
                     style={styles.backButton}
-                    onPress={() => navigation.goBack()}
+                    onPress={() => navigation.navigate('WelcomeScreen')}
                 >
                     <Text style={styles.buttonText}>Back</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.nextButton}
-                    onPress={() => navigation.navigate('NextScreen')}
+                    onPress={() => navigation.navigate('UserMovement')}
                 >
                     <Text style={styles.buttonText}>Next</Text>
                 </TouchableOpacity>
@@ -72,6 +74,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         paddingHorizontal: 20,
+        paddingTop: 80,
     },
     title: {
         fontSize: 18,
@@ -90,7 +93,7 @@ const styles = StyleSheet.create({
         paddingVertical: 15,
         paddingHorizontal: 20,
         borderRadius: 10,
-        marginBottom: 10,
+        marginBottom: 15,
         width: '100%',
     },
     selectedOption: {
@@ -107,20 +110,20 @@ const styles = StyleSheet.create({
         height: height * 0.15,
         resizeMode: 'contain',
         opacity: 0.2,
-        marginTop: 10,
+        marginTop: 60,
     },
     buttonContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         width: '100%',
         paddingHorizontal: '10%',
-        marginTop: 20,
-        marginBottom: 200,  // Space between buttons and logo
+        marginTop: 5,
+        marginBottom: 120,
     },
     backButton: {
         backgroundColor: 'white',
-        paddingVertical: 10,
-        paddingHorizontal: 20,
+        paddingVertical: 12,
+        paddingHorizontal: 22,
         borderRadius: 10,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
@@ -129,8 +132,8 @@ const styles = StyleSheet.create({
     },
     nextButton: {
         backgroundColor: '#A4C27E',
-        paddingVertical: 10,
-        paddingHorizontal: 20,
+        paddingVertical: 12,
+        paddingHorizontal: 22,
         borderRadius: 10,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
@@ -146,7 +149,8 @@ const styles = StyleSheet.create({
         width: 100,
         height: 50,
         resizeMode: 'contain',
+        marginTop: 40,
     },
 });
 
-export default PhysicalActivityScreen;
+export default UserExercise;

@@ -1,7 +1,8 @@
-// InsightsScreen.js
-
 import React, { useRef } from 'react';
-import { View, Text, TouchableOpacity, Image, FlatList, StyleSheet, PanResponder, Animated } from 'react-native';
+import {
+  View, Text, TouchableOpacity, Image, FlatList,
+  StyleSheet, PanResponder, Animated
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 // Sample Data
@@ -59,7 +60,19 @@ const InsightsScreen = () => {
                 <Text style={styles.cardTitle}>{item.title}</Text>
                 <Text style={styles.cardGoal}>Goal: {item.goal}</Text>
               </View>
-              <TouchableOpacity style={styles.addButton}>
+              {/* Navigate to respective screens */}
+              <TouchableOpacity
+                style={styles.addButton}
+                onPress={() => {
+                  if (item.title === 'Sleep') {
+                    navigation.navigate('SleepTrack');
+                  } else if (item.title === 'Water') {
+                    navigation.navigate('WaterInsights');
+                  } else if (item.title === 'Stress Level') {
+                    navigation.navigate('StressTracker');
+                  }
+                }}
+              >
                 <Text style={styles.addButtonText}>+</Text>
               </TouchableOpacity>
             </View>

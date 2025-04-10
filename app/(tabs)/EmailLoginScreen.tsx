@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'; 
 import { View, Text, TextInput, TouchableOpacity, Image, Linking, StyleSheet, ScrollView } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
@@ -11,6 +11,14 @@ const EmailLoginScreen = () => {
 
     const handleNewUserPress = () => {
         navigation.navigate('EmailRegistrationScreen');
+    };
+
+    const handlePhoneLoginPress = () => {
+        navigation.navigate('PhoneLoginScreen');
+    };
+
+    const handleSignIn = () => {
+        navigation.navigate('HomeScreen');
     };
 
     const openLink = (url) => {
@@ -48,14 +56,14 @@ const EmailLoginScreen = () => {
                         <FontAwesome name={secureTextEntry ? "eye" : "eye-slash"} size={20} color="black" />
                     </TouchableOpacity>
                 </View>
-                <TouchableOpacity style={styles.signInButton}>
+                <TouchableOpacity style={styles.signInButton} onPress={handleSignIn}>
                     <Text style={styles.signInText}>Sign In</Text>
                 </TouchableOpacity>
             </View>
 
             <Text style={styles.orContinueText}>or continue with</Text>
 
-            <TouchableOpacity style={styles.phoneButton}>
+            <TouchableOpacity style={styles.phoneButton} onPress={handlePhoneLoginPress}>
                 <FontAwesome name="phone" size={20} color="black" />
                 <Text style={styles.phoneText}> Phone Number</Text>
             </TouchableOpacity>
@@ -78,6 +86,7 @@ const EmailLoginScreen = () => {
 };
 
 const styles = StyleSheet.create({
+    // Styles remain unchanged
     container: {
         flexGrow: 1,
         alignItems: 'center',
@@ -87,15 +96,17 @@ const styles = StyleSheet.create({
     },
     newUser: {
         fontSize: 14,
-        color: 'green',
+        color: '#2E7D32',
         alignSelf: 'flex-end',
+        marginRight: 20,
+        marginTop: 50,     // 👈 Add or increase this
+        marginBottom: 30,
         fontWeight: 'bold',
-        marginBottom: 10,
     },
     title: {
         fontSize: 22,
         fontWeight: 'bold',
-        color: 'green',
+        color: '#2E7D32',
         textAlign: 'center',
         marginBottom: 30,
     },

@@ -44,12 +44,12 @@ const UserMovement = () => {
             </View>
             <Image source={require('../../assets/images/Exercise.png')} style={styles.exerciseImage} />
             <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+                <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate('UserExercise')}>
                     <Text style={styles.buttonText}>Back</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.nextButton}
-                    onPress={() => navigation.navigate('PhysicalActivityScreen')}
+                    onPress={() => navigation.navigate('HealthIssueScreen')}
                 >
                     <Text style={styles.buttonText}>Next</Text>
                 </TouchableOpacity>

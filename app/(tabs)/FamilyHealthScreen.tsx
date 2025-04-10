@@ -10,11 +10,11 @@ const FamilyHealthScreen = () => {
     const navigation = useNavigation();
 
     const options = [
-        'Thyroid',
+        'Heart Problem',
         'Diabetes',
-        'HyperTension',
-        'HypoTension',
-        'None of the above'
+        'Hypertension (high BP)',
+        'None of the above',
+        'Other'
     ];
 
     const handleSelect = (option) => {
@@ -23,7 +23,7 @@ const FamilyHealthScreen = () => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Do you have any health issues now?</Text>
+            <Text style={styles.title}>Does anyone in your family have these health problems?</Text>
             <View style={styles.optionsContainer}>
                 {options.map((option, index) => (
                     <TouchableOpacity
@@ -37,28 +37,32 @@ const FamilyHealthScreen = () => {
                         <Ionicons
                             name={selectedOption === option ? 'radio-button-on' : 'radio-button-off'}
                             size={20}
-                            color={selectedOption === option ? 'black' : 'black'}
+                            color="black"
                         />
                         <Text style={styles.optionText}>{option}</Text>
                     </TouchableOpacity>
                 ))}
             </View>
             <Image source={require('../../assets/images/Heart.png')} style={styles.exerciseImage} />
+            
+            {/* Buttons above the logo */}
             <View style={styles.buttonContainer}>
                 <TouchableOpacity
-                    style={styles.backButton}
-                    onPress={() => navigation.goBack()}
-                >
-                    <Text style={styles.buttonText}>Back</Text>
-                </TouchableOpacity>
+                                    style={styles.backButton}
+                                    onPress={() => navigation.navigate('HealthIssueScreen')} // Navigates to UserMovement
+                                >
+                                    <Text style={styles.buttonText}>Back</Text>
+                                </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.nextButton}
-                    onPress={() => navigation.navigate('NextScreen')}
+                    onPress={() => navigation.navigate('AllergyScreen')} // Navigates to FamilyHealthScreen
                 >
                     <Text style={styles.buttonText}>Next</Text>
                 </TouchableOpacity>
             </View>
-            <Text style={styles.logo}>AROGYA</Text>
+
+            {/* Arogya Logo */}
+            <Image source={require('../../assets/images/ArogyaLogo.png')} style={styles.logo} />
         </View>
     );
 };
@@ -70,17 +74,17 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         paddingHorizontal: 20,
+        paddingTop: 150, // Moved everything down
     },
     title: {
         fontSize: 18,
         fontWeight: 'bold',
         color: '#3E5025',
         alignSelf: 'flex-start',
-        marginBottom: 10,
-        marginLeft: '10%',
+        marginBottom: 10, // Moved title down
     },
     optionsContainer: {
-        width: '80%',
+        width: '100%',
     },
     option: {
         flexDirection: 'row',
@@ -89,7 +93,7 @@ const styles = StyleSheet.create({
         paddingVertical: 15,
         paddingHorizontal: 20,
         borderRadius: 10,
-        marginBottom: 10,
+        marginBottom: 15, // More spacing between options
         width: '100%',
     },
     selectedOption: {
@@ -99,24 +103,27 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         fontSize: 16,
         color: 'black',
+        textAlign: 'left',
     },
     exerciseImage: {
-        width: width * 0.5,
-        height: height * 0.2,
+        width: width * 0.4,
+        height: height * 0.15,
         resizeMode: 'contain',
         opacity: 0.2,
-        marginTop: 10,
+        marginTop: 60, // Moved image further down
     },
     buttonContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        width: '80%',
-        marginTop: 20,
+        width: '100%',
+        paddingHorizontal: '10%',
+        marginTop: 50, // Moved buttons further down
+        marginBottom: 120, // Adjusted space between buttons and logo
     },
     backButton: {
         backgroundColor: 'white',
-        paddingVertical: 10,
-        paddingHorizontal: 20,
+        paddingVertical: 12,
+        paddingHorizontal: 22,
         borderRadius: 10,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
@@ -125,8 +132,8 @@ const styles = StyleSheet.create({
     },
     nextButton: {
         backgroundColor: '#A4C27E',
-        paddingVertical: 10,
-        paddingHorizontal: 20,
+        paddingVertical: 12,
+        paddingHorizontal: 22,
         borderRadius: 10,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
@@ -139,10 +146,10 @@ const styles = StyleSheet.create({
         color: 'black',
     },
     logo: {
-        marginTop: 20,
-        fontSize: 16,
-        fontWeight: 'bold',
-        color: '#3E5025',
+        width: 100,
+        height: 50,
+        resizeMode: 'contain',
+        marginTop: 40, // Moved logo down
     },
 });
 
