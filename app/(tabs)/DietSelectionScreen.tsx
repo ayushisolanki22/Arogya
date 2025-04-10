@@ -1,197 +1,152 @@
 import React from 'react';
-import { 
-  View, 
-  Text, 
-  ScrollView, 
-  TouchableOpacity, 
-  Image, 
-  StyleSheet, 
-  SafeAreaView, 
-  StatusBar 
-} from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView, SafeAreaView, StatusBar , Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { Ionicons } from '@expo/vector-icons';
 
-const DietSelectionScreen = () => {
+const SuggestionsScreen = () => {
   const navigation = useNavigation();
 
-  const handleBackPress = () => {
-    navigation.navigate('SuggestionsScreen');
-  };
-
-  const dietPlans = [
-    {
-      id: 1,
-      title: 'Balanced Diet Plan',
-      subtitle: 'For general health',
-      // Image path will be added here
-      imagePath: '', 
-    },
-    {
-      id: 2,
-      title: 'Weight Loss Diet Plan',
-      subtitle: '',
-      // Image path will be added here
-      imagePath: '', 
-    },
-    {
-      id: 3,
-      title: 'Weight Gain Diet Plan',
-      subtitle: '',
-      // Image path will be added here
-      imagePath: '', 
-    },
-    {
-      id: 4,
-      title: 'Weight Gain Diet Plan',
-      subtitle: '',
-      // Image path will be added here
-      imagePath: '', 
-    },
-    {
-      id: 5,
-      title: 'Keto Diet Plan',
-      subtitle: '',
-      // Image path will be added here
-      imagePath: '', 
-    },
-    {
-      id: 6,
-      title: 'Vegetarian Diet Plan',
-      subtitle: '',
-      // Image path will be added here
-      imagePath: '', 
-    },
-  ];
-
   return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="dark-content" />
-      
-      {/* Header with back button */}
-      <View style={styles.header}>
-        <TouchableOpacity style={styles.backButton} onPress={handleBackPress}>
-          {/* Back arrow image path will be added here */}
-          <Image 
-            source={{uri: ''}} 
-            style={styles.backIcon} 
-            resizeMode="contain"
-          />
+    <SafeAreaView style={styles.safeArea}>
+      <View style={styles.container}>
+        <TouchableOpacity 
+          style={styles.backButton}
+          onPress={() => navigation.navigate('HomeScreen')}
+        >
+          <Ionicons name="arrow-back" size={24} color="#6D3B1E" />
         </TouchableOpacity>
-      </View>
-
-      {/* Main content with scroll view */}
-      <ScrollView 
-        style={styles.scrollView}
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.scrollContent}
-      >
-        {/* Diet plan buttons */}
-        {dietPlans.map((plan) => (
-          <TouchableOpacity key={plan.id} style={styles.dietButton}>
-            <View style={styles.dietContent}>
-              <Image 
-                source={{uri: plan.imagePath}} 
-                style={styles.dietIcon} 
-                resizeMode="contain"
-              />
-              <View style={styles.dietTextContainer}>
-                <Text style={styles.dietTitle}>{plan.title}</Text>
-                {plan.subtitle ? (
-                  <Text style={styles.dietSubtitle}>{plan.subtitle}</Text>
-                ) : null}
-              </View>
-            </View>
-          </TouchableOpacity>
-        ))}
         
-        {/* Space for logo at bottom */}
-        <View style={styles.logoContainer}>
-          {/* Logo image path will be added here */}
-          <Image 
-            source={{uri: ''}} 
-            style={styles.logo} 
-            resizeMode="contain"
-          />
-        </View>
-      </ScrollView>
+        <ScrollView contentContainerStyle={styles.scrollContent}>
+          <TouchableOpacity style={styles.card} 
+        //   onPress={() => navigation.navigate('DietSelectionScreen')}
+          >
+            <Image source={require('../../assets/images/Balanced_diet.png')} style={styles.logoIcon}></Image>
+            <Text style={styles.cardTitle}>Balanced Diet Plan</Text>
+            {/* <Text style={styles.cardSubtitle}>For General health</Text> */}
+          </TouchableOpacity>
+          
+          <TouchableOpacity style={styles.card}>
+            <Text style={styles.cardTitle}>Weight Loss Diet Plan </Text>
+            {/* <Text style={styles.cardSubtitle}>Tap to know lifestyle suggestions</Text> */}
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.card}>
+            <Text style={styles.cardTitle}>Weight Gain Diet Plan </Text>
+            {/* <Text style={styles.cardSubtitle}>Tap to know lifestyle suggestions</Text> */}
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.card}>
+            <Text style={styles.cardTitle}>Muscle Building Diet Plan</Text>
+            {/* <Text style={styles.cardSubtitle}>Tap to know lifestyle suggestions</Text> */}
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.card}>
+            <Text style={styles.cardTitle}>Keto Diet Plan </Text>
+            {/* <Text style={styles.cardSubtitle}>Tap to know lifestyle suggestions</Text> */}
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.card}>
+            <Text style={styles.cardTitle}>Ayurveda-Based Diet Plan  </Text>
+            {/* <Text style={styles.cardSubtitle}>Tap to know lifestyle suggestions</Text> */}
+          </TouchableOpacity>
+          
+          {/* <View style={styles.logoContainer}>
+            <View style={styles.logo}>
+              <Image source = {require('../../assets/images/Yoga.png')}></Image>
+            </View>
+          </View> */}
+        </ScrollView>
+        
+        {/* <View style={styles.bottomNav}>
+          <TouchableOpacity style={styles.navItem}>
+            <Ionicons name="home-outline" size={24} color="#6D3B1E" />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.navItem}>
+            <Ionicons name="leaf-outline" size={24} color="#6D3B1E" />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.navItem}>
+            <Ionicons name="add-circle-outline" size={24} color="#6D3B1E" />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.navItem}>
+            <Ionicons name="stats-chart-outline" size={24} color="#6D3B1E" />
+          </TouchableOpacity>
+        </View> */}
+      </View>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#F7E7AE',
+  },
   container: {
     flex: 1,
-    backgroundColor: '#fcf6dd', // Yellowish background from the image
-  },
-  header: {
-    height: 60,
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: 16,
+    backgroundColor: '#F7E7AE',
   },
   backButton: {
-    color: 'black',
-    padding: 8,
-  },
-  backIcon: {
-    color: 'black',
-    width: 24,
-    height: 24,
-  },
-  scrollView: {
-    flex: 1,
+    position: 'absolute',
+    top: 20,
+    left: 20,
+    zIndex: 10,
   },
   scrollContent: {
-    paddingHorizontal: 16,
-    paddingBottom: 20,
+    flexGrow: 1,
+    padding: 20,
+    paddingTop: 70,
   },
-  dietButton: {
+  logoIcon: {
+    marginTop: -100,
+  },
+  card: {
     backgroundColor: '#FFFFFF',
-    borderRadius: 12,
-    marginBottom: 16,
-    padding: 16,
-    // Shadow for iOS
+    borderRadius: 15,
+    padding: 20,
+    marginBottom: 20,
     shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
+    shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
-    // Shadow for Android
-    elevation: 3,
+    elevation: 2,
   },
-  dietContent: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  dietIcon: {
-    width: 40,
-    height: 40,
-    marginRight: 16,
-  },
-  dietTextContainer: {
-    flex: 1,
-  },
-  dietTitle: {
-    fontSize: 16,
+  cardTitle: {
+    fontSize: 20,
     fontWeight: 'bold',
     color: '#000000',
+    marginBottom: 5,
   },
-  dietSubtitle: {
-    fontSize: 14,
-    color: '#666666',
-    marginTop: 4,
+  cardSubtitle: {
+    fontSize: 16,
+    color: '#000000',
   },
   logoContainer: {
+    flex: 1,
+    justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 20,
-    marginBottom: 10,
+    marginTop: 40,
+    marginBottom: 40,
   },
   logo: {
-    width: 100,
-    height: 40,
+    opacity:0.2
+  },
+  bottomNav: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    backgroundColor: '#DFCC85',
+    height: 70,
+    borderTopLeftRadius: 0,
+    borderTopRightRadius: 0,
+  },
+  navItem: {
+    width: 50,
+    height: 50,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 25,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
-export default DietSelectionScreen;
+export default SuggestionsScreen;
