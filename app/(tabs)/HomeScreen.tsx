@@ -59,7 +59,7 @@ const HomeScreen: React.FC = () => {
             <Image source={require('../../assets/images/Logo.png')} style={styles.logoIcon} />
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.chatBoxButton} onPress={() => navigation.navigate('ChatBox')}>
+          <TouchableOpacity style={styles.chatBoxButton} onPress={() => navigation.navigate('ChatBotScreen')}>
             <Image source={require('../../assets/images/ChatBox.png')} style={styles.chatBoxIcon} />
           </TouchableOpacity>
 
