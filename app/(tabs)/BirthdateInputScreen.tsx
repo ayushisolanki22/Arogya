@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet, Dimensions, Platform } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useNavigation } from '@react-navigation/native';
@@ -12,9 +12,9 @@ const BirthdateInputScreen = () => {
     const navigation = useNavigation();
     const [date, setDate] = useState(new Date());
 
-    const handleDateChange = (_event: DateTimePicker, selectedDate?: Date) => {
+    const handleDateChange = (_event: any, selectedDate?: Date) => {
         if (selectedDate) {
-            setDate(selectedDate); // Ensure selectedDate is not undefined before setting state
+            setBirthdate(selectedDate); // Ensure selectedDate is not undefined before setting state
         }
     };
 
@@ -40,7 +40,7 @@ const BirthdateInputScreen = () => {
                     textColor="black" // Set text color to black
                     themeVariant="dark" // Change the calendar background to black
                     minimumDate={new Date('1900-01-01')} // Allow older years
-                    maximumDate={new Date('2025-12-31')}
+                    maximumDate={new Date()}
                 />
             )}
 

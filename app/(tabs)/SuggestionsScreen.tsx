@@ -17,7 +17,7 @@ const SuggestionsScreen = () => {
         </TouchableOpacity>
         
         <ScrollView contentContainerStyle={styles.scrollContent}>
-          <TouchableOpacity style={styles.card}>
+          <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('DietSelectionScreen')}>
             <Text style={styles.cardTitle}>DIET</Text>
             <Text style={styles.cardSubtitle}>Tap to know diet suggestions</Text>
           </TouchableOpacity>
