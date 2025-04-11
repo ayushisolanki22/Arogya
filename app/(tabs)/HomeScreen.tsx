@@ -11,8 +11,13 @@ type RootStackParamList = {
   LifestyleDiet: undefined;
   ChatBox: undefined;
   InsightsScreen: undefined;
+<<<<<<< HEAD
   SettingsAndActivity: undefined;
   ProfileAndSettings: undefined; // <-- Added new screen
+=======
+  SettingAndActivity: undefined;
+  SuggestionsScreen: undefined; // Added SuggestionsScreen
+>>>>>>> fa3a34b81125173e642abda6ac1cfbb8857b1a96
 };
 
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
@@ -27,6 +32,7 @@ const HomeScreen: React.FC = () => {
         <View style={styles.greetingContainer}>
           <Text style={styles.greeting}>Hello User,</Text>
         </View>
+<<<<<<< HEAD
 
         {/* User Icon + Settings Icon */}
         <View style={styles.iconRow}>
@@ -38,6 +44,14 @@ const HomeScreen: React.FC = () => {
             <Image source={require('../../assets/images/Settings.png')} style={styles.settingsIcon} />
           </TouchableOpacity>
         </View>
+=======
+        <TouchableOpacity 
+          style={styles.profileIcon} 
+          onPress={() => navigation.navigate('SettingAndActivity')} // Navigate on press
+        >
+          <Ionicons name="person-circle-outline" size={34} color="black" />
+        </TouchableOpacity>
+>>>>>>> fa3a34b81125173e642abda6ac1cfbb8857b1a96
       </View>
 
       {/* Cards */}
@@ -47,7 +61,7 @@ const HomeScreen: React.FC = () => {
           <Text style={styles.cardDescription}>Tap to know your prakruti here.</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('LifestyleDiet')}>
+        <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('SuggestionsScreen')}>
           <Text style={styles.cardTitle}>LIFESTYLE & DIET</Text>
           <Text style={styles.cardDescription}>Tap to know a suitable lifestyle for you.</Text>
         </TouchableOpacity>

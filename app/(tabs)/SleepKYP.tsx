@@ -8,16 +8,16 @@ const WeatherFeelingScreen = () => {
   const [selectedOption, setSelectedOption] = useState(null);
 
   const options = [
-    "I feel too hot and sweat a lot in summer",
-    "I feel very cold even when others are fine",
-    "I feel heavy and tired when it's humid",
-    "I feel okay in all weather"
+    "Light, wake up often",
+    "Okay, but wake from heat or dreams",
+    "Deep, sleep long"
   ];
 
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
-        <Text style={styles.question}>How do you feel in different weather?</Text>
+        <Text style={styles.question}>How is your sleep?</Text>
+
         <View style={styles.optionsContainer}>
           {options.map((option, index) => (
             <TouchableOpacity
@@ -36,16 +36,10 @@ const WeatherFeelingScreen = () => {
         </View>
 
         <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            style={styles.backButton}
-            onPress={() => navigation.navigate('DiscoverPrakrutiScreen')}
-          >
+          <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate('DigestionScreen')}>
             <Text style={styles.buttonText}>Back</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.nextButton}
-            onPress={() => navigation.navigate('FollowUpQuestionsScreen1')}
-          >
+          <TouchableOpacity style={styles.nextButton} onPress={() => navigation.navigate('SleepFollowupKYP')}>
             <Text style={styles.buttonText}>Next</Text>
           </TouchableOpacity>
         </View>
@@ -93,7 +87,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 130,
+    marginTop: 190,
   },
   backButton: {
     backgroundColor: 'white',
@@ -117,5 +111,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
+
 
 export default WeatherFeelingScreen;

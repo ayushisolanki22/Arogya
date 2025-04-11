@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+// Import Ionicons from expo vector icons, or use your preferred icon set
+import { Ionicons } from '@expo/vector-icons';
 
 const { width, height } = Dimensions.get('window');
 
@@ -9,6 +11,14 @@ const DiscoverPrakrutiScreen = () => {
 
     return (
         <View style={styles.container}>
+            {/* Back Arrow Button */}
+            <TouchableOpacity 
+                style={styles.backButton} 
+                onPress={() => navigation.navigate('HomeScreen')}
+            >
+                <Ionicons name="arrow-back" size={24} color="#3E5025" />
+            </TouchableOpacity>
+            
             <Text style={styles.title}>Discover Your Prakruti! 🌱</Text>
             <Text style={styles.description}>
                 Unlock the secrets of your unique body-mind constitution with our Ayurveda Prakruti test! ✨🙍
@@ -54,6 +64,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         paddingHorizontal: 20,
+        position: 'relative', // Added to position the back button
+    },
+    backButton: {
+        position: 'absolute',
+        top: 40,
+        left: 20,
+        zIndex: 10,
     },
     title: {
         fontSize: 22,

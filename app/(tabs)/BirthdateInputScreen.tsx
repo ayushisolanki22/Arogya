@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState } from 'react';
 import {
   View,
@@ -8,6 +9,10 @@ import {
   Dimensions,
   Platform,
 } from 'react-native';
+=======
+import React, { useEffect, useState } from 'react';
+import { View, Text, TouchableOpacity, Image, StyleSheet, Dimensions, Platform } from 'react-native';
+>>>>>>> fa3a34b81125173e642abda6ac1cfbb8857b1a96
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useNavigation } from '@react-navigation/native';
 import { AntDesign } from '@expo/vector-icons';
@@ -19,11 +24,19 @@ const BirthdateInputScreen = () => {
   const [showPicker, setShowPicker] = useState(false);
   const navigation = useNavigation();
 
+<<<<<<< HEAD
   const handleDateChange = (event: any, selectedDate?: Date) => {
     const currentDate = selectedDate || birthdate;
     setShowPicker(Platform.OS === 'ios'); // Close on Android, stay open on iOS
     setBirthdate(currentDate);
   };
+=======
+    const handleDateChange = (_event: any, selectedDate?: Date) => {
+        if (selectedDate) {
+            setBirthdate(selectedDate); // Ensure selectedDate is not undefined before setting state
+        }
+    };
+>>>>>>> fa3a34b81125173e642abda6ac1cfbb8857b1a96
 
   const toggleDatePicker = () => {
     setShowPicker(!showPicker);
@@ -35,10 +48,25 @@ const BirthdateInputScreen = () => {
         <Image source={require('../../assets/images/Cake.png')} style={styles.icon} />
         <Text style={styles.title}>Enter your birthdate</Text>
 
+<<<<<<< HEAD
         <TouchableOpacity style={styles.dateInput} onPress={toggleDatePicker}>
           <Text style={styles.dateText}>{birthdate.toDateString()}</Text>
           <AntDesign name="caretdown" size={16} color="gray" />
         </TouchableOpacity>
+=======
+            {showPicker && (
+                <DateTimePicker
+                    value={birthdate}
+                    mode="date"
+                    display={Platform.OS === 'ios' ? 'spinner' : 'calendar'}
+                    onChange={handleDateChange}
+                    textColor="black" // Set text color to black
+                    themeVariant="dark" // Change the calendar background to black
+                    minimumDate={new Date('1900-01-01')} // Allow older years
+                    maximumDate={new Date()}
+                />
+            )}
+>>>>>>> fa3a34b81125173e642abda6ac1cfbb8857b1a96
 
         {showPicker && (
           Platform.OS === 'ios' ? (

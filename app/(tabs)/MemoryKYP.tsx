@@ -8,16 +8,17 @@ const WeatherFeelingScreen = () => {
   const [selectedOption, setSelectedOption] = useState(null);
 
   const options = [
-    "I feel too hot and sweat a lot in summer",
-    "I feel very cold even when others are fine",
-    "I feel heavy and tired when it's humid",
-    "I feel okay in all weather"
+    "Forget easily ",
+    "Remember details well ",
+    "Slow but never forget ",
+    "Mostly good, sometimes forget"
   ];
 
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
-        <Text style={styles.question}>How do you feel in different weather?</Text>
+        <Text style={styles.question}>How is your memory?</Text>
+
         <View style={styles.optionsContainer}>
           {options.map((option, index) => (
             <TouchableOpacity
@@ -36,16 +37,10 @@ const WeatherFeelingScreen = () => {
         </View>
 
         <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            style={styles.backButton}
-            onPress={() => navigation.navigate('DiscoverPrakrutiScreen')}
-          >
+          <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate('SkinFollowup')}>
             <Text style={styles.buttonText}>Back</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.nextButton}
-            onPress={() => navigation.navigate('FollowUpQuestionsScreen1')}
-          >
+          <TouchableOpacity style={styles.nextButton} onPress={() => navigation.navigate('MemoryFollowup')}>
             <Text style={styles.buttonText}>Next</Text>
           </TouchableOpacity>
         </View>
@@ -58,17 +53,17 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F7E7AE',
-    padding: 20,
-    paddingTop: 120,
   },
   scrollContent: {
+    padding: 20,
+    paddingTop: 60,
     paddingBottom: 40,
   },
   question: {
     fontSize: 19,
     fontWeight: 'bold',
-    textAlign: 'left',
-    marginBottom: 40,
+    textAlign: 'center',
+    marginBottom: 30,
     color: '#6D3B1E',
   },
   optionsContainer: {
@@ -80,7 +75,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FDF3D6',
     padding: 15,
     borderRadius: 10,
-    marginVertical: 5,
+    marginVertical: 8,
   },
   selectedOption: {
     backgroundColor: '#A4C27E',
@@ -93,7 +88,6 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 130,
   },
   backButton: {
     backgroundColor: 'white',

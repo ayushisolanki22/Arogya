@@ -8,16 +8,15 @@ const WeatherFeelingScreen = () => {
   const [selectedOption, setSelectedOption] = useState(null);
 
   const options = [
-    "I feel too hot and sweat a lot in summer",
-    "I feel very cold even when others are fine",
-    "I feel heavy and tired when it's humid",
-    "I feel okay in all weather"
+    "Anxious or overthinking  ",
+    "Angry or frustrated  ",
+    "Calm but sometimes lazy  "
   ];
 
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
-        <Text style={styles.question}>How do you feel in different weather?</Text>
+        <Text style={styles.question}>How do you feel most of the time?</Text>
         <View style={styles.optionsContainer}>
           {options.map((option, index) => (
             <TouchableOpacity
@@ -28,24 +27,17 @@ const WeatherFeelingScreen = () => {
               <Ionicons
                 name={selectedOption === option ? "radio-button-on" : "radio-button-off"}
                 size={20}
-                color="black"
+                color={selectedOption === option ? "black" : "black"}
               />
               <Text style={styles.optionText}>{option}</Text>
             </TouchableOpacity>
           ))}
         </View>
-
         <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            style={styles.backButton}
-            onPress={() => navigation.navigate('DiscoverPrakrutiScreen')}
-          >
+          <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate('StressKYP')}>
             <Text style={styles.buttonText}>Back</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.nextButton}
-            onPress={() => navigation.navigate('FollowUpQuestionsScreen1')}
-          >
+          <TouchableOpacity style={styles.nextButton} onPress={() => navigation.navigate('MentalhealthFollowup')}>
             <Text style={styles.buttonText}>Next</Text>
           </TouchableOpacity>
         </View>
@@ -58,21 +50,23 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F7E7AE',
-    padding: 20,
-    paddingTop: 120,
   },
   scrollContent: {
+    padding: 20,
+    flexGrow: 1,
+    paddingTop: 270,
     paddingBottom: 40,
   },
   question: {
     fontSize: 19,
     fontWeight: 'bold',
-    textAlign: 'left',
+    textAlign: 'center',
     marginBottom: 40,
     color: '#6D3B1E',
+    marginTop: -150,
   },
   optionsContainer: {
-    marginBottom: 40,
+    marginTop: -20,
   },
   option: {
     flexDirection: 'row',
@@ -93,7 +87,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 130,
+    marginTop: 240,
   },
   backButton: {
     backgroundColor: 'white',
