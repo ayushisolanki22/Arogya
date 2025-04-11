@@ -17,21 +17,44 @@ const SuggestionsScreen = () => {
         </TouchableOpacity>
         
         <ScrollView contentContainerStyle={styles.scrollContent}>
-          <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('DietSelectionScreen')}>
-            <Text style={styles.cardTitle}>DIET</Text>
-            <Text style={styles.cardSubtitle}>Tap to know diet suggestions</Text>
+          <TouchableOpacity style={styles.card} 
+        //   onPress={() => navigation.navigate('DietSelectionScreen')}
+          >
+            <Image source={require('../../assets/images/Balanced_diet.png')} style={styles.logoIcon}></Image>
+            <Text style={styles.cardTitle}>Balanced Diet Plan</Text>
+            {/* <Text style={styles.cardSubtitle}>For General health</Text> */}
           </TouchableOpacity>
           
           <TouchableOpacity style={styles.card}>
-            <Text style={styles.cardTitle}>LIFESTYLE</Text>
-            <Text style={styles.cardSubtitle}>Tap to know lifestyle suggestions</Text>
+            <Text style={styles.cardTitle}>Weight Loss Diet Plan </Text>
+            {/* <Text style={styles.cardSubtitle}>Tap to know lifestyle suggestions</Text> */}
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.card}>
+            <Text style={styles.cardTitle}>Weight Gain Diet Plan </Text>
+            {/* <Text style={styles.cardSubtitle}>Tap to know lifestyle suggestions</Text> */}
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.card}>
+            <Text style={styles.cardTitle}>Muscle Building Diet Plan</Text>
+            {/* <Text style={styles.cardSubtitle}>Tap to know lifestyle suggestions</Text> */}
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.card}>
+            <Text style={styles.cardTitle}>Keto Diet Plan </Text>
+            {/* <Text style={styles.cardSubtitle}>Tap to know lifestyle suggestions</Text> */}
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.card}>
+            <Text style={styles.cardTitle}>Ayurveda-Based Diet Plan  </Text>
+            {/* <Text style={styles.cardSubtitle}>Tap to know lifestyle suggestions</Text> */}
           </TouchableOpacity>
           
-          <View style={styles.logoContainer}>
+          {/* <View style={styles.logoContainer}>
             <View style={styles.logo}>
               <Image source = {require('../../assets/images/Yoga.png')}></Image>
             </View>
-          </View>
+          </View> */}
         </ScrollView>
         
         {/* <View style={styles.bottomNav}>
@@ -72,6 +95,9 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     padding: 20,
     paddingTop: 70,
+  },
+  logoIcon: {
+    marginTop: -100,
   },
   card: {
     backgroundColor: '#FFFFFF',

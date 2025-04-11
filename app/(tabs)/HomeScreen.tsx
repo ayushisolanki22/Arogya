@@ -55,11 +55,11 @@ const HomeScreen: React.FC = () => {
             <Ionicons name="home" size={32} color="black" />
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.logoButton} onPress={() => navigation.navigate('DiscoverPrakrutiScreen')}>
+          <TouchableOpacity style={styles.logoButton} onPress={() => navigation.navigate('HomeRemedies')}>
             <Image source={require('../../assets/images/Logo.png')} style={styles.logoIcon} />
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.chatBoxButton} onPress={() => navigation.navigate('ChatBotScreen')}>
+          <TouchableOpacity style={styles.chatBoxButton} onPress={() => navigation.navigate('chatbot')}>
             <Image source={require('../../assets/images/ChatBox.png')} style={styles.chatBoxIcon} />
           </TouchableOpacity>
 
