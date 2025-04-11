@@ -1,23 +1,42 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import {
-  View, Text, TouchableOpacity, StyleSheet, Image, ImageBackground,
-  PanResponder
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Image,
+  ImageBackground,
+  Alert,
+  PanResponder,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { ProgressBar } from 'react-native-paper';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 const WaterInsights = () => {
   const navigation = useNavigation();
+  const route = useRoute();
+
+  // Get date passed from InsightsScreen
+  const selectedDate = route.params?.date || 'Today';
+
   const [glasses, setGlasses] = useState(0);
   const maxGlasses = 8;
+
+  const handleReminderPress = () => {
+    Alert.alert('Reminder Set', `We'll remind you to drink water today.`);
+  };
+
+  const handleSave = () => {
+    Alert.alert('Saved', `${glasses} glasses saved for ${selectedDate}`);
+  };
 
   // Gesture Handling for Swipe Right
   const panResponder = useRef(
     PanResponder.create({
       onStartShouldSetPanResponder: () => true,
       onMoveShouldSetPanResponder: () => true,
-      onPanResponderRelease: (evt, gestureState) => {
+      onPanResponderRelease: (_, gestureState) => {
         if (gestureState.dx > 100) {
           navigation.navigate('InsightsScreen');
         }
@@ -35,10 +54,8 @@ const WaterInsights = () => {
             style={styles.backIcon}
           />
         </TouchableOpacity>
-        <Text style={styles.date}>Today, 11 Feb</Text>
-        <TouchableOpacity>
-          <Ionicons name="pencil" size={20} color="black" />
-        </TouchableOpacity>
+        <Text style={styles.date}>{selectedDate}</Text>
+        <View style={{ width: 24 }} /> {/* Spacer for symmetry */}
       </View>
 
       {/* Progress */}
@@ -51,14 +68,16 @@ const WaterInsights = () => {
           <Ionicons name="remove-circle-outline" size={35} color="black" />
         </TouchableOpacity>
 
-        {/* Glass with Wave GIF as Background */}
         <View style={styles.glassWrapper}>
+          {/* Background behind GIF to remove greyish look */}
           {glasses > 0 && (
-            <ImageBackground
-              source={require('../../assets/images/Wave.gif')}
-              style={styles.waveGif}
-              resizeMode="cover"
-            />
+            <View style={styles.waveBackground}>
+              <Image
+                source={require('../../assets/images/Wave.gif')}
+                style={styles.waveGif}
+                resizeMode="cover"
+              />
+            </View>
           )}
           <Image source={require('../../assets/images/Glass.png')} style={styles.glassImage} />
         </View>
@@ -67,12 +86,18 @@ const WaterInsights = () => {
           <Ionicons name="add-circle-outline" size={35} color="black" />
         </TouchableOpacity>
       </View>
+
       <Text style={styles.glassText}>{glasses} Glass ({glasses * 250} ml)</Text>
+
+      {/* Save Button */}
+      <TouchableOpacity style={styles.saveButton} onPress={handleSave}>
+        <Text style={styles.saveButtonText}>Save</Text>
+      </TouchableOpacity>
 
       {/* Reminder Section */}
       <View style={styles.reminderContainer}>
         <Text style={styles.reminderText}>Set a Reminder!</Text>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={handleReminderPress}>
           <View style={styles.addButton}>
             <Text style={styles.addText}>Add</Text>
             <Ionicons name="add-circle-outline" size={20} color="black" />
@@ -99,6 +124,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#CDECF7',
     padding: 20,
+    paddingTop: 50,
   },
   header: {
     flexDirection: 'row',
@@ -141,19 +167,40 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  waveGif: {
+  waveBackground: {
     position: 'absolute',
+    width: '100%',
+    height: '100%',
+    backgroundColor: '#00BFFF', // Blue background for visibility
+    borderRadius: 50,
+    zIndex: 0,
+    overflow: 'hidden',
+  },
+  waveGif: {
     width: '100%',
     height: '100%',
   },
   glassImage: {
     width: 90,
     height: 80,
+    zIndex: 1,
   },
   glassText: {
     fontSize: 16,
     fontWeight: 'bold',
     textAlign: 'center',
+  },
+  saveButton: {
+    backgroundColor: '#FFFFFF',
+    paddingVertical: 9,
+    paddingHorizontal: 25,
+    borderRadius: 10,
+    alignSelf: 'center',
+    marginTop: 15,
+  },
+  saveButtonText: {
+    fontSize: 16,
+    fontWeight: 'bold',
   },
   reminderContainer: {
     flexDirection: 'row',
@@ -194,10 +241,12 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   logo: {
-    width: 130,
-    height: 50,
+    position: 'absolute',
+    bottom: 30,
     alignSelf: 'center',
-    marginTop: 150,
+    width: 100,
+    height: 40,
+    resizeMode: 'contain',
   },
 });
 

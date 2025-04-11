@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  ScrollView,
+  Image,
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -8,10 +15,10 @@ const WeatherFeelingScreen = () => {
   const [selectedOption, setSelectedOption] = useState(null);
 
   const options = [
-    "I feel too hot and sweat a lot in summer",
-    "I feel very cold even when others are fine",
-    "I feel heavy and tired when it's humid",
-    "I feel okay in all weather"
+    'I feel too hot and sweat a lot in summer',
+    'I feel very cold even when others are fine',
+    'I feel heavy and tired when it\'s humid',
+    'I feel okay in all weather',
   ];
 
   return (
@@ -26,7 +33,7 @@ const WeatherFeelingScreen = () => {
               onPress={() => setSelectedOption(option)}
             >
               <Ionicons
-                name={selectedOption === option ? "radio-button-on" : "radio-button-off"}
+                name={selectedOption === option ? 'radio-button-on' : 'radio-button-off'}
                 size={20}
                 color="black"
               />
@@ -35,6 +42,16 @@ const WeatherFeelingScreen = () => {
           ))}
         </View>
 
+        {/* Weather Image above buttons */}
+        <View style={styles.weatherImageContainer}>
+          <Image
+            source={require('../../assets/images/Weather.png')}
+            style={styles.weatherImage}
+            resizeMode="contain"
+          />
+        </View>
+
+        {/* Navigation Buttons */}
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             style={styles.backButton}
@@ -42,6 +59,7 @@ const WeatherFeelingScreen = () => {
           >
             <Text style={styles.buttonText}>Back</Text>
           </TouchableOpacity>
+
           <TouchableOpacity
             style={styles.nextButton}
             onPress={() => navigation.navigate('FollowUpQuestionsScreen1')}
@@ -50,6 +68,15 @@ const WeatherFeelingScreen = () => {
           </TouchableOpacity>
         </View>
       </ScrollView>
+
+      {/* Arogya Logo at Bottom */}
+      <View style={styles.logoContainer}>
+        <Image
+          source={require('../../assets/images/ArogyaLogo.png')}
+          style={styles.logo}
+          resizeMode="contain"
+        />
+      </View>
     </View>
   );
 };
@@ -62,7 +89,7 @@ const styles = StyleSheet.create({
     paddingTop: 120,
   },
   scrollContent: {
-    paddingBottom: 40,
+    paddingBottom: 100,
   },
   question: {
     fontSize: 19,
@@ -90,10 +117,22 @@ const styles = StyleSheet.create({
     color: 'black',
     marginLeft: 10,
   },
+  weatherImageContainer: {
+    alignItems: 'center',
+    marginBottom: 10, // decreased from 20 to move it down
+  },
+  weatherImage: {
+    width: 100,
+    height: 100,
+    opacity: 0.2,
+    marginTop: 30,
+    opacity: 0.2, // added this to push image further down
+  },
+
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 130,
+    marginTop: 30,
   },
   backButton: {
     backgroundColor: 'white',
@@ -115,6 +154,17 @@ const styles = StyleSheet.create({
     color: 'black',
     fontSize: 16,
     fontWeight: 'bold',
+  },
+  logoContainer: {
+    position: 'absolute',
+    bottom: 40,
+    left: 0,
+    right: 0,
+    alignItems: 'center',
+  },
+  logo: {
+    width: 120,
+    height: 40,
   },
 });
 

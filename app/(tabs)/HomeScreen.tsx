@@ -11,8 +11,9 @@ type RootStackParamList = {
   LifestyleDiet: undefined;
   ChatBox: undefined;
   InsightsScreen: undefined;
-  SettingAndActivity: undefined;
-  SuggestionsScreen: undefined; // Added SuggestionsScreen
+  SettingsAndActivity: undefined;
+  ProfileAndSettings: undefined;
+  SuggestionsScreen: undefined;
 };
 
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
@@ -27,12 +28,17 @@ const HomeScreen: React.FC = () => {
         <View style={styles.greetingContainer}>
           <Text style={styles.greeting}>Hello User,</Text>
         </View>
-        <TouchableOpacity 
-          style={styles.profileIcon} 
-          onPress={() => navigation.navigate('SettingAndActivity')} // Navigate on press
-        >
-          <Ionicons name="person-circle-outline" size={34} color="black" />
-        </TouchableOpacity>
+
+        {/* User Icon + Settings Icon */}
+        <View style={styles.iconRow}>
+          <TouchableOpacity onPress={() => navigation.navigate('SettingsAndActivity')}>
+            <Ionicons name="person-circle-outline" size={34} color="black" />
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => navigation.navigate('profileAndSettings')}>
+            <Image source={require('../../assets/images/Settings.png')} style={styles.settingsIcon} />
+          </TouchableOpacity>
+        </View>
       </View>
 
       {/* Cards */}
@@ -51,15 +57,15 @@ const HomeScreen: React.FC = () => {
       {/* Bottom Navigation */}
       <View style={styles.bottomNavContainer}>
         <View style={styles.bottomNav}>
-          <TouchableOpacity style={styles.navButton} onPress={() => navigation.navigate('Home')}>
+          <TouchableOpacity style={styles.navButton} onPress={() => navigation.navigate('HomeScreen')}>
             <Ionicons name="home" size={32} color="black" />
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.logoButton} onPress={() => navigation.navigate('HomeRemedies')}>
+          <TouchableOpacity style={styles.logoButton} onPress={() => navigation.navigate('DiscoverPrakrutiScreen')}>
             <Image source={require('../../assets/images/Logo.png')} style={styles.logoIcon} />
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.chatBoxButton} onPress={() => navigation.navigate('chatbot')}>
+          <TouchableOpacity style={styles.chatBoxButton} onPress={() => navigation.navigate('ChatBox')}>
             <Image source={require('../../assets/images/ChatBox.png')} style={styles.chatBoxIcon} />
           </TouchableOpacity>
 
@@ -80,23 +86,33 @@ const styles = StyleSheet.create({
   },
   header: {
     backgroundColor: '#fefde1',
-    paddingVertical: 20,
+    paddingVertical: 50,
     paddingHorizontal: 15,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
   },
   greetingContainer: {
-    flex: 1,
-    alignItems: 'flex-start', // Align "Hello User," to the left
+    position: 'absolute',
+    top: 130,
+    left: 30,
+    zIndex: 10,
   },
   greeting: {
     fontSize: 20,
     color: 'black',
-    marginTop: 50, // Moves "Hello User" directly above Prakruti
+    marginTop: 20,
   },
-  profileIcon: {
-    marginRight: 15,
+  iconRow: {
+    position: 'absolute',
+    top: 80,
+    right: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    zIndex: 10,
+  },
+  settingsIcon: {
+    width: 26,
+    height: 26,
+    marginLeft: 10,
   },
   cardContainer: {
     flex: 1,
@@ -130,41 +146,24 @@ const styles = StyleSheet.create({
   bottomNavContainer: {
     justifyContent: 'flex-end',
     alignItems: 'center',
-    marginBottom: 65,
+    marginBottom: 35,
   },
   bottomNav: {
     backgroundColor: '#fefde1',
-    height: 70,
+    height: 80,
     width: '90%',
     flexDirection: 'row',
     justifyContent: 'space-around',
-    alignItems: 'center',
+    alignItems: 'flex-end',
+    paddingBottom: 15,
     borderRadius: 20,
     elevation: 5,
   },
   navButton: {
     backgroundColor: 'white',
     borderRadius: 50,
-    width: 50,
-    height: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-    elevation: 5,
-  },
-  logoButton: {
-    backgroundColor: 'white',
-    borderRadius: 50,
-    width: 60,
-    height: 60,
-    justifyContent: 'center',
-    alignItems: 'center',
-    elevation: 5,
-  },
-  chatBoxButton: {
-    backgroundColor: 'white',
-    borderRadius: 50,
-    width: 50,
-    height: 50,
+    width: 56,
+    height: 56,
     justifyContent: 'center',
     alignItems: 'center',
     elevation: 5,

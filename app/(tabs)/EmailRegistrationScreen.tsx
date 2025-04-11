@@ -84,6 +84,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#FDF6E3',
         paddingVertical: 40,
+        paddingTop: 50, // ⬅️ Increased padding to bring everything down
     },
     alreadyUser: {
         fontSize: 14,
@@ -99,7 +100,7 @@ const styles = StyleSheet.create({
         fontSize: 28,
         fontWeight: 'bold',
         color: '#2E7D32',
-        marginTop: 20,       // 👈 Add this or increase to push it down
+        marginTop: 10,       // 👈 Add this or increase to push it down
         marginBottom: 40,
     },
     inputContainer: {
@@ -128,7 +129,7 @@ const styles = StyleSheet.create({
         padding: 16,
         borderRadius: 10,
         alignItems: 'center',
-        marginTop: 5,  // 👈 lowered this to bring the button up
+        marginTop: 0,  // 👈 lowered this to bring the button up
         marginBottom: 25,
     },
     
@@ -160,12 +161,14 @@ const styles = StyleSheet.create({
     socialIconsContainer: {
         flexDirection: 'row',
         width: '95%',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 30, // 👈 Add this or increase the existing value
+        gap: 260, // ⬅️ Add this if supported
+        marginTop: 20,
         marginBottom: 60,
         position: 'relative',
     },
+    
     
 socialIcon: {
     width: 50,
@@ -190,9 +193,10 @@ socialIconCenter: {
     },
     logoContainer: {
         alignItems: 'center',
-        marginTop: 50,
+        marginTop: 80,  // ⬅️ Reduced from 50 to 20 to lift just the logo
         marginBottom: 20,
     },
+    
     logo: {
         width: 100,
         height: 40,

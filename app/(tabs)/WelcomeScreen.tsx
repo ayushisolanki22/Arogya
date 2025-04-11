@@ -51,24 +51,21 @@ const styles = StyleSheet.create({
         marginBottom: 30,
     },
     yogaImage: {
-        width: width * 0.5,
-        height: height * 0.2,
+        width: width * 0.4,   // ⬅️ Reduced from 0.5 to 0.4
+        height: height * 0.18, // ⬅️ Reduced from 0.22 to 0.18
         resizeMode: 'contain',
         opacity: 0.2,
-        marginBottom: 50, // Moves the yoga image down
+        marginTop: 20, // ⬅️ Keeps it close to the boxes
     },
     nextButton: {
         position: 'absolute',
+        bottom: 180,
         right: 20,
-        bottom: 100, // Positioned above ArogyaLogo
         backgroundColor: '#A4C27E',
-        paddingVertical: 10,
-        paddingHorizontal: 20,
+        paddingVertical: 12,
+        paddingHorizontal: 25,
         borderRadius: 10,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 2,
+        elevation: 2,
     },
     buttonText: {
         fontSize: 16,
@@ -76,11 +73,12 @@ const styles = StyleSheet.create({
         color: 'black',
     },
     logo: {
+        position: 'absolute',
+        bottom: 30, // Adjust as needed
+        alignSelf: 'center', // Centers the logo horizontally
         width: 100,
         height: 40,
         resizeMode: 'contain',
-        position: 'absolute',
-        bottom: 60, // Moves the Arogya logo up slightly
     },
 });
 
