@@ -20,12 +20,8 @@
     "@react-native-community/slider": "^4.5.6",
     "@react-native-picker/picker": "^2.11.0",
     "@react-navigation/bottom-tabs": "^7.2.0",
-<<<<<<< HEAD
-    "@react-navigation/native": "^7.0.17",
-    "@react-navigation/native-stack": "^7.3.10",
-=======
     "@react-navigation/native": "^7.0.19",
->>>>>>> fa3a34b81125173e642abda6ac1cfbb8857b1a96
+    "@react-navigation/native-stack": "^7.3.10",
     "@react-navigation/stack": "^7.2.1",
     "axios": "^1.8.4",
     "expo": "~52.0.37",

@@ -11,13 +11,9 @@ type RootStackParamList = {
   LifestyleDiet: undefined;
   ChatBox: undefined;
   InsightsScreen: undefined;
-<<<<<<< HEAD
   SettingsAndActivity: undefined;
-  ProfileAndSettings: undefined; // <-- Added new screen
-=======
-  SettingAndActivity: undefined;
-  SuggestionsScreen: undefined; // Added SuggestionsScreen
->>>>>>> fa3a34b81125173e642abda6ac1cfbb8857b1a96
+  ProfileAndSettings: undefined;
+  SuggestionsScreen: undefined;
 };
 
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
@@ -32,7 +28,6 @@ const HomeScreen: React.FC = () => {
         <View style={styles.greetingContainer}>
           <Text style={styles.greeting}>Hello User,</Text>
         </View>
-<<<<<<< HEAD
 
         {/* User Icon + Settings Icon */}
         <View style={styles.iconRow}>
@@ -44,14 +39,6 @@ const HomeScreen: React.FC = () => {
             <Image source={require('../../assets/images/Settings.png')} style={styles.settingsIcon} />
           </TouchableOpacity>
         </View>
-=======
-        <TouchableOpacity 
-          style={styles.profileIcon} 
-          onPress={() => navigation.navigate('SettingAndActivity')} // Navigate on press
-        >
-          <Ionicons name="person-circle-outline" size={34} color="black" />
-        </TouchableOpacity>
->>>>>>> fa3a34b81125173e642abda6ac1cfbb8857b1a96
       </View>
 
       {/* Cards */}
@@ -70,7 +57,7 @@ const HomeScreen: React.FC = () => {
       {/* Bottom Navigation */}
       <View style={styles.bottomNavContainer}>
         <View style={styles.bottomNav}>
-          <TouchableOpacity style={styles.navButton} onPress={() => navigation.navigate('Home')}>
+          <TouchableOpacity style={styles.navButton} onPress={() => navigation.navigate('HomeScreen')}>
             <Ionicons name="home" size={32} color="black" />
           </TouchableOpacity>
 

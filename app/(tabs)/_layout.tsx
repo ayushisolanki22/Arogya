@@ -14,19 +14,27 @@ const HIDDEN_TAB_SCREENS = [
   'welcome',
   'About',
   'Allergy',
+  'AppetiteScreen',
   'BirthdateInput',
+  'DietSelectionScreen',
+  'DigestionScreen',
   'Disclaimer',
   'DiscoverPrakruti',
   'EmailLogin',
   'EmailRegistration',
   'FamilyHealth',
   'FollowUpQuestions',
+  'FollowUpQuestions2',
+  'FollowUpQuestionsScreen1',
   'FoodTracker',
   'GenderSelection',
   'HealthIssue',
   'Help',
-  'HomeScreen',  // Added HomeScreen to the list
+  'HomeScreen',
   'Insights',
+  'MemoryKYP',
+  'MentalhealthFollowup',
+  'MentalhealthKYP',
   'NameInput',
   'Notification',
   'PhoneLogin',
@@ -35,8 +43,14 @@ const HIDDEN_TAB_SCREENS = [
   'profileAndSettings',
   'RegistrationSuccess',
   'SettingsAndActivity',
+  'SkinFollowup',
+  'SkinKYP',
+  'SleepFollowupKYP',
+  'SleepKYP',
   'SleepTrack',
+  'StressKYP',
   'StressTracker',
+  'SuggestionsScreen',
   'UserExercise',
   'UserMovement',
   'WaterInsights',
@@ -63,13 +77,13 @@ export default function TabLayout() {
             },
             default: {},
           }),
-          // Check if current route name includes any of the hidden screen patterns
           display: HIDDEN_TAB_SCREENS.some(screen => 
-             route.name === screen || route.name.includes(screen))
-             ? 'none'
-             : 'flex'
+            route.name === screen || route.name.includes(screen))
+            ? 'none'
+            : 'flex'
         },
-      })}>
+      })}
+    >
       <Tabs.Screen
         name="index"
         options={{
