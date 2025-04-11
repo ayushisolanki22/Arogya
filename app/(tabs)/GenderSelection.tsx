@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
         height: 40,
         resizeMode: 'contain',
         position: 'absolute',
-        bottom: 80,
+        bottom: 30,
         alignSelf: 'center',
     },
 });

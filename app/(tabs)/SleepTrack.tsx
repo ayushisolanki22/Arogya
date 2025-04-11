@@ -82,13 +82,13 @@ const SleepTrack = () => {
       <ProgressBar progress={sleepHours / maxSleep} color="black" style={styles.progressBar} />
 
       {/* Add Button */}
-      {sleepHours > 0 && !isAdded && (
-        <View style={{ alignItems: 'flex-end' }}>
+      <View style={styles.addButtonContainer}>
+        {sleepHours > 0 && !isAdded && (
           <TouchableOpacity style={styles.addTrackButton} onPress={() => setIsAdded(true)}>
             <Text style={styles.addTrackText}>Add</Text>
           </TouchableOpacity>
-        </View>
-      )}
+        )}
+      </View>
 
       {/* My Sleep Section */}
       <Text style={styles.sectionTitle}>My Sleep</Text>
@@ -125,6 +125,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#D1B3F2',
     padding: 20,
+    paddingTop: 30,
   },
   header: {
     flexDirection: 'row',
@@ -179,13 +180,16 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginVertical: 10,
   },
+  addButtonContainer: {
+    height: 45,  // Fixed height for the add button container
+    alignItems: 'flex-end',
+    marginBottom: 10,
+  },
   addTrackButton: {
     backgroundColor: '#ffffff',
     paddingHorizontal: 20,
     paddingVertical: 10,
     borderRadius: 10,
-    marginTop: 5,
-    marginBottom: 20,
   },
   addTrackText: {
     fontWeight: 'bold',
@@ -201,7 +205,8 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 30,
+    height: 80,  // Fixed height for sleep icon container
+    marginBottom: 20,
   },
   noRecordsText: {
     fontSize: 14,
@@ -234,7 +239,7 @@ const styles = StyleSheet.create({
   },
   logo: {
     position: 'absolute',
-    bottom: 80,
+    bottom: 30,
     alignSelf: 'center',
     width: 100,
     height: 40,

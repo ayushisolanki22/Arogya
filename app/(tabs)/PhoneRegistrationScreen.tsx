@@ -283,7 +283,7 @@ const styles = StyleSheet.create({
     },
     logoContainer: {
         alignItems: 'center',
-        marginTop: 35,  // ⬅️ Reduced from 50 to 20 to lift just the logo
+        marginTop: 90,  // ⬅️ Reduced from 50 to 20 to lift just the logo
         marginBottom: 20,
     },
     logo: {

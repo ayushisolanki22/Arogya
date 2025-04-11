@@ -113,10 +113,10 @@ const styles = StyleSheet.create({
     },
     logoImage: {
         position: 'absolute',
-        bottom: 20,
+        bottom: 30,
         alignSelf: 'center',
         width: 100,
-        height: 30,
+        height: 40,
     },
 });
 

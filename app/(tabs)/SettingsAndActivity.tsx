@@ -184,6 +184,7 @@ const CustomModal = ({
             onChangeText={onChangeText}
             placeholder={placeholder}
             keyboardType={keyboardType}
+            placeholderTextColor="#555"
           />
           <TouchableOpacity style={styles.continueButton} onPress={onContinue}>
             <Text style={styles.continueText}>Continue</Text>
@@ -286,6 +287,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     fontSize: 16,
     marginBottom: 15,
+    color: 'black',
   },
   continueButton: {
     backgroundColor: '#000',

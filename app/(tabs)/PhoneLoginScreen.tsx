@@ -89,78 +89,80 @@ const PhoneLoginScreen = () => {
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flexGrow: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#FFF8E1',
-        padding: 20,
-        paddingTop: 110, // ⬅️ Increased to bring everything down
-      },
-      newUser: {
-        fontSize: 14,
-        color: '#2E7D32',
-        alignSelf: 'flex-end',
-        marginRight: 0,
-        marginTop: -100,
-        marginBottom: 15,
-        fontWeight: 'bold',
-      },
-      title: {
-        fontSize: 22,
-        fontWeight: 'bold',
-        color: '#2E7D32',
-        textAlign: 'center',
-        marginTop: 35,
-        marginBottom: 30,
-      },
-      inputContainer: {
-        width: '105%', // ⬅️ Changed from '100%' to '95%' to increase visual width
-        alignItems: 'center',
-        marginBottom: 20,
-        marginTop: 20,
-      },
-      inputRow: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        backgroundColor: '#FFFFFF',
-        padding: 16,
-        borderRadius: 5,
-        marginBottom: 15,
-        width: '100%',
-        borderWidth: 1,              // 🆕 Added border
-        borderColor: '#D3D3D3',      // 🆕 Light gray border color
-      },
-      icon: {
-        marginRight: 10,
-      },
-      input: {
-        flex: 1,
-        color: 'black',
-      },
-      signInButton: {
-        backgroundColor: 'white',
-        padding: 16,
-        borderRadius: 5,
-        alignItems: 'center',
-        width: '100%',
-        marginTop: 10,
-        marginBottom: 20,
-        // borderWidth removed ❌
-      },
-      
-      signInText: {
-        fontSize: 16,
-        color: 'black',
-        fontWeight: 'bold', // 🆕 Made the text bold
-      },
-      
-      orContinueText: {
-        fontSize: 14,
-        color: '#777',
-        marginTop: -15,
-        marginBottom: 20,
-      },
+  container: {
+    flexGrow: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#FFF8E1',
+    padding: 20,
+    paddingTop: 140, // Reduced from 110 to maintain original positioning
+  },
+  newUser: {
+    fontSize: 14,
+    color: '#2E7D32',
+    alignSelf: 'flex-end',
+    marginRight: 0,
+    marginTop: -18, // Changed from -100 to move ONLY "New User?" text higher
+    marginBottom: 15,
+    fontWeight: 'bold',
+    // Using absolute positioning to ensure it doesn't affect other elements
+    position: 'absolute',
+    top: 110, // Adjust this value to position from top
+    right: 20, // Distance from right edge
+    zIndex: 1, // Ensures it stays on top
+  },
+  title: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    color: '#2E7D32',
+    textAlign: 'center',
+    marginTop: 10, // Reduced from 35 to maintain positioning
+    marginBottom: 30,
+  },
+  inputContainer: {
+    width: '100%', // Reverted back to original 100%
+    alignItems: 'center',
+    marginBottom: 20,
+    marginTop: 20,
+  },
+  inputRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#FFFFFF',
+    padding: 16,
+    borderRadius: 5,
+    marginBottom: 15,
+    width: '100%',
+    borderWidth: 1,
+    borderColor: '#D3D3D3',
+  },
+  icon: {
+    marginRight: 10,
+  },
+  input: {
+    flex: 1,
+    color: 'black',
+  },
+  signInButton: {
+    backgroundColor: 'white',
+    padding: 16,
+    borderRadius: 5,
+    alignItems: 'center',
+    width: '100%',
+    marginTop: 10,
+    marginBottom: 20,
+  },
+  signInText: {
+    fontSize: 16,
+    color: 'black',
+    fontWeight: 'bold',
+  },
+  orContinueText: {
+    fontSize: 14,
+    color: '#777',
+    marginTop: 0, // Changed from -15 to avoid overlapping
+    marginBottom: 20,
+  },
   emailContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -168,7 +170,7 @@ const styles = StyleSheet.create({
     padding: 16,
     borderRadius: 5,
     marginBottom: 20,
-    width: '105%', // 🆙 Increased from 100%
+    width: '100%', // Reverted back to 100%
     justifyContent: 'center',
   },
   emailIcon: {
@@ -182,7 +184,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     width: '100%',
-    marginTop: 40, // ⬆️ Increased from 20 to 40 to move icons down
+    marginTop: 20, // Reverted to original value
     gap: 85,
   },
   socialIcon: {
@@ -195,9 +197,7 @@ const styles = StyleSheet.create({
     width: 100,
     height: 40,
     resizeMode: 'contain',
-    marginTop: 90, // ⬆️ Increased from 0 to 30 to bring logo further down
-  },
-
+    marginTop: 150, // Keeping this as is since you want the logo to move
+  }
 });
-
 export default PhoneLoginScreen;

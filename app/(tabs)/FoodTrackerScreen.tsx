@@ -67,10 +67,9 @@ const FoodTrackScreen = () => {
         <TouchableOpacity onPress={() => navigation.navigate('InsightsScreen')} style={styles.backButton}>
           <Image source={require('../../assets/images/BackButton.png')} style={styles.backIcon} />
         </TouchableOpacity>
-        <Text style={styles.headerText}>Food Tracker</Text>
+        {/* Date text now aligned with back button */}
+        <Text style={styles.dateText}>{selectedDate}</Text>
       </View>
-
-      <Text style={styles.dateText}>{selectedDate}</Text>
 
       <ScrollView showsVerticalScrollIndicator={false}>
         {mealTypes.map((meal) => (
@@ -83,6 +82,7 @@ const FoodTrackScreen = () => {
                 placeholder="Food Item"
                 style={styles.input}
                 value={inputs[meal].food}
+                placeholderTextColor="#000"
                 onChangeText={(text) =>
                   setInputs((prev) => ({ ...prev, [meal]: { ...prev[meal], food: text } }))
                 }
@@ -92,6 +92,7 @@ const FoodTrackScreen = () => {
                 style={styles.input}
                 keyboardType="numeric"
                 value={inputs[meal].cal}
+                placeholderTextColor="#000"
                 onChangeText={(text) =>
                   setInputs((prev) => ({ ...prev, [meal]: { ...prev[meal], cal: text } }))
                 }
@@ -123,7 +124,7 @@ const FoodTrackScreen = () => {
           </View>
         ))}
 
-        {/* Overall Total */}
+        {/* Overall Total - Moved higher with adjustments to margins */}
         <View style={styles.totalContainer}>
           <Text style={styles.totalText}>Daily Total: {totalCalories} cal</Text>
         </View>
@@ -137,31 +138,32 @@ export default FoodTrackScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F8F1B0',
+    backgroundColor: '#FFF0F5', // Changed to baby pink
     padding: 20,
   },
   headerContainer: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
     marginTop: 60,
     marginBottom: 20,
+    position: 'relative',
   },
   backButton: {
-    marginRight: 10,
+    position: 'absolute',
+    left: 0,
   },
   backIcon: {
     width: 24,
     height: 24,
   },
-  headerText: {
-    fontSize: 22,
-    fontWeight: 'bold',
-  },
   dateText: {
-    fontSize: 16,
-    color: 'gray',
-    marginBottom: 20,
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    flex: 1,
   },
+  
   mealSection: {
     marginBottom: 30,
   },
@@ -182,9 +184,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     height: 45,
     marginRight: 10,
+    color: '#000', // Ensuring text input color is black
   },
   addButton: {
-    backgroundColor: '#E3D47A',
+    backgroundColor: '#F8F1B0',
     paddingVertical: 10,
     paddingHorizontal: 15,
     borderRadius: 10,
@@ -202,10 +205,12 @@ const styles = StyleSheet.create({
   },
   foodText: {
     fontSize: 16,
+    color: '#000', // Ensuring food text color is black
   },
   calText: {
     fontSize: 16,
     fontWeight: 'bold',
+    color: '#000', // Ensuring calories text color is black
   },
   emptyText: {
     color: 'gray',
@@ -218,9 +223,9 @@ const styles = StyleSheet.create({
     textAlign: 'right',
   },
   totalContainer: {
-    marginTop: 20,
+    marginTop: 0, // Reduced from 20 to move it higher
+    marginBottom: 30, // Reduced from 50 to adjust overall spacing
     alignItems: 'center',
-    marginBottom: 50,
   },
   totalText: {
     fontSize: 18,

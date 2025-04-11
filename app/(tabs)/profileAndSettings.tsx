@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     padding: 15,
     borderRadius: 10,
-    marginVertical: 15,
+    marginVertical: 20, // Increased from 15 to 20
     position: 'relative',
   },
   userIcon: {
@@ -191,12 +191,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 10,
     paddingVertical: 5,
+    marginBottom: 25, // Added margin to increase spacing between menuSection and bottomSection
   },
   bottomSection: {
     backgroundColor: '#fff',
     borderRadius: 10,
     paddingVertical: 5,
-    marginTop: 20,
+    marginTop: 5, // Adjusted from 20 since we added marginBottom to menuSection
   },
   menuItem: {
     flexDirection: 'row',

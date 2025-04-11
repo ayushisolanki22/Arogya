@@ -60,11 +60,11 @@ const HomeScreen: React.FC = () => {
             <Ionicons name="home" size={32} color="black" />
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.logoButton} onPress={() => navigation.navigate('DiscoverPrakrutiScreen')}>
+          <TouchableOpacity style={styles.navButton} onPress={() => navigation.navigate('DiscoverPrakrutiScreen')}>
             <Image source={require('../../assets/images/Logo.png')} style={styles.logoIcon} />
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.chatBoxButton} onPress={() => navigation.navigate('ChatBox')}>
+          <TouchableOpacity style={styles.navButton} onPress={() => navigation.navigate('ChatBox')}>
             <Image source={require('../../assets/images/ChatBox.png')} style={styles.chatBoxIcon} />
           </TouchableOpacity>
 
@@ -145,41 +145,24 @@ const styles = StyleSheet.create({
   bottomNavContainer: {
     justifyContent: 'flex-end',
     alignItems: 'center',
-    marginBottom: 65,
+    marginBottom: 35,
   },
   bottomNav: {
     backgroundColor: '#fefde1',
-    height: 70,
+    height: 80,
     width: '90%',
     flexDirection: 'row',
     justifyContent: 'space-around',
-    alignItems: 'center',
+    alignItems: 'flex-end',
+    paddingBottom: 15,
     borderRadius: 20,
     elevation: 5,
   },
   navButton: {
     backgroundColor: 'white',
     borderRadius: 50,
-    width: 50,
-    height: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-    elevation: 5,
-  },
-  logoButton: {
-    backgroundColor: 'white',
-    borderRadius: 50,
-    width: 60,
-    height: 60,
-    justifyContent: 'center',
-    alignItems: 'center',
-    elevation: 5,
-  },
-  chatBoxButton: {
-    backgroundColor: 'white',
-    borderRadius: 50,
-    width: 50,
-    height: 50,
+    width: 56,
+    height: 56,
     justifyContent: 'center',
     alignItems: 'center',
     elevation: 5,

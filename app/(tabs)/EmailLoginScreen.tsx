@@ -132,6 +132,7 @@ const EmailLoginScreen = () => {
             <Text style={styles.modalTitle}>Reset Password</Text>
             <TextInput
               placeholder="Enter new password"
+              placeholderTextColor="black"
               secureTextEntry
               value={newPassword}
               onChangeText={setNewPassword}
@@ -139,6 +140,7 @@ const EmailLoginScreen = () => {
             />
             <TextInput
               placeholder="Re-Enter password"
+              placeholderTextColor="black"
               secureTextEntry
               value={confirmPassword}
               onChangeText={setConfirmPassword}
@@ -260,7 +262,10 @@ const styles = StyleSheet.create({
     width: 100,
     height: 40,
     resizeMode: 'contain',
-    marginTop: 10,
+    marginTop: 15, // Increase this value to move it further down (was -7)
+    position: 'absolute', // Add this to position it independently
+    bottom: 37, // Position from bottom instead of relying on the flow
+    alignSelf: 'center', // Keep centered horizontally
   },
 
   // Modal Styles
@@ -291,6 +296,7 @@ const styles = StyleSheet.create({
     borderColor: '#ccc',
     borderRadius: 5,
     marginBottom: 15,
+    color: 'black',  // Changed text color to black
   },
   modalButton: {
     backgroundColor: '#2E7D32',

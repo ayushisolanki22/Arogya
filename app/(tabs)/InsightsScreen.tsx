@@ -111,8 +111,8 @@ const InsightsScreen = () => {
                 style={styles.addButton}
                 onPress={() => {
                   if (item.title === 'Sleep') navigation.navigate('SleepTrack', { date: selectedDate });
-                  else if (item.title === 'Water') navigation.navigate('WaterInsights');
-                  else if (item.title === 'Stress Level') navigation.navigate('StressTracker');
+                  else if (item.title === 'Water') navigation.navigate('WaterInsights', { date: selectedDate });
+                  else if (item.title === 'Stress Level') navigation.navigate('StressTracker', { date: selectedDate });
                   else if (item.title === 'Food') navigation.navigate('FoodTrackerScreen', { date: selectedDate });
                 }}
               >
@@ -242,12 +242,12 @@ const styles = StyleSheet.create({
   },
   logoContainer: {
     alignItems: 'center',
-    marginBottom: 40,
+    marginBottom: -5,
   },
   footerLogo: {
     width: 100,
-    height: 35,
-    marginBottom: 45,
+    height: 40,
+    marginBottom: 38,
   },
 });
 
