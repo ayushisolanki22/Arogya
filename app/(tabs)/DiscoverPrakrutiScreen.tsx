@@ -1,8 +1,6 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-// Import Ionicons from expo vector icons, or use your preferred icon set
-import { Ionicons } from '@expo/vector-icons';
 
 const { width, height } = Dimensions.get('window');
 
@@ -11,14 +9,17 @@ const DiscoverPrakrutiScreen = () => {
 
     return (
         <View style={styles.container}>
-            {/* Back Arrow Button */}
+            {/* Back Button Image */}
             <TouchableOpacity 
-                style={styles.backButton} 
+                style={styles.backButtonImage} 
                 onPress={() => navigation.navigate('HomeScreen')}
             >
-                <Ionicons name="arrow-back" size={24} color="#3E5025" />
+                <Image
+                    source={require('../../assets/images/BackButton.png')}
+                    style={styles.backIcon}
+                />
             </TouchableOpacity>
-            
+
             <Text style={styles.title}>Discover Your Prakruti! 🌱</Text>
             <Text style={styles.description}>
                 Unlock the secrets of your unique body-mind constitution with our Ayurveda Prakruti test! ✨🙍
@@ -64,13 +65,18 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         paddingHorizontal: 20,
-        position: 'relative', // Added to position the back button
+        position: 'relative',
     },
-    backButton: {
+    backButtonImage: {
         position: 'absolute',
-        top: 40,
+        top: 90,
         left: 20,
         zIndex: 10,
+    },
+    backIcon: {
+        width: 24,
+        height: 24,
+        resizeMode: 'contain',
     },
     title: {
         fontSize: 22,
@@ -130,10 +136,14 @@ const styles = StyleSheet.create({
     },
     logo: {
         width: 100,
-        height: 50,
+        height: 40,
         resizeMode: 'contain',
-        marginBottom: 30,
-    },
+        marginTop: 15, // Increase this value to move it further down (was -7)
+        position: 'absolute', // Add this to position it independently
+        bottom: 37, // Position from bottom instead of relying on the flow
+        alignSelf: 'center', // Keep centered horizontally
+      },
+    
 });
 
 export default DiscoverPrakrutiScreen;

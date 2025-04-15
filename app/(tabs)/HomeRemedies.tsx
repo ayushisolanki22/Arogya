@@ -6,6 +6,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   Platform,
+  Image,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -81,9 +82,13 @@ export default function ConditionsScreen() {
         ))}
       </ScrollView>
 
-      {/* Footer */}
+      {/* Footer with Logo Image */}
       <View style={styles.footer}>
-        <Text style={styles.logoText}>A R O G Y A</Text>
+        <Image 
+          source={require('../../assets/images/ArogyaLogo.png')} 
+          style={styles.logoImage}
+          resizeMode="contain"
+        />
       </View>
     </View>
   );
@@ -135,13 +140,10 @@ const styles = StyleSheet.create({
   },
   footer: {
     alignItems: 'center',
-    paddingBottom: 10,
+    paddingBottom: 15,
   },
-  logoText: {
-    fontSize: 16,
-    fontFamily: 'serif',
-    letterSpacing: 3,
-    color: '#555',
-  },
+  logoImage: {
+    height: 40,
+    width: 120,
+  }
 });
-

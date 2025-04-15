@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -9,6 +9,7 @@ const FollowUpQuestionsScreen1 = () => {
     vata: null,
     pitta: null,
     kapha: null,
+    activeFresh: null, // ✅ new unique key
   });
 
   const handleSelect = (question, answer) => {
@@ -20,8 +21,9 @@ const FollowUpQuestionsScreen1 = () => {
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <Text style={styles.title}>Follow Up Questions :</Text>
 
+        {/* Question 1 */}
         <View style={styles.questionContainer}>
-          <Text style={styles.question}>Do you get acidity or heartburn in summer? </Text>
+          <Text style={styles.question}>Do you get acidity or heartburn in summer?</Text>
           <View style={styles.optionRow}>
             <TouchableOpacity
               style={styles.optionButton}
@@ -48,8 +50,9 @@ const FollowUpQuestionsScreen1 = () => {
           </View>
         </View>
 
+        {/* Question 2 */}
         <View style={styles.questionContainer}>
-          <Text style={styles.question}>Do you have gas or bloating in cold weather? </Text>
+          <Text style={styles.question}>Do you have gas or bloating in cold weather?</Text>
           <View style={styles.optionRow}>
             <TouchableOpacity
               style={styles.optionButton}
@@ -76,8 +79,9 @@ const FollowUpQuestionsScreen1 = () => {
           </View>
         </View>
 
+        {/* Question 3 */}
         <View style={styles.questionContainer}>
-          <Text style={styles.question}>Do you get blocked nose or mucus in humid weather? </Text>
+          <Text style={styles.question}>Do you get blocked nose or mucus in humid weather?</Text>
           <View style={styles.optionRow}>
             <TouchableOpacity
               style={styles.optionButton}
@@ -104,34 +108,36 @@ const FollowUpQuestionsScreen1 = () => {
           </View>
         </View>
 
+        {/* Question 4 */}
         <View style={styles.questionContainer}>
           <Text style={styles.question}>Do you feel active and fresh most of the time?</Text>
           <View style={styles.optionRow}>
             <TouchableOpacity
               style={styles.optionButton}
-              onPress={() => handleSelect('pitta', 'yes')}
+              onPress={() => handleSelect('activeFresh', 'yes')} // ✅ using correct key
             >
               <Ionicons
-                name={answers.pitta === 'yes' ? 'radio-button-on' : 'radio-button-off'}
+                name={answers.activeFresh === 'yes' ? 'radio-button-on' : 'radio-button-off'}
                 size={20}
-                color={answers.pitta === 'yes' ? '#A4C27E' : 'black'}
+                color={answers.activeFresh === 'yes' ? '#A4C27E' : 'black'}
               />
               <Text style={styles.optionText}>Yes</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.optionButton}
-              onPress={() => handleSelect('pitta', 'no')}
+              onPress={() => handleSelect('activeFresh', 'no')}
             >
               <Ionicons
-                name={answers.pitta === 'no' ? 'radio-button-on' : 'radio-button-off'}
+                name={answers.activeFresh === 'no' ? 'radio-button-on' : 'radio-button-off'}
                 size={20}
-                color={answers.pitta === 'no' ? '#A4C27E' : 'black'}
+                color={answers.activeFresh === 'no' ? '#A4C27E' : 'black'}
               />
               <Text style={styles.optionText}>No</Text>
             </TouchableOpacity>
           </View>
         </View>
 
+        {/* Buttons */}
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate('WeatherFeelingScreen')}>
             <Text style={styles.backButtonText}>Back</Text>
@@ -140,6 +146,16 @@ const FollowUpQuestionsScreen1 = () => {
             <Text style={styles.buttonText}>Next</Text>
           </TouchableOpacity>
         </View>
+
+        {/* Arogyo Logo */}
+        <View style={styles.logoContainer}>
+          <Image
+            source={require('../../assets/images/ArogyaLogo.png')} // adjust path based on your directory structure
+            style={styles.logo}
+            resizeMode="contain"
+          />
+        </View>
+
       </ScrollView>
     </View>
   );
@@ -160,7 +176,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#6D3B1E',
     marginBottom: 15,
-    textAlign: 'center',
+    textAlign: 'left',
   },
   questionContainer: {
     marginBottom: 15,
@@ -173,7 +189,6 @@ const styles = StyleSheet.create({
   },
   optionRow: {
     flexDirection: 'column',
-    // justifyContent: 'space-between',
   },
   optionButton: {
     flexDirection: 'row',
@@ -192,7 +207,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 20,
+    marginTop: 40,
   },
   backButton: {
     backgroundColor: 'white',
@@ -215,6 +230,17 @@ const styles = StyleSheet.create({
     color: 'black',
     fontSize: 16,
     fontWeight: 'bold',
+  },
+  logoContainer: {
+    position: 'absolute',
+    bottom: -160,
+    left: 0,
+    right: 0,
+    alignItems: 'center',
+  },
+  logo: {
+    width: 150,
+    height: 40, // adjust size as needed
   },
 });
 
