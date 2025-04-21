@@ -25,6 +25,7 @@ const WeatherFeelingScreen = () => {
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <Text style={styles.question}>How do you feel in different weather?</Text>
+
         <View style={styles.optionsContainer}>
           {options.map((option, index) => (
             <TouchableOpacity
@@ -40,15 +41,6 @@ const WeatherFeelingScreen = () => {
               <Text style={styles.optionText}>{option}</Text>
             </TouchableOpacity>
           ))}
-        </View>
-
-        {/* Weather Image above buttons */}
-        <View style={styles.weatherImageContainer}>
-          <Image
-            source={require('../../assets/images/Weather.png')}
-            style={styles.weatherImage}
-            resizeMode="contain"
-          />
         </View>
 
         {/* Navigation Buttons */}
@@ -86,8 +78,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#F7E7AE',
     padding: 20,
-    paddingTop: 120,
+    paddingTop: 90, // 🔁 reduced from 120 to move the question up
   },
+  
   scrollContent: {
     paddingBottom: 100,
   },
@@ -95,7 +88,7 @@ const styles = StyleSheet.create({
     fontSize: 19,
     fontWeight: 'bold',
     textAlign: 'left',
-    marginBottom: 40,
+    marginBottom: 20,
     color: '#6D3B1E',
   },
   optionsContainer: {
@@ -117,22 +110,10 @@ const styles = StyleSheet.create({
     color: 'black',
     marginLeft: 10,
   },
-  weatherImageContainer: {
-    alignItems: 'center',
-    marginBottom: 10, // decreased from 20 to move it down
-  },
-  weatherImage: {
-    width: 100,
-    height: 100,
-    opacity: 0.2,
-    marginTop: 30,
-    opacity: 0.2, // added this to push image further down
-  },
-
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 30,
+    marginTop: 180,
   },
   backButton: {
     backgroundColor: 'white',

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 
-const WeatherFeelingScreen = () => {
+const AppetiteScreen = () => {
   const navigation = useNavigation();
   const [selectedOption, setSelectedOption] = useState(null);
 
@@ -46,6 +46,13 @@ const WeatherFeelingScreen = () => {
           </TouchableOpacity>
         </View>
       </ScrollView>
+
+      {/* Fixed logo at bottom */}
+      <Image
+        source={require('../../assets/images/ArogyaLogo.png')}
+        style={styles.logo}
+        resizeMode="contain"
+      />
     </View>
   );
 };
@@ -55,16 +62,16 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#F7E7AE',
     padding: 20,
-    paddingTop: 120,
+    paddingTop: 90,
   },
   scrollContent: {
-    paddingBottom: 40,
+    paddingBottom: 100, // Give space for logo
   },
   question: {
     fontSize: 19,
     fontWeight: 'bold',
     textAlign: 'left',
-    marginBottom: 40,
+    marginBottom: 20,
     color: '#6D3B1E',
   },
   optionsContainer: {
@@ -89,7 +96,8 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 70,
+    marginTop: 60,
+    marginBottom: 20,
   },
   backButton: {
     backgroundColor: 'white',
@@ -112,7 +120,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
+  logo: {
+    width: 150,
+    height: 40,
+    position: 'absolute',
+    bottom: 40,
+    alignSelf: 'center',
+  },
 });
 
-
-export default WeatherFeelingScreen;
+export default AppetiteScreen;

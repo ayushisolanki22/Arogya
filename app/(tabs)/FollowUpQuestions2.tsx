@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -113,6 +113,15 @@ const FollowUpQuestionsScreen1 = () => {
           </TouchableOpacity>
         </View>
       </ScrollView>
+      
+      {/* Arogya Logo at bottom of screen */}
+      <View style={styles.logoContainer}>
+        <Image 
+          source={require('../../assets/images/ArogyaLogo.png')} 
+          style={styles.logo}
+          resizeMode="contain"
+        />
+      </View>
     </View>
   );
 };
@@ -122,39 +131,40 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFF9E1',
     padding: 20,
-    paddingTop: 120,
+    paddingTop: 90,
   },
   scrollContent: {
-    paddingBottom: 60,
+    paddingBottom: 80, // Increased to make room for logo
   },
   title: {
     fontSize: 20,
     fontWeight: 'bold',
     color: '#6D3B1E',
     marginBottom: 15,
-    textAlign: 'center',
+    textAlign: 'left', // Changed to left align
   },
   questionContainer: {
     marginBottom: 15,
+    alignItems: 'flex-start', // Left align the content
   },
   question: {
     fontSize: 16,
     fontWeight: 'bold',
     color: '#3E5025',
     marginBottom: 10,
+    textAlign: 'left', // Ensure left alignment
   },
   optionRow: {
     flexDirection: 'column',
-    // justifyContent: 'space-between',
+    alignItems: 'flex-start', // Left align options
   },
   optionButton: {
     flexDirection: 'row',
     alignItems: 'center',
     padding: 5,
-    marginHorizontal: 5,
+    marginVertical: 3, // Add some vertical spacing between options
     borderRadius: 10,
     backgroundColor: 'transparent',
-    marginRight: 50,
   },
   optionText: {
     fontSize: 16,
@@ -187,6 +197,18 @@ const styles = StyleSheet.create({
     color: 'black',
     fontSize: 16,
     fontWeight: 'bold',
+  },
+  logoContainer: {
+    position: 'absolute',
+    bottom: 10,
+    left: 0,
+    right: 0,
+    alignItems: 'center',
+    paddingBottom: 10,
+  },
+  logo: {
+    width: 120,
+    height: 40,
   },
 });
 

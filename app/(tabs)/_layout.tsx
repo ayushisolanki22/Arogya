@@ -1,68 +1,70 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
 import { Platform } from 'react-native';
-
 import { HapticTab } from '@/components/HapticTab';
 import { IconSymbol } from '@/components/ui/IconSymbol';
 import TabBarBackground from '@/components/ui/TabBarBackground';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
-
 // Screens where tab bar should be hidden
 const HIDDEN_TAB_SCREENS = [
-  'index',
-  'welcome',
-  'About',
-  'Allergy',
-  'AppetiteScreen',
-  'BirthdateInput',
-  'DietSelectionScreen',
-  'DigestionScreen',
-  'Disclaimer',
-  'DiscoverPrakruti',
-  'EmailLogin',
-  'EmailRegistration',
-  'FamilyHealth',
-  'FollowUpQuestions',
-  'FollowUpQuestions2',
-  'FollowUpQuestionsScreen1',
-  'FoodTracker',
-  'GenderSelection',
-  'HealthIssue',
-  'Help',
-  'HomeScreen',
-  'Insights',
-  'MemoryKYP',
-  'MentalhealthFollowup',
-  'MentalhealthKYP',
-  'NameInput',
-  'Notification',
-  'PhoneLogin',
-  'PhoneRegistration',
-  'PrivacyPolicy',
-  'profileAndSettings',
-  'RegistrationSuccess',
-  'SettingsAndActivity',
-  'SkinFollowup',
-  'SkinKYP',
-  'SleepFollowupKYP',
-  'SleepKYP',
-  'SleepTrack',
-  'StressKYP',
-  'StressTracker',
-  'SuggestionsScreen',
-  'UserExercise',
-  'UserMovement',
-  'WaterInsights',
-  'WeatherFeeling',
-  'WelcomeScreen',
-  'Registration',
-  'Login'
-];
 
+    'index',
+    'welcome',
+    'About',
+    'Allergy',
+    'AppetiteScreen',
+    'BirthdateInput',
+    'DietSelectionScreen',
+    'DigestionScreen',
+    'Disclaimer',
+    'DiscoverPrakruti',
+    'EmailLogin',
+    'EmailRegistration',
+    'FamilyHealth',
+    'FollowUpQuestions',
+    'FollowUpQuestions2',
+    'FollowUpQuestionsScreen1',
+    'FoodTracker',
+    'GenderSelection',
+    'HealthIssue',
+    'Help',
+    'HomeRemedies',
+    'HomeScreen',
+    'Insights',
+    'MemoryKYP',
+    'MentalhealthFollowup',
+    'MentalhealthKYP',
+    'NameInput',
+    'Notification',
+    'PhoneLogin',
+    'PhoneRegistration',
+    'PrivacyPolicy',
+    'profileAndSettings',
+    'RegistrationSuccess',
+    'SettingsAndActivity',
+    'SkinFollowup',
+    'SkinKYP',
+    'SleepFollowupKYP',
+    'SleepKYP',
+    'SleepTrack',
+    'StressKYP',
+    'StressTracker',
+    'SuggestionsScreen',
+    'UserExercise',
+    'UserMovement',
+    'WaterInsights',
+    'WeatherFeeling',
+    'WelcomeScreen',
+    'Registration',
+    'Login',
+    'LifestyleScreen',
+    'BalancedVegDietScreen',
+    'BalancedVeganDietScreen'// ✅ Added here
+  ];
+  
 export default function TabLayout() {
   const colorScheme = useColorScheme();
-
   return (
     <Tabs
       screenOptions={({ route }) => ({
@@ -96,6 +98,13 @@ export default function TabLayout() {
         options={{
           title: 'Explore',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="homeRemedies"
+        options={{
+          title: 'Remedies',
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="leaf.fill" color={color} />,
         }}
       />
     </Tabs>

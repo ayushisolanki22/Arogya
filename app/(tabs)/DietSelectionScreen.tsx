@@ -1,76 +1,158 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView, SafeAreaView, StatusBar , Image } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView, SafeAreaView, StatusBar, Image, Modal } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 
 const SuggestionsScreen = () => {
   const navigation = useNavigation();
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedDiet, setSelectedDiet] = useState(null);
+  const [dietPreference, setDietPreference] = useState(null);
+
+  const openModal = (dietType) => {
+    setSelectedDiet(dietType);
+    setDietPreference(null); // Reset preference when opening a new modal
+    setModalVisible(true);
+  };
+
+  const selectPreference = (preference) => {
+    // Just update the preference state without affecting modal visibility
+    setDietPreference(preference);
+  };
+
+  const handleContinue = () => {
+    if (dietPreference) {
+      setModalVisible(false); // Close modal first
+      
+      // Add a small delay before navigation to ensure modal closes smoothly
+      setTimeout(() => {
+        // Check the selected diet and navigate accordingly
+        if (selectedDiet === 'Balanced Diet Plan' && dietPreference === 'Vegan') {
+          navigation.navigate('BalancedVeganDietScreen'); // Navigate to the BalancedVeganDietScreen
+        } else if (selectedDiet === 'Balanced Diet Plan' && dietPreference === 'Vegetarian') {
+          navigation.navigate('BalancedVegDietScreen'); // Navigate to the BalancedVegDietScreen
+        } else {
+          navigation.navigate('DietSelectionScreen', {
+            dietType: selectedDiet,
+            preference: dietPreference
+          });
+        }
+        console.log(`Navigating to appropriate screen with ${selectedDiet} and ${dietPreference} preference`);
+      }, 100);
+    }
+  };
+  
+  // Define the modal component outside the render path
+  // This can help prevent unwanted re-renders
+  const renderModal = () => {
+    if (!modalVisible) return null;
+    
+    return (
+      <Modal
+        animationType="none"
+        transparent={true}
+        visible={true}
+        onRequestClose={() => setModalVisible(false)}
+      >
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalTitle}>Choose Diet Preference</Text>
+            
+            <TouchableOpacity 
+              style={[styles.preferenceOption, dietPreference === 'Vegetarian' && styles.selectedOption]}
+              onPress={() => selectPreference('Vegetarian')}
+              activeOpacity={0.8}
+            >
+              <Text style={[styles.preferenceText, dietPreference === 'Vegetarian' && styles.selectedText]}>Vegetarian</Text>
+            </TouchableOpacity>
+            
+            <TouchableOpacity 
+              style={[styles.preferenceOption, dietPreference === 'Vegan' && styles.selectedOption]}
+              onPress={() => selectPreference('Vegan')}
+              activeOpacity={0.8}
+            >
+              <Text style={[styles.preferenceText, dietPreference === 'Vegan' && styles.selectedText]}>Vegan</Text>
+            </TouchableOpacity>
+            
+            <TouchableOpacity 
+              style={[styles.continueButton, !dietPreference && styles.disabledButton]}
+              onPress={handleContinue}
+              disabled={!dietPreference}
+              activeOpacity={0.8}
+            >
+              <Text style={styles.continueButtonText}>Continue</Text>
+            </TouchableOpacity>
+            
+            <TouchableOpacity 
+              style={styles.cancelButton}
+              onPress={() => setModalVisible(false)}
+              activeOpacity={0.8}
+            >
+              <Text style={styles.cancelButtonText}>Cancel</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
+    );
+  };
 
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
         <TouchableOpacity 
           style={styles.backButton}
-          onPress={() => navigation.navigate('HomeScreen')}
+          onPress={() => navigation.navigate('SuggestionsScreen')}
         >
           <Ionicons name="arrow-back" size={24} color="#6D3B1E" />
         </TouchableOpacity>
         
         <ScrollView contentContainerStyle={styles.scrollContent}>
-          <TouchableOpacity style={styles.card} 
-        //   onPress={() => navigation.navigate('DietSelectionScreen')}
+          <TouchableOpacity 
+            style={styles.card} 
+            onPress={() => openModal('Balanced Diet Plan')}
           >
             <Image source={require('../../assets/images/Balanced_diet.png')} style={styles.logoIcon}></Image>
             <Text style={styles.cardTitle}>Balanced Diet Plan</Text>
-            {/* <Text style={styles.cardSubtitle}>For General health</Text> */}
           </TouchableOpacity>
           
-          <TouchableOpacity style={styles.card}>
+          <TouchableOpacity 
+            style={styles.card}
+            onPress={() => openModal('Weight Loss Diet Plan')}
+          >
             <Text style={styles.cardTitle}>Weight Loss Diet Plan </Text>
-            {/* <Text style={styles.cardSubtitle}>Tap to know lifestyle suggestions</Text> */}
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.card}>
+          <TouchableOpacity 
+            style={styles.card}
+            onPress={() => openModal('Weight Gain Diet Plan')}
+          >
             <Text style={styles.cardTitle}>Weight Gain Diet Plan </Text>
-            {/* <Text style={styles.cardSubtitle}>Tap to know lifestyle suggestions</Text> */}
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.card}>
+          <TouchableOpacity 
+            style={styles.card}
+            onPress={() => openModal('Muscle Building Diet Plan')}
+          >
             <Text style={styles.cardTitle}>Muscle Building Diet Plan</Text>
-            {/* <Text style={styles.cardSubtitle}>Tap to know lifestyle suggestions</Text> */}
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.card}>
+          <TouchableOpacity 
+            style={styles.card}
+            onPress={() => openModal('Keto Diet Plan')}
+          >
             <Text style={styles.cardTitle}>Keto Diet Plan </Text>
-            {/* <Text style={styles.cardSubtitle}>Tap to know lifestyle suggestions</Text> */}
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.card}>
+          <TouchableOpacity 
+            style={styles.card}
+            onPress={() => openModal('Ayurveda-Based Diet Plan')}
+          >
             <Text style={styles.cardTitle}>Ayurveda-Based Diet Plan  </Text>
-            {/* <Text style={styles.cardSubtitle}>Tap to know lifestyle suggestions</Text> */}
           </TouchableOpacity>
-          
-          {/* <View style={styles.logoContainer}>
-            <View style={styles.logo}>
-              <Image source = {require('../../assets/images/Yoga.png')}></Image>
-            </View>
-          </View> */}
         </ScrollView>
         
-        {/* <View style={styles.bottomNav}>
-          <TouchableOpacity style={styles.navItem}>
-            <Ionicons name="home-outline" size={24} color="#6D3B1E" />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.navItem}>
-            <Ionicons name="leaf-outline" size={24} color="#6D3B1E" />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.navItem}>
-            <Ionicons name="add-circle-outline" size={24} color="#6D3B1E" />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.navItem}>
-            <Ionicons name="stats-chart-outline" size={24} color="#6D3B1E" />
-          </TouchableOpacity>
-        </View> */}
+        {/* Render modal only if it's visible */}
+        {renderModal()}
       </View>
     </SafeAreaView>
   );
@@ -116,36 +198,85 @@ const styles = StyleSheet.create({
     color: '#000000',
     marginBottom: 5,
   },
-  cardSubtitle: {
-    fontSize: 16,
-    color: '#000000',
-  },
-  logoContainer: {
+  
+  // Modal styles
+  modalOverlay: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 40,
-    marginBottom: 40,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
-  logo: {
-    opacity:0.2
-  },
-  bottomNav: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    backgroundColor: '#DFCC85',
-    height: 70,
-    borderTopLeftRadius: 0,
-    borderTopRightRadius: 0,
-  },
-  navItem: {
-    width: 50,
-    height: 50,
+  modalView: {
+    width: '85%',
     backgroundColor: '#FFFFFF',
     borderRadius: 25,
-    justifyContent: 'center',
+    padding: 20,
     alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  modalTitle: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    color: '#000',
+    marginBottom: 20,
+    textAlign: 'center',
+  },
+  preferenceOption: {
+    width: '100%',
+    padding: 16,
+    borderRadius: 15,
+    backgroundColor: '#F0F0F0',
+    marginBottom: 10,
+    alignItems: 'center',
+  },
+  selectedOption: {
+    backgroundColor: '#E0E0E0',
+  },
+  selectedText: {
+    fontWeight: '600',
+    color: '#000',
+  },
+  preferenceText: {
+    fontSize: 18,
+    fontWeight: '400',
+    color: '#000',
+  },
+  continueButton: {
+    width: '100%',
+    padding: 16,
+    borderRadius: 15,
+    backgroundColor: '#6D3B1E',
+    alignItems: 'center',
+    marginTop: 15,
+    marginBottom: 10,
+  },
+  continueButtonText: {
+    color: '#FFFFFF',
+    fontWeight: '600',
+    fontSize: 18,
+  },
+  cancelButton: {
+    width: '100%',
+    padding: 16,
+    borderRadius: 15,
+    backgroundColor: '#F0F0F0',
+    alignItems: 'center',
+  },
+  cancelButtonText: {
+    color: '#000',
+    fontWeight: '500',
+    fontSize: 18,
+  },
+  disabledButton: {
+    backgroundColor: '#A67C52',
+    opacity: 0.7,
   },
 });
 

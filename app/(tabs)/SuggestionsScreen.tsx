@@ -1,5 +1,13 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView, SafeAreaView, StatusBar , Image } from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  ScrollView,
+  SafeAreaView,
+  Image,
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -17,37 +25,28 @@ const SuggestionsScreen = () => {
         </TouchableOpacity>
         
         <ScrollView contentContainerStyle={styles.scrollContent}>
-          <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('DietSelectionScreen')}>
+          <TouchableOpacity 
+            style={styles.card} 
+            onPress={() => navigation.navigate('DietSelectionScreen')}
+          >
             <Text style={styles.cardTitle}>DIET</Text>
             <Text style={styles.cardSubtitle}>Tap to know diet suggestions</Text>
           </TouchableOpacity>
           
-          <TouchableOpacity style={styles.card}>
+          <TouchableOpacity 
+            style={styles.card}
+            onPress={() => navigation.navigate('LifestyleScreen')} // ✅ Added navigation
+          >
             <Text style={styles.cardTitle}>LIFESTYLE</Text>
             <Text style={styles.cardSubtitle}>Tap to know lifestyle suggestions</Text>
           </TouchableOpacity>
           
           <View style={styles.logoContainer}>
             <View style={styles.logo}>
-              <Image source = {require('../../assets/images/Yoga.png')}></Image>
+              <Image source={require('../../assets/images/Yoga.png')} />
             </View>
           </View>
         </ScrollView>
-        
-        {/* <View style={styles.bottomNav}>
-          <TouchableOpacity style={styles.navItem}>
-            <Ionicons name="home-outline" size={24} color="#6D3B1E" />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.navItem}>
-            <Ionicons name="leaf-outline" size={24} color="#6D3B1E" />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.navItem}>
-            <Ionicons name="add-circle-outline" size={24} color="#6D3B1E" />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.navItem}>
-            <Ionicons name="stats-chart-outline" size={24} color="#6D3B1E" />
-          </TouchableOpacity>
-        </View> */}
       </View>
     </SafeAreaView>
   );
@@ -102,24 +101,7 @@ const styles = StyleSheet.create({
     marginBottom: 40,
   },
   logo: {
-    opacity:0.2
-  },
-  bottomNav: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    backgroundColor: '#DFCC85',
-    height: 70,
-    borderTopLeftRadius: 0,
-    borderTopRightRadius: 0,
-  },
-  navItem: {
-    width: 50,
-    height: 50,
-    backgroundColor: '#FFFFFF',
-    borderRadius: 25,
-    justifyContent: 'center',
-    alignItems: 'center',
+    opacity: 0.2,
   },
 });
 
